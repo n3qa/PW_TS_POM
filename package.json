@@ -5,12 +5,23 @@
   "main": "index.js",
   "scripts": {},
   "keywords": [],
-  "author": "",
+  "author": "Nikolay Nikolov",
   "license": "ISC",
   "devDependencies": {
     "@playwright/test": "^1.34.3"
   },
   "directories": {
     "test": "tests"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/n3qa/PW_TS_POM.git"
+  },
+  "bugs": {
+    "url": "https://github.com/n3qa/PW_TS_POM/issues"
+  },
+  "homepage": "https://github.com/n3qa/PW_TS_POM#readme",
+  "dependencies": {
+    "playwright": "^1.39.0"
   }
 }
