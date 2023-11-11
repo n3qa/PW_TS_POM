@@ -17,7 +17,6 @@ export default class SearchResultsPage {
   searchSubmitButton = () => this.page.locator('button.s-search-input__button');
   //Search input field = abbreaviation -> SIF
   SIFplaceHolder = () => this.searchInputField().getAttribute('placeholder');
- 
 
   //Actions
   public async clickOnSearchInputField () {
@@ -26,7 +25,32 @@ export default class SearchResultsPage {
 
   public async submitSearchQuery(searchTerm: string) {
     await this.searchInputField().fill(searchTerm);
-    await this.searchSubmitButton().click();
+    await this.searchInputField().press("Enter");
   }
+
+
+  const { chromium } = require('playwright');
+
+ 
+  // await page.getByPlaceholder('Vyhľadaj obľúbený produkt, značku, kategóriu...').click();
+  // await page.getByRole('button', { name: 'Spustite vyhľadávanie' }).click();
+  // await page.getByRole('button', { name: 'Filtrovať podľa Kategórie' }).click();
+  // await page.getByRole('button', { name: 'Filtrovať podľa Kategórie' }).click();
+  // await page.getByRole('button', { name: 'Filtrovať podľa Cena' }).click();
+  // await page.getByRole('button', { name: 'Filtrovať podľa Cena' }).click();
+  // await page.getByRole('button', { name: 'Filtrovať podľa Zľavy' }).dblclick();
+  // await page.getByRole('button', { name: 'Filtrovať podľa Značka' }).dblclick();
+  // await page.getByRole('button', { name: 'Filtrovať podľa Farba' }).dblclick();
+  // await page.getByRole('button', { name: 'Filtrovať podľa Veľkosť' }).click();
+  // await page.getByRole('button', { name: 'Filtrovať podľa Veľkosť' }).click();
+  // await page.getByRole('button', { name: 'Filtrovať podľa Materiál' }).click();
+  // await page.getByRole('button', { name: 'Filtrovať podľa Materiál' }).click();
+  // await page.getByRole('button', { name: 'Filtrovať podľa Hodnotenia' }).click();
+  // await page.getByRole('button', { name: 'Filtrovať podľa Hodnotenia' }).click();
+  // await page.getByRole('button', { name: 'Ďalej Viac produktov' }).click();
+  // await page.getByRole('link', { name: 'Relevantnosti' }).click();
+
+ 
+
 
 }
