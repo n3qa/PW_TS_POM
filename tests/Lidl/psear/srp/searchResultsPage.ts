@@ -1,10 +1,13 @@
 import { expect, Page } from "@playwright/test";
+import { LidlBase } from "../../../../fixtures/lidlBase";
 
-export default class SKsearchResultsPage {
-  page: Page;
-
+export default class SearchResultsPage extends LidlBase {
   constructor(page: Page) {
-    this.page = page;
+    super(page)
+  }
+
+  public async goto() {
+    await this.page.goto('www.lidl.sk');
   }
 
   //Locators
@@ -23,12 +26,9 @@ export default class SKsearchResultsPage {
     await this.searchInputField().fill(searchTerm);
     await this.searchInputField().press("Enter");
   }
-   
-  public async validateSearchResultsPageIsCorrect() {
-    
-    await this.searchInputField().press("Enter");
-  }
 
+
+ 
  
   // await page.getByPlaceholder('Vyhľadaj obľúbený produkt, značku, kategóriu...').click();
   // await page.getByRole('button', { name: 'Spustite vyhľadávanie' }).click();

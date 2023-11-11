@@ -19,14 +19,17 @@ test.only("SK - 1 - SEARCH-VIEW | SERP | Cookies | OneTrust| " +
 
       }) => {
      
-          const lidl = new StoreFront(page);
+          const lidlStoreFront = new StoreFront(page);
 
      //STEP 2:
      //CLick on Accept Allcookies oneTrust cookie settings button
      console.log("CLick on Accept Allcookies oneTrust cookie settings button");
+     await lidlStoreFront.SKCookies().clickOn_AcceptAllCS_btn();
 
-     lidl.SKCookiesPage().SK_acceptAll_cs();
-     
+     //STEP 3: The user submits a basic search on the home page
+     console.log("STEP 3: The user submits a basic search on the home page");
+     await lidlStoreFront.searchBar().submitSearchQuery("*");
+
      // await lidlCookiesPage.SK_clickOn_AcceptAllCS_btn();
     
      // //STEP 3: The user submits a basic search on the home page

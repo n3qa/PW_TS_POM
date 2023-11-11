@@ -1,10 +1,9 @@
 import { expect, Page } from "@playwright/test";
+import { LidlBase } from "../../../fixtures/lidlBase";
 
-export default class SearchInputBox {
-  page: Page;
-
+export default class SearchInputBox extends LidlBase {
   constructor(page: Page) {
-    this.page = page;
+    super(page)
   }
 
   //Locators

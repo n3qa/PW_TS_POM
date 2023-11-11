@@ -1,9 +1,9 @@
   import { Expect, Locator, Page, expect } from "@playwright/test";
+  import { LidlBase } from "../../../../fixtures/lidlBase";
 
-  export default class CZCookiesPage {
-    readonly page: Page;
+  export default class CZCookiesPage extends LidlBase {
     constructor(page: Page) {
-      this.page = page;
+      super(page)
     }
 
   //SK flow 
@@ -18,7 +18,7 @@
 
   //Actions
  
-  public async SK_clickOn_AcceptAllCS_btn() {
+  public async clickOn_AcceptAll_CS_btn() {
     await this.SK_acceptAll_cs().click();
   }
 

@@ -1,9 +1,9 @@
   import { Expect, Locator, Page, expect } from "@playwright/test";
+  import { LidlBase } from "../../../../fixtures/lidlBase";
 
-  export default class FRCookiesPage {
-    readonly page: Page;
+  export default class FRCookiesPage extends LidlBase {
     constructor(page: Page) {
-      this.page = page;
+      super(page)
     }
 
   //SK flow 

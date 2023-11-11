@@ -1,27 +1,28 @@
 import { Page ,expect } from "@playwright/test";
 // IMPORT
-// StoreFront common pages
-import LidlCookiesPage from "../tests/Lidl/commons/lidlCookies";
+// StoreFront common pages   
+
+import LidlCookiesPage from "../tests/Lidl/common/cookies/lidlCookies";
 import LidlSearchBarPage from "../tests/Lidl/psear/searchBar";
-import LidlSearchResultsPage from "../tests/lidl/psear/searchResultsPage";
+import LidlSearchResultsPage from "../tests/lidl/psear/srp/searchResultsPage";
 
 //IMPORT 
 // Project Spec Pages
 // 1 Cookies 
 // 1.1. SK Cookes 
- import LidlSKCookiesPage from "../tests/Lidl/commons/SKcookiesPage";
+ import LidlSKCookiesPage from "../tests/Lidl/common/cookies/SKcookiesPage";
 //1.2. DE Cookies
-import LidlDECookiesPage from "../tests/Lidl/commons/DEcookiesPage";
+import LidlDECookiesPage from "../tests/Lidl/common/cookies/DEcookiesPage";
 //1.3 CZ Cookies
-import LidlCZCookiesPage from "../tests/Lidl/commons/CZcookiesPage";
+import LidlCZCookiesPage from "../tests/Lidl/common/cookies/CZcookiesPage";
 //1.4 FR Cookies
-import LidlFRCookiesPage from "../tests/Lidl/commons/FRcookiesPage";
+import LidlFRCookiesPage from "../tests/Lidl/common/cookies/FRcookiesPage";
 
 //Searh results pages 
 //Common methods for SRP
 
 //1 SK Search results page
-import LidlSKsearchResultsPage from "../tests/Lidl/psear/SKsearchResultsPage";
+import LidlSKsearchResultsPage from "../tests/Lidl/psear/srp/SKsearchResultsPage";
 
 // END OF IMPTS 
 export class StoreFront { 
