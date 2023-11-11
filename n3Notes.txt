@@ -1,0 +1,30 @@
+    
+ Page object convention for the project:
+    // UI MAP
+    // 1: GENERAL WEB ELEMENTS
+    // 2: COMMON WEB ELEMENTS 
+    // 3: COUNTRY SPEC WEB ELEMENTS
+
+    
+CLI run tests
+ npx playwright test --headed   
+ npx playwright test --project=chromium
+
+CLI report
+npx playwright show-report 
+
+CLI  suite
+ npx playwright test A2_facet_Price.spec.ts --project=chromium
+
+CLI spec name
+npx playwright test -g "TestCaseName" --project=chromium
+
+EXEC UI mode
+VS plugins
+npx playwright test --ui
+
+npx 
+    //gen Locators
+    npx playwright codegen playwright.dev
+    npx playwright test --headed --debug
+     

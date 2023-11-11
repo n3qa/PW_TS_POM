@@ -7,10 +7,6 @@ export default class SearchInputBox {
     this.page = page;
   }
 
-  public async goto() {
-    await this.page.goto('www.lidl.sk');
-  }
-
   //Locators
   searchBar = () => this.searchInputField().getAttribute('#search-input-hook');
   searchInputField = () => this.page.locator('#s-search-input-field');
@@ -26,7 +22,7 @@ export default class SearchInputBox {
 
   public async submitSearchQuery(searchTerm: string) {
     await this.searchInputField().fill(searchTerm);
-    await this.searchSubmitButton().click();
+    await this.searchInputField().press('Enter');
   }
 
 }
