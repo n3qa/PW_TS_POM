@@ -1,14 +1,10 @@
 import { expect, Page } from "@playwright/test";
 
-export default class SearchResultsPage {
+export default class SKsearchResultsPage {
   page: Page;
 
   constructor(page: Page) {
     this.page = page;
-  }
-
-  public async goto() {
-    await this.page.goto('www.lidl.sk');
   }
 
   //Locators
@@ -27,9 +23,12 @@ export default class SearchResultsPage {
     await this.searchInputField().fill(searchTerm);
     await this.searchInputField().press("Enter");
   }
+   
+  public async validateSearchResultsPageIsCorrect() {
+    
+    await this.searchInputField().press("Enter");
+  }
 
-
- 
  
   // await page.getByPlaceholder('Vyhľadaj obľúbený produkt, značku, kategóriu...').click();
   // await page.getByRole('button', { name: 'Spustite vyhľadávanie' }).click();
