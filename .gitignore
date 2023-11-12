@@ -719,3 +719,7 @@ local_conf.py
 
 # miscellaneous
 fix.py
+
+# visualValidations checks
+.DS_Store
+screenshots/*
