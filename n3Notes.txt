@@ -15,6 +15,8 @@ npx playwright show-report
 
 CLI  suite
  npx playwright test A2_facet_Price.spec.ts --project=chromium
+ npx playwright test A2_facet_Price.spec.ts --project=qa
+
 
 CLI spec name
 npx playwright test -g "TestCaseName" --project=chromium

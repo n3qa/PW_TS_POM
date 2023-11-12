@@ -1,6 +1,7 @@
 import { defineConfig, devices } from '@playwright/test';
+import type { PlaywrightTestOptions } from '@playwright/test';
 
-export default defineConfig({
+export default defineConfig <PlaywrightTestOptions> ({
   timeout: 30000,
   globalTimeout: 50000,
 
@@ -16,15 +17,34 @@ export default defineConfig({
   reporter: 'html',
 
   use: {
+    baseURL: "www.lidl.sk",
     trace: 'on-first-retry',
     actionTimeout: 6000,
     navigationTimeout: 7777,
     // video: 'on-first-retry'
-    video: 'retain-on-failure'
+    video: 'on',
+   
   },
 
   projects: [
-      {
+    // QA SK
+    {
+      name: 'qa_SK_sk',
+      use: { ...devices['Desktop Chrome'],
+      baseURL: 'https://qa.lidl.sk/'
+      }, 
+    },
+   
+    // PROD SK 
+    {
+      name: 'prod_SK_sk',
+      use: { ...devices['Desktop Chrome'],
+      baseURL: 'https://www.lidl.sk/'
+      }, 
+    },
+
+    //Broser used for the TAF
+    {
       name: 'chromium',
       use: { ...devices['Desktop Chrome'] },
     }

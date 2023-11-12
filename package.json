@@ -4,12 +4,13 @@
   "description": "PSEAR UI TAF PW TS",
   "main": "index.js",
   "scripts": {
+    
     "ng": "ng",
     "start" : "ng serve",
-    "prodSKonChrome": "npx playwright test SK_cookies.spec.ts --project=Chromium",
-    "tests:firefox": "playwright test --config=playwright.config.ts --project=Firefox",
-    "tests:webkit": "playwright test --config=playwright.config.ts --project=Webkit",
-    "tests:e2e": "playwright test --config=SK_cookies.config.ts --project=Chromium"
+    "qa_SK_sk": "npx playwright test --config=playwright.config.ts --project=qa_SK_sk",
+    "prod_SK_sk": "npx playwright test --config=playwright.config.ts --project=prod_SK_sk"
+   
+
   },
   "keywords": [],
   "author": "Nikolay Nikolov",

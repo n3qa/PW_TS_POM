@@ -5,8 +5,8 @@ test.beforeEach(async ({page}, testInfo) => {
     console.log(`Running ${testInfo.title}`);
     
     //STEP 1 Navigate to the Lidl one trust cookies page
-     console.log("STEP 1: Navigate to the Lidl one trust cookies page");
-    await page.goto('https://www.lidl.sk/');
+    page.goto(String(playwright.use?.baseURL))
+    console.log("STEP 1: Navigate to the Lidl one trust cookies page");
 });
 
 test.only("SK - 1 - SEARCH-VIEW | SERP | Cookies | OneTrust| Accept all | " +
