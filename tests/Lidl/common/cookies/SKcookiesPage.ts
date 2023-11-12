@@ -35,7 +35,7 @@
     await this.SK_statistics_cs().click();
   }
 
-  public async SK_clickOn_Marketing_btn() {
+  public async clickOn_Marketing_btn() {
     await this.SK_preferences_cs().click();
   }
 

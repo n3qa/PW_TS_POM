@@ -28,6 +28,8 @@ export default class SKsearchResultsPage extends LidlBase{
     await this.searchInputField().press("Enter");
   }
 
+  
+
  
   // await page.getByPlaceholder('Vyhľadaj obľúbený produkt, značku, kategóriu...').click();
   // await page.getByRole('button', { name: 'Spustite vyhľadávanie' }).click();

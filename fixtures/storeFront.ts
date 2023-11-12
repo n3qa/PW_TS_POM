@@ -89,6 +89,6 @@ export class StoreFront {
     
     //Country spec srp -> SK
     SKsrp() {return this.lidlSKsearchResultsPage}
-
+    
 
 }
