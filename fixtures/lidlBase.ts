@@ -13,7 +13,8 @@ export class LidlBase {
     }
 
     public async takePageScreenShot (path: string) {
-        await this.page.screenshot({path: 'screenshots/'+path+'.png'})
+        const picPath = 'screenshots/'+path+'.png';
+        await this.page.screenshot({path: picPath})
     }
 
 }
