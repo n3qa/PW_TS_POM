@@ -4,13 +4,10 @@
   "description": "PSEAR UI TAF PW TS",
   "main": "index.js",
   "scripts": {
-    
     "ng": "ng",
-    "start" : "ng serve",
-    "qa_SK_sk": "npx playwright test --config=playwright.config.ts --project=qa_SK_sk",
+    "start": "ng serve",
+    "tests:chrome": "playwright test --config=playwright.config.ts --project=Chromium",
     "prod_SK_sk": "npx playwright test --config=playwright.config.ts --project=prod_SK_sk"
-   
-
   },
   "keywords": [],
   "author": "Nikolay Nikolov",
@@ -30,6 +27,7 @@
   },
   "homepage": "https://github.com/n3qa/PW_TS_POM#readme",
   "dependencies": {
+    "dotenv": "^16.3.1",
     "playwright": "^1.39.0"
   }
 }
