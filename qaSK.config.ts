@@ -10,17 +10,14 @@ export default defineConfig <PlaywrightTestOptions> ({
     timeout: 7777
   },
  
+  
+
   // testDir: './tests',
   fullyParallel: true,
   forbidOnly: !!process.env.CI,
   retries: process.env.CI ? 2 : 1,
   workers: process.env.CI ? 1 : undefined,
-  reporter: [
-    ['html', {outputFile: 'test-results/html/htmlReporter.html'}],
-    ['json', {outputFile: 'test-results/json/jsonReporter.html'}],
-    ['junit', {outputFile: 'test-results/junit/junitReporter.html'}],
-    ['allure-playwright', {outputFile: 'test-results/junit/AllureReport.html'}]
-  ],
+  reporter: 'html',
 
   use: {
     headless: false,
@@ -48,12 +45,13 @@ export default defineConfig <PlaywrightTestOptions> ({
       use: {...devices['Desktop Chrome'] },
     },
     {
-      name: 'sk_qa_cookies',
+      name: 'qa',
       use: {...devices['Desktop Chrome'],
-      baseURL: 'https://www.lidl.sk/'
+      baseURL: 'https://qa.lidl.sk/'
     },
     }
      
   ],
 
+   
 });

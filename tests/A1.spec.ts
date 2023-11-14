@@ -5,13 +5,14 @@ test.beforeEach(async ({page}, testInfo) => {
     console.log(`Running ${testInfo.title}`);
     
     //STEP 1 Navigate to the Lidl one trust cookies page
-    const startingURL=process.env.URL+'';
-
-    await page.goto(startingURL);
+//     const startingURL=process.env.URL+''; 
+//     const startingURL=baseURL;
+//     await page.goto(startingURL);
+     await page.goto('/')
     console.log("STEP 1: Navigate to the Lidl one trust cookies page");
 });
 
-test.only("A1 - SK - 1 - SEARCH-VIEW | SERP | Cookies | OneTrust| Accept all | " +
+test("A1 - SK - 1 - SEARCH-VIEW | SERP | Cookies | OneTrust| Accept all | " +
                "Verify SERP is presented when a valid search term is used " +
                "with combination of " +
                "accept all cookies settings", async ({page }) => {
@@ -42,7 +43,7 @@ test.only("A1 - SK - 1 - SEARCH-VIEW | SERP | Cookies | OneTrust| Accept all | "
 
 });
 
-test.only("A1 - SK - 2 - SEARCH-VIEW | SERP | Cookies | OneTrust| Accept all | " +
+test("A1 - SK - 2 - SEARCH-VIEW | SERP | Cookies | OneTrust| Accept all | " +
                "Verify SERP is presented when a valid search term is used " +
                "with combination of " +
                "accept all cookies settings", async ({page }) => {

@@ -3,9 +3,8 @@ import { Page , Browser } from "@playwright/test";
  
 export class LidlBase {
     readonly page: Page;
-    readonly browser:Browser;
-
-    constructor(page: Page, browser: Browser){
+ 
+    constructor(page: Page){
         this.page = page;
     }
 

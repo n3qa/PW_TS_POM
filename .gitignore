@@ -723,3 +723,4 @@ fix.py
 # visualValidations checks
 .DS_Store
 screenshots/*
+aallure-results
