@@ -1,0 +1,9 @@
+version: '3.8'
+services:
+  psear-playwright-test:
+    image: psear-pw-test
+    build: 
+      context: .
+      dockerfile: ./Dockerfile
+    command: npm run
+
