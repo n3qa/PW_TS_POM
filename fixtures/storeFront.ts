@@ -4,7 +4,7 @@ import { Page ,expect } from "@playwright/test";
 
 import LidlCookiesPage from "../tests/Lidl/common/cookies/lidlCookies";
 import LidlSearchBarPage from "../tests/Lidl/psear/searchBar";
-import LidlSearchResultsPage from "../tests/lidl/psear/srp/searchResultsPage";
+import LidlSearchResultsPage from "../tests/Lidl/psear/searchBar";
 
 //IMPORT 
 // Project Spec Pages

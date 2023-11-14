@@ -34,3 +34,24 @@ npx
 CODES/PLAYGROUND/PW_TS/experiments/pw_experiments/PW_TS_POM
 
 npm run test_PROD_Lidl_SK_onChrome
+
+//Setting up your local env for local testing
+//STEP 1: set up build image
+docker build -t psear-pw-test .
+//STEP 2:Check image was made
+docker images
+//STEP 3: GO to image container and check the packages are correctly instl
+docker run -it psear-pw-test
+
+docker ps -a
+//STEP: run build checker 
+npx playwright test --config=prodSKcookies.config.ts
+
+
+//Stop the container
+//STEP 1: Check the container is up and running 
+docker ps -a      
+//STEP 2: Grap psear-pw-test container id (XXXXX) and use it for next script
+example: docker container stop db304beb6619
+//STEP 3: check the container is no longer in use
+docker ps -a  

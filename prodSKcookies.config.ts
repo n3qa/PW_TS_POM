@@ -24,7 +24,7 @@ export default defineConfig <PlaywrightTestOptions> ({
   // workers: process.env.CI ? 1 : undefined,
 
   use: {
-    headless: false,
+    headless: true,
     viewport: { width: 1920, height: 949 },
 
     baseURL: 'https://www.lidl.sk',

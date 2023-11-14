@@ -23,7 +23,7 @@ export default defineConfig <PlaywrightTestOptions> ({
   ],
 
   use: {
-    headless: false,
+    headless: true,
     viewport: { width: 1920, height: 949 },
 
     baseURL: process.env.QA_SK === '1' ? 'https://qa.lidl.sk'
@@ -47,12 +47,12 @@ export default defineConfig <PlaywrightTestOptions> ({
       name: 'chromium',
       use: {...devices['Desktop Chrome'] },
     },
-    {
-      name: 'sk_qa_cookies',
-      use: {...devices['Desktop Chrome'],
-      baseURL: 'https://www.lidl.sk/'
-    },
-    }
+    // {
+    //   name: 'sk_qa_cookies',
+    //   use: {...devices['Desktop Chrome'],
+    //   baseURL: 'https://www.lidl.sk/'
+    // },
+  
      
   ],
 
