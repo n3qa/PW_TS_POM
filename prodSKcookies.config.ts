@@ -24,7 +24,7 @@ export default defineConfig <PlaywrightTestOptions> ({
   // workers: process.env.CI ? 1 : undefined,
 
   use: {
-    headless: true,
+    headless: false,
     viewport: { width: 1920, height: 949 },
 
     baseURL: 'https://www.lidl.sk',
@@ -42,13 +42,11 @@ export default defineConfig <PlaywrightTestOptions> ({
 
  projects: [
     {
-      name: 'chromium',
-      testMatch: 'A2.spec.ts',
+      name: 'chrome',
+      testMatch: 'prodSKcookies.spec.ts',
       use: {...devices['Desktop Chrome'],
       // baseURL:'https://www.lidl.sk/' ,
       },
     },
-    
   ],
-
 });

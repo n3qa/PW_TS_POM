@@ -44,7 +44,7 @@ export default defineConfig <PlaywrightTestOptions> ({
 
  projects: [
     {
-      name: 'chromium',
+      name: 'chrome',
       use: {...devices['Desktop Chrome'] },
     },
     // {
