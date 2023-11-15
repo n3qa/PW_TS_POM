@@ -7,10 +7,14 @@
     }
 
   //SK flow 
-  //Locators  
+  //Locators 
+  //Fast OneTrust decition window 
   acceptAll_cs = () => this.page.getByRole('button', { name: 'POVOLIŤ' });
   rejectAll_cs = () => this.page.getByRole('button', { name: 'ODMIETNUŤ' }); 
-
+  advanced_cs = () => this.page.getByRole('button', { name: 'PRISPÔSOBIŤ' });
+  
+  //Advance (more) cookie settings
+  acceptAdvance_cs = () => this.page.getByRole('button', { name: 'SCHVÁLIŤ VÝBER' });
   preferences_cs = () => this.page.locator('label').filter({ hasText: 'Preferenčné' }).getByRole('switch', { name: 'Preferenčné' });
   statistics_cs = () => this.page.locator('label').filter({ hasText: 'Štatistické' }).getByRole('switch', { name: 'Štatistické' });
   marketing_cs = () => this.page.locator('label').filter({ hasText: 'Marketingové' }).getByRole('switch', { name: 'Marketingové' });
@@ -39,6 +43,19 @@
     await this.page.waitForLoadState('domcontentloaded');
     await expect(this.rejectAll_cs()).toHaveCount(0);
   }
+
+  public async clickOn_AdvancedCS_btn() { 
+    await this.advanced_cs().isVisible();
+    await this.advanced_cs().click();
+    await this.page.waitForLoadState('domcontentloaded');
+  }
+
+  public async clickOn_SubmitAdvanceCS_btn() {
+    await this.acceptAdvance_cs().isVisible();
+    await this.acceptAdvance_cs().click();
+    await this.page.waitForLoadState('domcontentloaded');
+  }
+  
 
   public async clickOn_Preferences_btn() {
     await this.page.waitForLoadState();

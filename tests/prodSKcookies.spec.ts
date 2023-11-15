@@ -53,3 +53,40 @@ test("SK - PROD - 2 - SEARCH-VIEW | SERP | Cookies | OneTrust | Reject all | "+
 
           await lidlStoreFront.SKsrp().takePageScreenShot('cookies/oneTrust/SK_PROD_2_SERP_Cookies_OneTrust_AcceptAll_CS');
     });
+
+    test.only("SK - PROD - 3 - SEARCH-VIEW | SERP | Cookies | OneTrust | Preferences | "+
+    "Verify SERP is presented when a " +
+    "valid search term is used with combination of " +
+    "Preferences cookies settings",
+    async ({lidlStoreFront }) => {
+
+         //STEP 2:
+         // CLick on oneTrust advance cookies settings button
+         console.log("STEP 2: CLick on oneTrust advance cookies settings button");
+         await lidlStoreFront.SKCookies().clickOn_AdvancedCS_btn();
+
+        //STEP 3:
+         // CLick on Accept all cookies oneTrust cookie settings button
+         console.log("STEP 3: CLick on oneTrust preferences cookies settings button");
+         await lidlStoreFront.SKCookies().clickOn_Preferences_btn();
+
+         //STEP 4:
+         // Submit selected advanced cookie settings by click on submit addvance cookie settings btn
+         console.log("STEP 4: CLick on oneTrust preferences cookies settings button");
+         await lidlStoreFront.SKCookies().clickOn_SubmitAdvanceCS_btn();
+
+         //STEP 5:
+         //The user submits a basic search on the home page
+         console.log("STEP 5: The user submits a basic search on the home page");
+         await lidlStoreFront.searchBar().submitSearchQuery("*");
+
+         //STEP 6:
+         // The user verifies that SRP page properties are presented as per requirements
+         console.log('STEP 6: The user verifies that SRP page properties are presented as per requirements');
+         //4.1. Validate the title of the lidl store front page
+         await lidlStoreFront.SKsrp().validate_SK_SearchResultsPageHTMTitle();
+
+         await lidlStoreFront.SKsrp().validateSearchResultsPageIsCorrect();
+
+          await lidlStoreFront.SKsrp().takePageScreenShot('cookies/oneTrust/SK_PROD_2_SERP_Cookies_OneTrust_AcceptAll_CS');
+    });

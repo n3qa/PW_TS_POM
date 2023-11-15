@@ -25,9 +25,9 @@ EXEC UI mode
 VS plugins
 npx playwright test --ui
 
-npx 
-    //gen Locators
-    npx playwright codegen playwright.dev
+
+// Debuging
+   
     npx playwright test --headed --debug
 
 //
