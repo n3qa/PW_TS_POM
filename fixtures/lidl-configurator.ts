@@ -25,6 +25,7 @@ export const test = base.extend<TestOptions>({
    //Automated running functions trigering of fixer
    startSkWithNoCookies: async({ page }, use) =>{
      await page.goto('/');
+      
      console.log("STEP 1: Navigate to the Lidl Storefront home page");
      await use('');
   },
