@@ -59,8 +59,33 @@ test.only("SK - PROD - 2 - SEARCH-VIEW | SERP | Cookies | OneTrust | Reject all 
          //4.3. Validate brand facet initial state (expanded) presented and can be collapsed  
          console.log('Validate brand facet initial state (expanded) presented and can be collapsed  ');
          await lidlStoreFront.SKsrp().validate_facet_brand_state_expanded();
-         await lidlStoreFront.SKsrp().validate_faet_brand_canBe_Collapsed();
+         await lidlStoreFront.SKsrp().validate_facet_brand_canBe_Collapsed();
          
+          //4.4. Validate color facet initial state (expanded) presented and can be collapsed  
+          console.log('Validate color facet initial state (expanded) presented and can be collapsed  ');
+          await lidlStoreFront.SKsrp().validate_facet_color_state_expanded();
+          await lidlStoreFront.SKsrp().validate_facet_color_canBe_Collapsed();
+         
+          //4.5. Validate size facet initial state (expanded) presented and can be collapsed  
+          console.log('Validate color facet initial state (expanded) presented and can be collapsed  ');
+          await lidlStoreFront.SKsrp().validate_facet_brand_state_expanded();
+          await lidlStoreFront.SKsrp().validate_facet_brand_canBe_Collapsed();
+          
+          //4.6. Validate ratings facet initial state (expanded) presented and can be collapsed  
+          console.log('Validate color facet initial state (expanded) presented and can be collapsed  ');
+          await lidlStoreFront.SKsrp().validate_facet_brand_state_expanded();
+          await lidlStoreFront.SKsrp().validate_facet_brand_canBe_Collapsed();
+          
+          //4.7. Validate load more grids button initial state (expanded) presented and can be clicked 
+          console.log('Validate color facet initial state (expanded) presented and can be collapsed  ');
+          await lidlStoreFront.SKsrp().validate_load_more_grids_btn_state_expanded();
+          await lidlStoreFront.SKsrp().validate_load_more_grids_btn_canBe_clicked();
+          
+      //     //4.8. Validate size facet initial state (expanded) presented and can be collapsed  
+      //     console.log('Validate color facet initial state (expanded) presented and can be collapsed  ');
+      //     await lidlStoreFront.SKsrp().validate_facet_brand_state_expanded();
+      //     await lidlStoreFront.SKsrp().validate_facet_brand_canBe_Collapsed();
+
          await lidlStoreFront.SKsrp().takePageScreenShot('cookies/oneTrust/SK_PROD_2_SERP_Cookies_OneTrust_AcceptAll_CS');
    
       });
