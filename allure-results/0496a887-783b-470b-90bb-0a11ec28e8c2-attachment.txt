@@ -1,3 +1,0 @@
-STEP 1: Navigate to the Lidl Storefront home page
-STEP 2: CLick on oneTrust accept all cookies settings button
-STEP 3: The user submits a basic search on the home page
