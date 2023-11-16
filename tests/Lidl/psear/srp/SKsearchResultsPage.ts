@@ -21,11 +21,11 @@ export default class SKsearchResultsPage extends LidlBase{
   SIFplaceHolder = () => this.searchInputField().getAttribute('placeholder');
 
   //Facets country spec labels locators 
-  sk_facet_price = () => this.page.getByRole('button', { name: 'Filtrovať podľa Cena' }).click();
-  sk_facet_brand = () => this.page.getByRole('button', { name: 'Filtrovať podľa Značka' }).click();
-  sk_facet_color = () => this.getByRole('button', { name: 'Filtrovať podľa Farba' }).click();
-  sk_facet_size = () => this.getByRole('button', { name: 'Filtrovať podľa Veľkosť' }).click();
-  sk_facet_ratings = () => this.page.getByRole('button', { name: 'Filtrovať podľa Hodnotenia' }).click();
+  facet_price = () => this.page.getByRole('button', { name: 'Filtrovať podľa Cena' });
+  facet_brand = () => this.page.getByRole('button', { name: 'Filtrovať podľa Značka' });
+  facet_color = () => this.getByRole('button', { name: 'Filtrovať podľa Farba' });
+  facet_size = () => this.getByRole('button', { name: 'Filtrovať podľa Veľkosť' });
+  facet_ratings = () => this.page.getByRole('button', { name: 'Filtrovať podľa Hodnotenia' });
 
   //Actions
   public async clickOnSearchInputField () {
@@ -34,8 +34,6 @@ export default class SKsearchResultsPage extends LidlBase{
     await this.page.waitForLoadState('domcontentloaded');
     await this.page.waitForLoadState('load');
     await this.page.waitForLoadState('networkidle');
-    
-
   } 
 
   public async submitSearchQuery(searchTerm: string) {
@@ -44,19 +42,46 @@ export default class SKsearchResultsPage extends LidlBase{
     await this.searchInputField().press("Enter");
   }
    
-  public async validateSearchResultsPageIsCorrect() {
+  public async validate_initial_searchResultsPage_is_correct() {
     // await this.searchInputField().press("Enter");
   }
  
   public async validate_SK_SearchResultsPageHTMTitle(){
     try {
-      // await expect(this.page).toHaveURL('https://lidl.sk/'); - after cononical url update provide valid one
-      await expect(this.page).toHaveTitle('Lidl.sk | Správná voľba');
-       console.log('VALIDATION : Search results page html tite is correct: '+ 'Lidl.sk | Správná voľba' );
+      //await expect(this.page).toHaveURL('https://lidl.sk/'); - after cononical url update provide valid one
+      const lidlPageTitle = await this.page.title();
+      console.log('REPORT: Lidl mina page title: '+lidlPageTitle);
+      await expect(this.page).toHaveTitle('Výsledok vyhľadávania na Lidl.sk');
+      console.log('VALIDATION : Search results page html tite is correct: '+ 'Výsledok vyhľadávania na Lidl.sk' );
     } catch (error) {
       console.log("Failed Lidl homepage verification");
     }
+  }
 
+  public async validate_priceFacet_state_expanded(){
+    //1.Validate price facet = expanded
+      this.page.waitForSelector('#price'); //price facet main div
+      const priceFacetStateStatus = await this.facet_price().getAttribute('class');
+      console.log('REPORT: Current price facet class is: '+priceFacetStateStatus)
+      await expect(priceFacetStateStatus).toBe('s-facet__heading s-facet__heading--open');  
+      console.log('VALIDATION : The initial price facet state is opened/expanded.' );
+  }
+
+  public async validate_priceFacet_canBe_Collapsed(){
+    //1:Wait for the selector and click
+    this.page.waitForSelector('#price'); //price facet main div
+    //2. Single click on expanded price facet MAKEs the facet to collapse
+    this.facet_price().click();
+    console.log('CONFIRM: The user has clicked on price facet button')
+    //2: wait for the selector to be shown again
+    this.page.waitForSelector('#price'); //price facet main div
+    //3: Validate price facet main div status
+    const priceMainDiv = this.page.locator('#price');
+    const currentPriceFacetStyle = await priceMainDiv.evaluate(e => (e as HTMLDivElement).getAttribute('style'));
+    console.log('REPORT: Current price facet class is: '+currentPriceFacetStyle)
+
+    await expect(currentPriceFacetStyle).toBe('s-facet__heading s-facet__heading--open');  
+    console.log('VALIDATION : The initial price facet state is opened/expanded.' );
   }
  
 
