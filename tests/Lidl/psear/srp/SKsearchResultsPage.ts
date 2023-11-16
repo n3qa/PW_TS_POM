@@ -21,6 +21,7 @@ export default class SKsearchResultsPage extends LidlBase{
   SIFplaceHolder = () => this.searchInputField().getAttribute('placeholder');
 
   //Facets country spec labels locators 
+  facet_category = () => this.page.getByRole('button', { name: 'Filtrovať podľa Kategórie' });
   facet_price = () => this.page.getByRole('button', { name: 'Filtrovať podľa Cena' });
   facet_brand = () => this.page.getByRole('button', { name: 'Filtrovať podľa Značka' });
   facet_color = () => this.getByRole('button', { name: 'Filtrovať podľa Farba' });
@@ -58,33 +59,59 @@ export default class SKsearchResultsPage extends LidlBase{
     }
   }
 
-  public async validate_priceFacet_state_expanded(){
+//FACET :: 1 :: CATEGORY 
+public async validate_facet_category_state_expanded(){
+  //1.Validate the facet = expanded
+    this.page.waitForSelector('#category'); //the facet main div
+    const facetStateStatus = await this.facet_category().getAttribute('class');
+    console.log('REPORT: Current facet expand class is: '+facetStateStatus)
+    await expect(facetStateStatus).toBe('s-facet__heading s-facet__heading--open');  
+    console.log('VALIDATION : The initial expand facet state is opened/expanded.' );
+}
+//FACET :: 1 :: CATEGORY 
+public async validate_facet_category_canBe_Collapsed(){
+  //1:Wait for the selector and click
+   await this.page.waitForSelector('#category'); //the facet main div
+  //2. Single click on expanded price facet MAKEs the facet to collapse
+  await this.facet_category().click();
+  console.log('CONFIRM: The user has clicked on the facet button')
+}
+  //FACET :: 2 :: PRICE
+  public async validate_facet_price_state_expanded(){
     //1.Validate price facet = expanded
-      this.page.waitForSelector('#price'); //price facet main div
-      const priceFacetStateStatus = await this.facet_price().getAttribute('class');
-      console.log('REPORT: Current price facet class is: '+priceFacetStateStatus)
-      await expect(priceFacetStateStatus).toBe('s-facet__heading s-facet__heading--open');  
-      console.log('VALIDATION : The initial price facet state is opened/expanded.' );
-  }
-
-  public async validate_priceFacet_canBe_Collapsed(){
-    //1:Wait for the selector and click
     this.page.waitForSelector('#price'); //price facet main div
-    //2. Single click on expanded price facet MAKEs the facet to collapse
-    this.facet_price().click();
-    console.log('CONFIRM: The user has clicked on price facet button')
-    //2: wait for the selector to be shown again
-    this.page.waitForSelector('#price'); //price facet main div
-    //3: Validate price facet main div status
-    const priceMainDiv = this.page.locator('#price');
-    const currentPriceFacetStyle = await priceMainDiv.evaluate(e => (e as HTMLDivElement).getAttribute('style'));
-    console.log('REPORT: Current price facet class is: '+currentPriceFacetStyle)
-
-    await expect(currentPriceFacetStyle).toBe('s-facet__heading s-facet__heading--open');  
+    const priceFacetStateStatus = await this.facet_price().getAttribute('class');
+    console.log('REPORT: Current price facet class is: '+priceFacetStateStatus)
+    await expect(priceFacetStateStatus).toBe('s-facet__heading s-facet__heading--open');
     console.log('VALIDATION : The initial price facet state is opened/expanded.' );
   }
- 
+  //FACET :: 2 :: PRICE
+  public async validate_facet_price_canBe_Collapsed(){
+    //1:Wait for the selector and click
+    await this.page.waitForSelector('#price'); //price facet main div
+    //2. Single click on expanded the facet MAKEs the facet to collapse
+    await this.facet_price().click();
+    console.log('CONFIRM: The user has clicked on price facet button')
+  }
+  //FACET :: 3 :: BRAND 
+  public async validate_facet_brand_state_expanded(){
+  //1.Validate brand facet = expanded
+    this.page.waitForSelector('#brand'); //category facet main div
+    const facetStateStatus = await this.facet_brand().getAttribute('class');
+    console.log('REPORT: Current facet expand class is: '+facetStateStatus)
+    await expect(facetStateStatus).toBe('s-facet__heading s-facet__heading--open');  
+    console.log('VALIDATION : The initial expand facet state is opened/expanded.' );
+}
+//FACET :: 3 :: BRAND 
+public async validate_faet_brand_canBe_Collapsed(){
+  //1:Wait for the selector and click
+  this.page.waitForSelector('#brand'); //price facet main div
+  //2. Single click on expanded price facet MAKEs the facet to collapse
+  this.facet_brand().click();
+  console.log('CONFIRM: The user has clicked on the facet button')
+}
 
+  //FACET :: BRAND
  
   // await page.getByPlaceholder('Vyhľadaj obľúbený produkt, značku, kategóriu...').click();
   // await page.getByRole('button', { name: 'Spustite vyhľadávanie' }).click();

@@ -1,0 +1,18 @@
+STEP 1: Navigate to the Lidl Storefront home page
+STEP 2: CLick on oneTrust reject all cookies settings button
+STEP 3: The user submits a basic search on the home page
+CONFIRM: The user has submited a search with data: *
+CONFIRM: The use has clicked on navigation search submit button for term: *
+STEP 4: The user verifies that SRP page properties are presented as per requirements
+Validate category facet initial state (expanded) presented and can be collapsed.
+REPORT: Current facet expand class is: s-facet__heading s-facet__heading--open
+VALIDATION : The initial expand facet state is opened/expanded.
+CONFIRM: The user has clicked on the facet button
+Validate price facet initial state (expanded) presented and can be collapsed 
+REPORT: Current price facet class is: s-facet__heading s-facet__heading--open
+VALIDATION : The initial price facet state is opened/expanded.
+CONFIRM: The user has clicked on price facet button
+Validate brand facet initial state (expanded) presented and can be collapsed  
+REPORT: Current facet expand class is: s-facet__heading s-facet__heading--open
+VALIDATION : The initial expand facet state is opened/expanded.
+CONFIRM: The user has clicked on the facet button

@@ -46,13 +46,24 @@ test.only("SK - PROD - 2 - SEARCH-VIEW | SERP | Cookies | OneTrust | Reject all 
          //STEP 4:
          // The user verifies that SRP page properties are presented as per requirements
          console.log('STEP 4: The user verifies that SRP page properties are presented as per requirements');
-         //4.1. Validate the title of the lidl store front page
-         await lidlStoreFront.SKsrp().validate_SK_SearchResultsPageHTMTitle();
+         //4.1. Validate category facet initial state (expanded) presented and can be collapsed  
+         console.log('Validate category facet initial state (expanded) presented and can be collapsed.')
+         await lidlStoreFront.SKsrp().validate_facet_category_state_expanded();
+         await lidlStoreFront.SKsrp().validate_facet_category_canBe_Collapsed();
+
          //4.2. Validate price facet initial state (expanded) presented and can be collapsed  
-         await lidlStoreFront.SKsrp().validate_priceFacet_state_expanded();
-         await lidlStoreFront.SKsrp().validate_priceFacet_canBe_Collapsed();
-          await lidlStoreFront.SKsrp().takePageScreenShot('cookies/oneTrust/SK_PROD_2_SERP_Cookies_OneTrust_AcceptAll_CS');
-    });
+         console.log('Validate price facet initial state (expanded) presented and can be collapsed ');
+         await lidlStoreFront.SKsrp().validate_facet_price_state_expanded();
+         await lidlStoreFront.SKsrp().validate_facet_price_canBe_Collapsed();
+        
+         //4.3. Validate brand facet initial state (expanded) presented and can be collapsed  
+         console.log('Validate brand facet initial state (expanded) presented and can be collapsed  ');
+         await lidlStoreFront.SKsrp().validate_facet_brand_state_expanded();
+         await lidlStoreFront.SKsrp().validate_faet_brand_canBe_Collapsed();
+         
+         await lidlStoreFront.SKsrp().takePageScreenShot('cookies/oneTrust/SK_PROD_2_SERP_Cookies_OneTrust_AcceptAll_CS');
+   
+      });
 
     test("SK - PROD - 3 - SEARCH-VIEW | SERP | Cookies | OneTrust | Preferences | "+
     "Verify SERP is presented when a " +
