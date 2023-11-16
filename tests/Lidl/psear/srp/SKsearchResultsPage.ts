@@ -24,10 +24,10 @@ export default class SKsearchResultsPage extends LidlBase{
   facet_category = () => this.page.getByRole('button', { name: 'Filtrovať podľa Kategórie' });
   facet_price = () => this.page.getByRole('button', { name: 'Filtrovať podľa Cena' });
   facet_brand = () => this.page.getByRole('button', { name: 'Filtrovať podľa Značka' });
-  facet_color = () => this.getByRole('button', { name: 'Filtrovať podľa Farba' });
-  facet_size = () => this.getByRole('button', { name: 'Filtrovať podľa Veľkosť' });
-  facet_ratings = () => this.page.getByRole('button', { name: 'Filtrovať podľa Hodnotenia' });
-
+  facet_color = () => this.page.getByRole('button', { name: 'Filtrovať podľa Farba' });
+  facet_size = () => this.page.getByRole('button', { name: 'Filtrovať podľa Veľkosť' });
+  facet_ratings = () => this.page.getByRole('button', {class: 'Filtrovať podľa Hodnotenia' });  //Hodnotenia-facet
+  facet_ratingsG = () => this.page.getByTestId('Hodnotenia-facet');
   //On the bottom of the page
   load_more_grids_button = () => this.page.getByRole('button', { name: 'Ďalej Viac produktov' });
 
@@ -65,7 +65,7 @@ export default class SKsearchResultsPage extends LidlBase{
 //FACET :: 1 :: CATEGORY 
 public async validate_facet_category_state_expanded(){
   //1.Validate the facet = expanded
-    this.page.waitForSelector('#category'); //the facet main div
+    await this.page.waitForSelector('#category'); //the facet main div
     const facetStateStatus = await this.facet_category().getAttribute('class');
     console.log('REPORT: Current facet expand class is: '+facetStateStatus)
     await expect(facetStateStatus).toBe('s-facet__heading s-facet__heading--open');  
@@ -82,7 +82,7 @@ public async validate_facet_category_canBe_Collapsed(){
   //FACET :: 2 :: PRICE
   public async validate_facet_price_state_expanded(){
     //1.Validate price facet = expanded
-    this.page.waitForSelector('#price'); //price facet main div
+    await this.page.waitForSelector('#price'); //price facet main div
     const priceFacetStateStatus = await this.facet_price().getAttribute('class');
     console.log('REPORT: Current price facet class is: '+priceFacetStateStatus)
     await expect(priceFacetStateStatus).toBe('s-facet__heading s-facet__heading--open');
@@ -99,7 +99,7 @@ public async validate_facet_category_canBe_Collapsed(){
   //FACET :: 3 :: BRAND 
   public async validate_facet_brand_state_expanded(){
   //1.Validate facet = expanded
-    this.page.waitForSelector('#brand'); // facet main div
+    await this.page.waitForSelector('#brand'); // facet main div
     const facetStateStatus = await this.facet_brand().getAttribute('class');
     console.log('REPORT: Current facet expand class is: '+facetStateStatus)
     await expect(facetStateStatus).toBe('s-facet__heading s-facet__heading--open');  
@@ -108,15 +108,15 @@ public async validate_facet_category_canBe_Collapsed(){
   //FACET :: 3 :: BRAND 
   public async validate_facet_brand_canBe_Collapsed(){
     //1:Wait for the selector and click
-    this.page.waitForSelector('#brand'); // facet main div
+    await this.page.waitForSelector('#brand'); // facet main div
     //2. Single click on the expanded facet MAKEs the facet to collapse
-    this.facet_brand().click();
+    await this.facet_brand().click();
     console.log('CONFIRM: The user has clicked on the facet button')
   }
    //FACET :: 4 :: COLOR 
    public async validate_facet_color_state_expanded(){
     //1.Validate  facet = expanded
-      this.page.waitForSelector('#color'); // facet main div
+      await this.page.waitForSelector('#color'); // facet main div
       const facetStateStatus = await this.facet_color().getAttribute('class');
       console.log('REPORT: Current facet expand class is: '+facetStateStatus)
       await expect(facetStateStatus).toBe('s-facet__heading s-facet__heading--open');  
@@ -125,16 +125,17 @@ public async validate_facet_category_canBe_Collapsed(){
     //FACET :: 4 :: COLOR 
     public async validate_facet_color_canBe_Collapsed(){
       //1:Wait for the selector and click
-      this.page.waitForSelector('#color'); // facet main div
+      await this.page.waitForSelector('#color'); // facet main div
       //2. Single click on the expanded facet MAKEs the facet to collapse
-      this.facet_color().click();
+      await this.facet_color().scrollIntoViewIfNeeded();
+      await this.facet_color().click();
       console.log('CONFIRM: The user has clicked on the facet button')
     }
     //FACET :: 5 :: SIZE 
    public async validate_facet_size_state_expanded(){
     //1.Validate facet = expanded
-      this.page.waitForSelector('#size'); // facet main div
-      const facetStateStatus = await this.facet_color().getAttribute('class');
+      await this.page.waitForSelector('#size'); // facet main div
+      const facetStateStatus = await this.facet_size().getAttribute('class');
       console.log('REPORT: Current facet expand class is: '+facetStateStatus)
       await expect(facetStateStatus).toBe('s-facet__heading s-facet__heading--open');  
       console.log('VALIDATION : The initial expand facet state is opened/expanded.' );
@@ -142,51 +143,62 @@ public async validate_facet_category_canBe_Collapsed(){
     //FACET :: 5 :: SIZE 
     public async validate_facet_size_canBe_Collapsed(){
       //1:Wait for the selector and click
-      this.page.waitForSelector('#size'); // facet main div
+      await this.page.waitForSelector('#size'); // facet main div
       //2. Single click on the expanded  facet MAKEs the facet to collapse
-      this.facet_size().click();
+      await this.facet_size().scrollIntoViewIfNeeded();
+      await this.facet_size().click();
       console.log('CONFIRM: The user has clicked on the facet button')
     }
     //FACET :: 6 :: RATINGS 
     public async validate_facet_ratings_state_expanded(){
     //1.Validate  facet = expanded
-      this.page.waitForSelector('#Hodnotenia'); // facet main div
-      const facetStateStatus = await this.facet_ratings().getAttribute('class');
+      await this.page.waitForSelector('#Hodnotenia'); // facet main div
+      await this.facet_ratingsG().isVisible();
+      const facetStateStatus = await this.facet_ratingsG().getAttribute('class');
       console.log('REPORT: Current facet expand class is: '+facetStateStatus)
       await expect(facetStateStatus).toBe('s-facet__heading s-facet__heading--open');  
       console.log('VALIDATION : The initial expand facet state is opened/expanded.' );
     }
-    //FACET :: 6 :: RATINGS 
-    public async validate_facet_ratings_canBe_Collapsed(){
-      //1:Wait for the selector and click
-      this.page.waitForSelector('#Hodnotenia'); // facet main div
-      //2. Single click on the expanded facet MAKEs the facet to collapse
-      this.facet_ratings().click();
-      console.log('CONFIRM: The user has clicked on the facet button')
-    }
-
+      //FACET :: 6 :: Ratings 
+      public async validate_facet_ratings_canBe_Collapsed(){
+        //1:Wait for the selector and click
+        await this.page.waitForSelector('#Hodnotenia'); // facet main div
+        //2. Single click on the expanded  facet MAKEs the facet to collapse
+        await this.facet_ratingsG().scrollIntoViewIfNeeded();
+        await this.facet_ratingsG().click();
+        console.log('CONFIRM: The user has clicked on the facet button')
+      }
+    
+      /* to be done with java script evluator listner 
      //FACET :: 7 :: LOAD MORE GRIDS BUTTON 
      public async validate_load_more_grids_btn_state_expanded(){
-      //1.Validate brand facet = expanded
-        this.page.waitForSelector('div .s-load-more'); // facet main div
-        const facetStateStatus = await this.facet_ratings().getAttribute('class');
+      //wait a bit the page to loaded when done procced
+      await this.page.waitForLoadState('domcontentloaded');
+      await this.page.waitForLoadState('load');
+      await this.page.waitForLoadState('networkidle');
+      //1.Validate load more button  = expanded
+        await this.page.waitForSelector('div .s-load-more'); // facet main div
+        await this.page.getByRole('button', { name: 'Filtrovať podľa Hodnotenia' }).isVisible();
+        const facetStateStatus = await this.load_more_grids_button().getAttribute('class');
         console.log('REPORT: Current facet expand class is: '+facetStateStatus)
         await expect(facetStateStatus).toBe('s-facet__heading s-facet__heading--open');  
         console.log('VALIDATION : The initial expand facet state is opened/expanded.' );
       }
+      */
       //FACET :: 7 :: RATINGS 
       public async validate_load_more_grids_btn_canBe_clicked(){
         //1:Wait for the selector and click
-        this.page.waitForSelector('div .s-load-more'); // facet main div
+        await this.page.waitForSelector('div .s-load-more'); // facet main div
         //2. Single click on the expanded facet MAKEs the facet to collapse
-        this.load_more_grids_button().click();
+       await this.load_more_grids_button().scrollIntoViewIfNeeded();
+        await this.load_more_grids_button().click();
         console.log('CONFIRM: The user has clicked on the facet button')
       }
 
-  //FACET :: BRAND
-  
-  // await page.getByRole('button', { name: 'Ďalej Viac produktov' }).click();
-  // await page.getByRole('link', { name: 'Relevantnosti' }).click();
+
+      //Useful notes for to dos
+      // - > use this class to confirm collapsed = s-facet__heading
+   
 
  
 

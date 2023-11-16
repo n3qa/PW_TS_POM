@@ -32,9 +32,10 @@ export default defineConfig <PlaywrightTestOptions> ({
     trace: 'on-first-retry',
    
     //INCREASE timeouts for headless node CI/CD pipes
-    actionTimeout: 20000,
-    navigationTimeout: 25000,
-    // testIdAttribute: 'data-testselector',
+   
+    actionTimeout: 600000,
+    navigationTimeout: 800000,
+    testIdAttribute: 'data-testselector',
     video: {
       mode: 'on-first-retry',
       size: {width: 1920, height: 949}
