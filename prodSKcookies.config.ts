@@ -3,11 +3,11 @@ import type { PlaywrightTestOptions } from '@playwright/test';
 require('dotenv').config();
 
 export default defineConfig <PlaywrightTestOptions> ({
-  timeout: 40000,
-  globalTimeout: 60000,
+  timeout: 50000,
+  globalTimeout: 70000,
 
   expect: {
-    timeout: 9000
+    timeout: 6000
   },
 
   reporter: [
@@ -31,9 +31,9 @@ export default defineConfig <PlaywrightTestOptions> ({
     trace: 'on-first-retry',
     
     //INCREASE timeouts for headless node CI/CD pipes
-    actionTimeout: 80000,
-    navigationTimeout: 100000,
-    // testIdAttribute: 'data-testselector',
+    actionTimeout: 600000,
+    navigationTimeout: 800000,
+    testIdAttribute: 'data-testselector',
     
     video: {
       // mode: 'on-first-retry',

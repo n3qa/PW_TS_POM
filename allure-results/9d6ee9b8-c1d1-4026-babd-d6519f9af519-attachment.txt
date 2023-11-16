@@ -1,7 +1,0 @@
-STEP 1: Navigate to the Lidl Storefront home page
-STEP 2: CLick on oneTrust reject all cookies settings button
-STEP 3: The user submits a basic search on the home page
-CONFIRM: The user has submited a search with data: *
-CONFIRM: The use has clicked on navigation search submit button for term: *
-STEP 4: The user verifies that SRP page properties are presented as per requirements
-Failed Lidl homepage verification

@@ -724,3 +724,4 @@ fix.py
 .DS_Store
 screenshots/*
 aallure-results
+allure-results/*
