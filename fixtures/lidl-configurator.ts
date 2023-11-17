@@ -1,5 +1,4 @@
 import { test as base } from '@playwright/test';
-import { request } from '@playwright/test';
 import { StoreFront } from "../fixtures/storeFront";
  
 
@@ -33,7 +32,7 @@ export const test = base.extend<TestOptions>({
   },
 
   // const lidlStoreFront = new StoreFront(page);
-  lidlStoreFront: async({ page }, use) => {
+  lidlStoreFront: async({ page ,startSkWithNoCookies }, use) => {
   const lidlStoreFront = new StoreFront(page);
   await use (lidlStoreFront);
   }
