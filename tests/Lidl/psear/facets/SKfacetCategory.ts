@@ -118,4 +118,11 @@ export default class SKfacetCategory extends LidlBase {
     await this.page.locator('nav').filter({ hasText: 'Filtrovať podľa Kategórie Móda Dámska móda Dámska XXL móda Filtrovať podľa Cena ' }).getByRole('link').first().click();
   }
 
+  public async debugTestCase16() {
+    await this.page.goto('https://www.lidl.sk/q/search?variant=a&productsOnly=false&idsOnly=false');
+    await this.page.getByRole('link', { name: 'Móda' }).click();
+    await this.page.locator('.s-facet__reset').click();
+    await this.page.getByRole('link', { name: 'Dielňa a záhrada' }).click();
+  }
+
 }

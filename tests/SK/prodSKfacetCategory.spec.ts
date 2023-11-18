@@ -242,7 +242,7 @@ await lidlStoreFront.SKfacetCategory().debugTestCase1();
           await lidlStoreFront.SKfacetCategory().debugTestCase13();
      }); 
 
-     test.only("SK - 14 - PROD - SEARCH-VIEW | SERP | Facet | Category |" +
+     test("SK - 14 - PROD - SEARCH-VIEW | SERP | Facet | Category |" +
           " RESET | BUBBLE reset option | "+
           "Verify user can successfully reset " +
           "the already activated " +
@@ -261,4 +261,26 @@ await lidlStoreFront.SKfacetCategory().debugTestCase1();
      // The user submits a basic search on the home     page
      console.log("STEP 3: The user submits a basic search on the home page");
      await lidlStoreFront.SKfacetCategory().debugTestCase14();
+}); 
+
+
+test("SK - 16 - PROD - SEARCH-VIEW | SERP | Facet | Category |" +
+          " RESET | BUBBLE reset option | "+
+          "Verify user can successfully reset " +
+          "the already activated " +
+          "1st level category facet" +
+          "2nd level category facet" +
+          "3nd level category facet" +
+          "by category facet bubble reset option. ",
+          async ({lidlStoreFront }) => {
+
+     //STEP 2: 
+     //CLick on Accept all cookies oneTrust cookie settings button
+     console.log("STEP 2: CLick on oneTrust accept all cookies settings button");
+     await lidlStoreFront.SKCookies().clickOn_AcceptAllCS_btn();
+
+     //STEP  0:
+     // The user submits a basic search on the home     page
+     console.log("STEP 3: The user submits a basic search on the home page");
+     await lidlStoreFront.SKfacetCategory().debugTestCase16();
 }); 

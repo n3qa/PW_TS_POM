@@ -8,7 +8,8 @@
     "start": "ng serve",
     "tests:chrome": "playwright test --config=playwright.config.ts --project=Chromium",
     "prodSKcookies": "npx playwright test --config=prodSKcookies.config.ts --project=chrome",
-    "prodSKfacetCategory": "npx playwright test --config=prodSKfacetCategory.config.ts --project=chrome"
+    "prodSKfacetCategory": "npx playwright test --config=prodSKfacetCategory.config.ts --project=chrome",
+    "prodSKe2eBrand": "npx playwright test --config=prodSKe2e.config.ts --project=chrome"
   },
   "keywords": [],
   "author": "Nikolay Nikolov",
