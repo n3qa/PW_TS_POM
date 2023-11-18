@@ -13,21 +13,86 @@ export default class SKfacetCategory extends LidlBase {
   }
 
   //Locators
-  searchBar = () => this.searchInputField().getAttribute('#search-input-hook');
-  searchInputField = () => this.page.locator('#s-search-input-field');
-  searchSubmitButton = () => this.page.locator('button.s-search-input__button');
-  //Search input field = abbreaviation -> SIF
-  SIFplaceHolder = () => this.searchInputField().getAttribute('placeholder');
+  //1.General properties of the Category facet for SK
+  //1.1. Facet main div
+  facet_category_div = () => this.page.waitForSelector('#category'); 
+  
+  //1.2. Facet header / button  = for expand collapse 
+  facet_category = () => this.page.getByRole('button', { name: 'Filtrovať podľa Kategórie' });
+  
+  //1.3 Facet header rest button
+  facet_category_header_reset_btn = () => await this.page.locator('.s-facet__reset');
+
+  //2. CATEGORY TREE
+  //2.1. PROD FIRST level nodes
+  first_level_moda = () =>  await this.page.getByRole('link', { name: 'Móda' });
+  //2.1.1. bubble reset option for first level moda
+  bubble_reset_option_for_first_level_moda = () =>  await this.page.getByRole('link', { name: 'Móda' });
+  
+  //2.2. PROD SECOND level nodes
+  second_level_women_moda = () => await this.page.getByRole('link', { name: 'Dámska móda' }).click();
+  //2.2.1.reset option for second level women moda
+  bubble_reset_option_for_second_level_women_moda = () =>  await this.page.getByRole('link', { name: 'Móda' });
+  
+  //2.3. PROD THIRD level nodes
+  third_level_xxx_women_moda = () =>  await this.page.getByRole('link', { name: 'Dámska XXL móda' });
+  //2.3.1.reset option for third level XXL women moda
+
+  //1.4. QA FIRST level nodes
+  //1.5. QA SECOND level nodes
+  //1.6. QA THIRD level nodes
+
+  //2 
+  //1 Price facet expand and collapse 
+   //2 Price facet functionalities input fields
+   //3 Price facet functionalities (drag and drop) slider functionalities
+   
+   //4 Reset option
+   
+ 
+    
+    
+
+//  
+
+const context = await browser.newContext();
+await page.getByRole('button', { name: 'Filtrovať podľa Kategórie' }).click();
+await page.locator('.s-facet__reset').click();
+await page.getByRole('button', { name: 'Filtrovať podľa Kategórie' }).click();
+await page.getByRole('link', { name: 'Móda' }).click();
+await page.getByRole('link', { name: 'Dámska móda' }).click();
+await page.getByRole('link', { name: 'Dámska móda' }).click();
+await page.locator('section').filter({ hasText: 'Filtrovať podľa Kategórie Móda Dielňa a záhrada Šport a voľný čas Bývanie Domácn' }).click();
+await page.getByRole('link', { name: 'Móda' }).click();
+await page.getByRole('link', { name: 'Móda', exact: true }).click();
+await page.getByText('Filtrovať podľa Cena minimum Filtrovať podľa Cena maximum').click();
+await page.locator('.s-facet-range__progress').click();
+await page.getByLabel('Filtrovať podľa Cena: Od').click({
+  clickCount: 3
+});
+await page.locator('html').click();
+await page.getByLabel('Filtrovať podľa Cena: Od').click();
+await page.getByLabel('Filtrovať podľa Cena: Od').click();
+await page.getByLabel('Filtrovať podľa Cena: Od').fill('133');
+await page.getByLabel('Filtrovať podľa Cena: Od').press('Tab');
+await page.getByRole('link', { name: 'Dielňa a záhrada' }).click();
+await page.getByRole('link', { name: 'Dielňa a záhrada' }).click();
+
+
+  await this.page.getByTestId('category-facet').click();
+  await this.page.getByTestId('category-facet').click();
+  await this.page.locator('.s-facet__reset').click();
+  await this.page.getByRole('link', { name: 'Dielňa a záhrada' }).click();
+  await this.page.getByRole('link', { name: 'Dielňa a záhrada' }).click();
+
+  //SK PROD data spefic  
+
+
+  //1. Category tree 
+
 
   //Actions
-  public async clickOnSearchInputField () {
-    await this.searchInputField().click();
-  } 
-
-  public async submitSearchQuery(searchTerm: string) {
-    await this.searchInputField().fill(searchTerm);
-    await this.searchInputField().press("Enter");
-  }
+  
 
   //Support DEBUG
   public async debugTestCase1() {
