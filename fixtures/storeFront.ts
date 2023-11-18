@@ -22,14 +22,23 @@ import LidlFRCookiesPage from "../tests/Lidl/common/cookies/FRcookiesPage";
 //2.1. SK
 import LidlSKsearchResultsPage from "../tests/Lidl/psear/srp/SKsearchResultsPage";
 
-//3 SK FACETS
+//3 FACETS
+//3.1. SK FACETS
 import LidlSKfacetBrand from '../tests/Lidl/psear/facets/SKfacetBrand'
 import LidlSKfacetCategory from '../tests/Lidl/psear/facets/SKfacetCategory'
 import LidlSKfacetMaterial from '../tests/Lidl/psear/facets/SKfacetMaterial'
 import LidlSKfacetPrice from '../tests/Lidl/psear/facets/SKfacetPrice'
 import LidlSKfacetRatings from '../tests/Lidl/psear/facets/SKfacetRatings'
-
-
+import LidlSKfacetSize from '../tests/Lidl/psear/facets/SKfacetSize'
+import LidlSKfacetSorting from '../tests/Lidl/psear/facets/SKfacetSorting'
+//3.2. DE FACETS
+import LidlDEfacetBrand from '../tests/Lidl/psear/facets/DEfacetBrand'
+import LidlDEfacetCategory from '../tests/Lidl/psear/facets/DEfacetCategory'
+import LidlDEfacetMaterial from '../tests/Lidl/psear/facets/DEfacetMaterial'
+import LidlDEfacetPrice from '../tests/Lidl/psear/facets/DEfacetPrice'
+import LidlDEfacetRatings from '../tests/Lidl/psear/facets/DEfacetRatings'
+import LidlDEfacetSize from '../tests/Lidl/psear/facets/DEfacetSize'
+import LidlDEfacetSorting from '../tests/Lidl/psear/facets/DEfacetSorting'
 // END OF IMPTS 
 export class StoreFront { 
 
@@ -59,7 +68,16 @@ export class StoreFront {
   private readonly lidlSKfacetMaterial: LidlSKfacetMaterial;
   private readonly lidlSKfacetPrice: LidlSKfacetPrice;
   private readonly lidlSKfacetRatings: LidlSKfacetRatings;
-
+  private readonly lidlSKfacetSize: LidlSKfacetSize;
+  private readonly lidlSKfacetSorting: LidlSKfacetSorting;
+  //3.2. DE FACETS
+  private readonly lidlDEfacetBrand: LidlDEfacetBrand;
+  private readonly lidlDEfacetCategory: LidlDEfacetCategory;
+  private readonly lidlDEfacetMaterial: LidlDEfacetMaterial;
+  private readonly lidlDEfacetPrice: LidlDEfacetPrice;
+  private readonly lidlDEfacetRatings: LidlDEfacetRatings;
+  private readonly lidlDEfacetSize: LidlDEfacetSize;
+  private readonly lidlDEfacetSorting: LidlDEfacetSorting;
   constructor(page:Page){
     this.page = page;
     
@@ -83,14 +101,24 @@ export class StoreFront {
     this.lidlSKsearchResultsPage = new LidlSKsearchResultsPage(this.page);
 
     //3 FACETS
-    //SK
+    //3.1. SK FACETS
     this.lidlSKfacetBrand = new LidlSKfacetBrand(this.page);
     this.lidlSKfacetCategory = new LidlSKfacetCategory(this.page);
     this.lidlSKfacetMaterial = new LidlSKfacetMaterial(this.page);
     this.lidlSKfacetPrice = new LidlSKfacetPrice(this.page);
     this.lidlSKfacetRatings = new LidlSKfacetRatings(this.page);
-   
+    this.lidlSKfacetSize = new LidlSKfacetSize(this.page);
+    this.lidlSKfacetSorting = new LidlSKfacetSorting(this.page);
 
+    //3.1. DE FACETS
+    this.lidlDEfacetBrand = new LidlDEfacetBrand(this.page);
+    this.lidlDEfacetCategory = new LidlDEfacetCategory(this.page);
+    this.lidlDEfacetMaterial = new LidlDEfacetMaterial(this.page);
+    this.lidlDEfacetPrice = new LidlDEfacetPrice(this.page);
+    this.lidlDEfacetRatings = new LidlDEfacetRatings(this.page);
+    this.lidlDEfacetSize = new LidlDEfacetSize(this.page);
+    this.lidlDEfacetSorting = new LidlDEfacetSorting(this.page);
+   
   }
 
   //Instance providers
@@ -121,6 +149,17 @@ export class StoreFront {
     SKfacetMaterial() {return this.lidlSKfacetMaterial};
     SKfacetPrice(){return this.lidlSKfacetPrice}
     SKfacetRatings(){return this.lidlSKfacetRatings}
+    SKfacetSize(){return this.lidlSKfacetSize}
+    SKfacetSorting(){return this.lidlSKfacetSorting}
+
+    //3.2. DE
+    DEfacetBrand() {return this.lidlDEfacetBrand};
+    DEfacetCategory(){return this.lidlDEfacetCategory};
+    DEfacetMaterial() {return this.lidlDEfacetMaterial};
+    DEfacetPrice(){return this.lidlDEfacetPrice}
+    DEfacetRatings(){return this.lidlDEfacetRatings}
+    DEfacetSize(){return this.lidlDEfacetSize}
+    DEfacetSorting(){return this.lidlDEfacetSorting}
     
 
 }
