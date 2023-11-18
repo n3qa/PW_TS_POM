@@ -31,9 +31,20 @@ import { test } from "../../fixtures/lidl-configurator";
      await lidlStoreFront.SKfacetBrand().verifyBrandFacetShowMoreAndShowLessButtonsFunctionality();
     
      //STEP 8:
-     console.log('STEP 8: Verify the user can activate brand search with term A and aftaer that select relevat checkbox')
+     console.log('STEP 8: Verify the user can activate brand search with term A and aftaer that select relevant checkbox')
      await lidlStoreFront.SKfacetBrand().verifyBasicBrandSearchWithTermA();
      
+     //STEP 9:
+     console.log('STEP 9: Verify the user can activate brand search with term ES and aftaer that select relevant checkbox')
+     await lidlStoreFront.SKfacetBrand().verifyBasicBrandSearchWithTermEs();
+     
+     //STEP 10
+     console.log('STEP 10: Verify the use can click on show more brands button')
+     await lidlStoreFront.SKfacetBrand().clickOn_showMoreBrands_button();
 
+     //STEP 11
+     console.log("STEP 11: The user clicks on first checkbox '-empty' & delete selection");
+     await lidlStoreFront.SKfacetBrand().clickOn_firstCheckbox_and_deleteSelection();
+     
      });
  

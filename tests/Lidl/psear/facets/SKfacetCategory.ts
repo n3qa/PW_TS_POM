@@ -118,10 +118,73 @@ export default class SKfacetCategory extends LidlBase {
     await this.page.locator('nav').filter({ hasText: 'Filtrovať podľa Kategórie Móda Dámska móda Dámska XXL móda Filtrovať podľa Cena ' }).getByRole('link').first().click();
   }
 
+  
+  public async debugTestCase15() {
+    await this.page.goto('https://www.lidl.sk/q/search?variant=a&category=M%C3%B3da%2FD%C3%A1mska+m%C3%B3da%2FD%C3%A1mska+XXL+m%C3%B3da&idsOnly=false&productsOnly=false');
+    await this.page.getByRole('link', { name: 'Dámska móda' }).click();
+    await this.page.getByRole('link', { name: 'Móda', exact: true }).click();
+    await this.page.locator('.s-facet__reset').click();
+  }
+
   public async debugTestCase16() {
     await this.page.goto('https://www.lidl.sk/q/search?variant=a&productsOnly=false&idsOnly=false');
     await this.page.getByRole('link', { name: 'Móda' }).click();
     await this.page.locator('.s-facet__reset').click();
+    await this.page.getByRole('link', { name: 'Dielňa a záhrada' }).click();
+  }
+
+  public async debugTestCase17() {
+    await this.page.goto('https://www.lidl.sk/q/search?variant=a&category=M%C3%B3da&idsOnly=false&productsOnly=false');
+    await this.page.getByRole('link', { name: 'Dámska móda' }).click();
+    await this.page.getByRole('link', { name: 'Dámska móda' }).click();
+  }
+
+  public async debugTestCase18() {
+    await this.page.goto('https://www.lidl.sk/q/search?variant=a&category=M%C3%B3da%2FD%C3%A1mska+m%C3%B3da&idsOnly=false&productsOnly=false');
+    await this.page.getByRole('link', { name: 'Dámska XXL móda' }).click();
+    await this.page.getByRole('link', { name: 'Dámska XXL móda' }).click();
+  }
+
+  public async debugTestCase19() {
+    await this.page.goto('https://www.lidl.sk/q/search?variant=b&category=M%C3%B3da%2FD%C3%A1mska+m%C3%B3da%2FD%C3%A1mska+XXL+m%C3%B3da&idsOnly=false&productsOnly=false');
+    await this.page.getByRole('link', { name: 'Dámska móda' }).click();
+    await this.page.getByRole('link', { name: 'Dámska móda' }).click();
+  }
+
+  public async debugTestCase20() {
+    await this.page.goto('https://www.lidl.sk/q/search?variant=b&category=M%C3%B3da%2FD%C3%A1mska+m%C3%B3da&idsOnly=false&productsOnly=false');
+    await this.page.getByRole('link', { name: 'Móda', exact: true }).click();
+    await this.page.getByRole('link', { name: 'Móda', exact: true }).click();
+  }
+
+  public async debugTestCase21() {
+    await this.page.goto('https://www.lidl.sk/q/search?variant=a&productsOnly=false&idsOnly=false');
+    await this.page.getByRole('link', { name: 'Móda' }).click();
+    await this.page.getByRole('link', { name: 'Dámska móda' }).click();
+    await this.page.getByRole('link', { name: 'Dámska XXL móda' }).click();
+    await this.page.getByRole('link', { name: 'Móda', exact: true }).click();
+    await this.page.getByRole('link', { name: 'Móda', exact: true }).click();
+  }
+
+  public async debugTestCase22() {
+    await this.page.goto('https://www.lidl.sk/q/search?variant=a&productsOnly=false&idsOnly=false');
+    await this.page.getByRole('link', { name: 'Móda' }).click();
+    await this.page.getByRole('link', { name: 'Dámska móda' }).click();
+    await this.page.getByRole('link', { name: 'Dámska XXL móda' }).click();
+    await this.page.getByRole('link', { name: 'Dámska XXL móda' }).click();
+  }
+
+  public async debugTestCase23() {
+    await this.page.goto('https://www.lidl.sk/q/search?variant=a&category=M%C3%B3da%2FD%C3%A1mska+m%C3%B3da%2FD%C3%A1mska+XXL+m%C3%B3da&idsOnly=false&productsOnly=false');
+    await this.page.getByRole('link', { name: 'Dámska móda' }).click();
+    await this.page.getByRole('link', { name: 'Móda', exact: true }).click();
+    await this.page.getByRole('link', { name: 'Móda', exact: true }).click();
+  }
+
+  public async debugTestCase24() {
+    await this.page.goto('https://www.lidl.sk/q/search?variant=a&productsOnly=false&idsOnly=false');
+    await this.page.getByRole('link', { name: 'Móda' }).click();
+    await this.page.getByRole('link', { name: 'Móda', exact: true }).click();
     await this.page.getByRole('link', { name: 'Dielňa a záhrada' }).click();
   }
 

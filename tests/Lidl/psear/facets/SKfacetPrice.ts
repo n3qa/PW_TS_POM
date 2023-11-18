@@ -73,6 +73,7 @@ export default class SKfacetPrice extends LidlBase{
         console.log('CONFIRM: The user has clicked on the facet button')
       }
  
+      // >>>>> >>> >>> START REGRESION SKELETON <<<, <<< <<<
       public async debugTestCase1() {
         //Paste the content from the excel
         // before the method page PUT the key word 
@@ -90,20 +91,90 @@ export default class SKfacetPrice extends LidlBase{
 
 
       public async debugTestCase2() {
-        //Paste the content from the excel
-        // before the method page PUT the key word 
-        // -->  this.
-
-        // EXAMPLE:
-        //BEFORE in excel
-        // page.getByRole('link', { name: 'Móda' }).click();
-        // AFTER in code
-        // this.page.getByRole('link', { name: 'Móda' }).click();
         await this.page.goto('https://www.lidl.sk/q/search?variant=a&productsOnly=false&idsOnly=false');
         await this.page.getByLabel('Filtrovať podľa Cena: Od').click();
         await this.page.getByLabel('Filtrovať podľa Cena: Od').fill('2');
         await this.page.getByLabel('Filtrovať podľa Cena: Od').press('Enter');
       }
+
+      public async debugTestCase3() {
+        await this.page.goto('https://www.lidl.sk/q/search?variant=a&productsOnly=false&idsOnly=false');
+        await this.page.getByLabel('Filtrovať podľa Cena: Do').click();
+        await this.page.getByLabel('Filtrovať podľa Cena: Do').fill('1598');
+        await this.page.getByLabel('Filtrovať podľa Cena: Do').press('Enter');
+      }
+
+      public async debugTestCase4() {
+        await this.page.goto('https://www.lidl.sk/q/search?variant=a&productsOnly=false&idsOnly=false');
+        await this.page.getByLabel('Filtrovať podľa Cena: Od').click();
+        await this.page.getByLabel('Filtrovať podľa Cena: Od').fill('10');
+        await this.page.getByLabel('Filtrovať podľa Cena: Do').click();
+        await this.page.getByLabel('Filtrovať podľa Cena: Do').click();
+        await this.page.getByLabel('Filtrovať podľa Cena: Do').fill('1590');
+        await this.page.getByLabel('Filtrovať podľa Cena: Do').press('Enter');
+      }
+
+      public async debugTestCase5() {
+        await this.page.goto('https://www.lidl.sk/q/search?variant=a&productsOnly=false&idsOnly=false');
+        await this.page.getByLabel('Filtrovať podľa Cena: Do').click();
+        await this.page.getByLabel('Filtrovať podľa Cena: Do').fill('159');
+        await this.page.getByLabel('Filtrovať podľa Cena: Od').click();
+        await this.page.getByLabel('Filtrovať podľa Cena: Od').click();
+        await this.page.getByLabel('Filtrovať podľa Cena: Od').fill('1000');
+        await this.page.getByLabel('Filtrovať podľa Cena: Od').press('Enter');
+      }
+
+      public async debugTestCase6() {
+        await this.page.goto('https://www.lidl.sk/q/search?variant=a&productsOnly=false&idsOnly=false');
+        await this.page.getByLabel('Filtrovať podľa Cena: Od').click();
+        await this.page.getByLabel('Filtrovať podľa Cena: Od').fill('1000');
+        await this.page.getByLabel('Filtrovať podľa Cena: Do').click();
+        await this.page.getByLabel('Filtrovať podľa Cena: Do').click();
+        await this.page.getByLabel('Filtrovať podľa Cena: Do').fill('159');
+        await this.page.getByLabel('Filtrovať podľa Cena: Do').press('Enter');
+      }
       
+
+      public async debugTestCase7() {
+        await this.page.goto('https://www.lidl.sk/q/search?variant=a&productsOnly=false&idsOnly=false');
+        await this.page.getByLabel('Filtrovať podľa Cena: Do').click();
+        await this.page.getByLabel('Filtrovať podľa Cena: Do').fill('15999');
+        await this.page.getByLabel('Filtrovať podľa Cena: Do').press('Enter');
+        await this.page.getByLabel('Filtrovať podľa Cena: Do').click();
+        await this.page.getByLabel('Filtrovať podľa Cena: Do').press('Enter');
+      }
+
+      public async debugTestCase8() {
+        await this.page.goto('https://www.lidl.sk/q/search?variant=a&productsOnly=false&idsOnly=false');
+        await this.page.getByLabel('Filtrovať podľa Cena: Od').click();
+        await this.page.getByLabel('Filtrovať podľa Cena: Od').fill('0');
+        await this.page.getByLabel('Filtrovať podľa Cena: Od').press('Enter');
+        await this.page.getByRole('link', { name: '1 € - 1599 €' }).click();
+      }
+
+      public async debugTestCase9() {
+        await this.page.goto('https://www.lidl.sk/q/search?variant=a&productsOnly=false&idsOnly=false');
+        await this.page.getByLabel('Filtrovať podľa Cena: Od').click();
+        await this.page.getByLabel('Filtrovať podľa Cena: Od').fill('10');
+        await this.page.getByLabel('Filtrovať podľa Cena: Do').click();
+        await this.page.getByLabel('Filtrovať podľa Cena: Do').click();
+        await this.page.getByLabel('Filtrovať podľa Cena: Do').fill('1594');
+        await this.page.getByLabel('Filtrovať podľa Cena: Do').press('Enter');
+        await this.page.locator('.s-facet__reset').click();
+      }
+
+      public async debugTestCase10() {
+        await this.page.goto('https://www.lidl.sk/q/search?variant=a&productsOnly=false&idsOnly=false');
+        await this.page.getByLabel('Filtrovať podľa Cena: Od').click();
+        await this.page.getByLabel('Filtrovať podľa Cena: Od').fill('11');
+        await this.page.getByLabel('Filtrovať podľa Cena: Do').click();
+        await this.page.getByLabel('Filtrovať podľa Cena: Do').click();
+        await this.page.getByLabel('Filtrovať podľa Cena: Do').click();
+        await this.page.getByLabel('Filtrovať podľa Cena: Do').fill('1520');
+        await this.page.getByLabel('Filtrovať podľa Cena: Od').click();
+        await this.page.getByRole('link', { name: '11 € - 1520 €' }).click();
+      }
+      
+      // >>>>> STOP   REGRESION SUPPORT  <<<< < << << 
 
 }
