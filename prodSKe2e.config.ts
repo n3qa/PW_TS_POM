@@ -45,7 +45,7 @@ export default defineConfig <PlaywrightTestOptions> ({
  projects: [
     {
       name: 'chrome',
-      testMatch: 'prodSKcookies.spec.ts',
+      testMatch: 'prodSKFacetBrandE2E.spec.ts',
       use: {...devices['Desktop Chrome'],
        
       },

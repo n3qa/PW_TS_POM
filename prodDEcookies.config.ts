@@ -27,7 +27,7 @@ export default defineConfig <PlaywrightTestOptions> ({
     headless: false,
     viewport: { width: 1920, height: 949 },
 
-    baseURL: 'https://www.lidl.sk',
+    baseURL: 'https://www.lidl.de',
     trace: 'on-first-retry',
     
     //INCREASE timeouts for headless node CI/CD pipes
@@ -45,7 +45,7 @@ export default defineConfig <PlaywrightTestOptions> ({
  projects: [
     {
       name: 'chrome',
-      testMatch: 'prodSKcookies.spec.ts',
+      testMatch: 'prodDEcookies.spec.ts',
       use: {...devices['Desktop Chrome'],
        
       },
