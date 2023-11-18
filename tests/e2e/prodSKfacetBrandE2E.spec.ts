@@ -1,11 +1,11 @@
 import { test } from "../../fixtures/lidl-configurator";
 
-     test.only("SK - 1 - PROD - END 2 END | SEARCH-VIEW |SERP | Facet | brand |",
+     test("SK - 1 - PROD - END 2 END | SEARCH-VIEW |SERP | Facet | brand |",
           async ({lidlStoreFront }) => {
 
      //STEP 2: 
      //CLick on Accept all cookies oneTrust cookie settings button
-     console.log("STEP 2: CLick on oneTrust accept all cookies settings button");
+     // console.log("STEP 2: CLick on oneTrust accept all cookies settings button");
      await lidlStoreFront.SKCookies().clickOn_AcceptAllCS_btn();
      
      //STEP 3:
@@ -46,5 +46,6 @@ import { test } from "../../fixtures/lidl-configurator";
      console.log("STEP 11: The user clicks on first checkbox '-empty' & delete selection");
      await lidlStoreFront.SKfacetBrand().clickOn_firstCheckbox_and_deleteSelection();
      
-     });
+     }
+    );
  

@@ -6,8 +6,8 @@ export default class SKfacetSize extends LidlBase{
     super(page)
   }
 
-   //  >>> >>>> >>>>   START REGRESION SUPPORT  <<< <<<, <<<< 
+   
  
    
-  }
+ 
 }
