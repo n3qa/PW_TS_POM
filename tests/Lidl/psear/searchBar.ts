@@ -19,17 +19,7 @@ export default class SearchInputBox extends LidlBase {
   //Search input field = abbreaviation -> SIF
   SIFplaceHolder = () => this.searchInputField().getAttribute('placeholder');
  
- 
-
-  //Search results page facets by test id 
-  // await page.getByTestId('category-facet').click();
-  // await page.getByTestId('price-facet').click();
-  // await page.getByTestId('sales-facet').click();
-  // await page.getByTestId('brand-facet').click();
-  // await page.getByTestId('color-facet').click();
-  // await page.getByTestId('size-facet').click();
-  // await page.getByTestId('Hodnotenia-facet').click();
-
+  
 
   //Actions
   public async clickOnSearchInputField () {

@@ -21,6 +21,8 @@ import LidlFRCookiesPage from "../tests/Lidl/common/cookies/FRcookiesPage";
 //2 Search results page
 //2.1. SK
 import LidlSKsearchResultsPage from "../tests/Lidl/psear/srp/SKsearchResultsPage";
+//2.2. SK
+import LidlDEsearchResultsPage from "../tests/Lidl/psear/srp/DEsearchResultsPage";
 
 //3 FACETS
 //3.1. SK FACETS
@@ -60,6 +62,7 @@ export class StoreFront {
   //2. Search results page ->
   //2.1. SK
   private readonly lidlSKsearchResultsPage: LidlSKsearchResultsPage;
+  private readonly lidlDEsearchResultsPage: LidlDEsearchResultsPage;
 
   //3. FACETS 
   //3.1. SK FACETS
@@ -99,6 +102,7 @@ export class StoreFront {
     //2.Search Results Page for Countries
     //2.1. SK SRP 
     this.lidlSKsearchResultsPage = new LidlSKsearchResultsPage(this.page);
+    this.lidlDEsearchResultsPage = new LidlDEsearchResultsPage(this.page);
 
     //3 FACETS
     //3.1. SK FACETS
@@ -141,6 +145,7 @@ export class StoreFront {
     
     //2: SRP Country spec srp -> SK
     SKsrp() {return this.lidlSKsearchResultsPage}
+    DEsrp() {return this.lidlDEsearchResultsPage}
 
     //3: Facets
     // 3.1. SK
