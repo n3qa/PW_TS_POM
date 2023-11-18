@@ -18,11 +18,17 @@ import LidlCZCookiesPage from "../tests/Lidl/common/cookies/CZcookiesPage";
 //1.4 FR Cookies
 import LidlFRCookiesPage from "../tests/Lidl/common/cookies/FRcookiesPage";
 
-//Searh results pages 
-//Common methods for SRP
-
-//1 SK Search results page
+//2 Search results page
+//2.1. SK
 import LidlSKsearchResultsPage from "../tests/Lidl/psear/srp/SKsearchResultsPage";
+
+//3 SK FACETS
+import LidlSKfacetBrand from '../tests/Lidl/psear/facets/SKfacetBrand'
+import LidlSKfacetCategory from '../tests/Lidl/psear/facets/SKfacetCategory'
+import LidlSKfacetMaterial from '../tests/Lidl/psear/facets/SKfacetMaterial'
+import LidlSKfacetPrice from '../tests/Lidl/psear/facets/SKfacetPrice'
+import LidlSKfacetRatings from '../tests/Lidl/psear/facets/SKfacetRatings'
+
 
 // END OF IMPTS 
 export class StoreFront { 
@@ -46,6 +52,14 @@ export class StoreFront {
   //2.1. SK
   private readonly lidlSKsearchResultsPage: LidlSKsearchResultsPage;
 
+  //3. FACETS 
+  //3.1. SK FACETS
+  private readonly lidlSKfacetBrand: LidlSKfacetBrand;
+  private readonly lidlSKfacetCategory: LidlSKfacetCategory;
+  private readonly lidlSKfacetMaterial: LidlSKfacetMaterial;
+  private readonly lidlSKfacetPrice: LidlSKfacetPrice;
+  private readonly lidlSKfacetRatings: LidlSKfacetRatings;
+
   constructor(page:Page){
     this.page = page;
     
@@ -67,6 +81,16 @@ export class StoreFront {
     //2.Search Results Page for Countries
     //2.1. SK SRP 
     this.lidlSKsearchResultsPage = new LidlSKsearchResultsPage(this.page);
+
+    //3 FACETS
+    //SK
+    this.lidlSKfacetBrand = new LidlSKfacetBrand(this.page);
+    this.lidlSKfacetCategory = new LidlSKfacetCategory(this.page);
+    this.lidlSKfacetMaterial = new LidlSKfacetMaterial(this.page);
+    this.lidlSKfacetPrice = new LidlSKfacetPrice(this.page);
+    this.lidlSKfacetRatings = new LidlSKfacetRatings(this.page);
+   
+
   }
 
   //Instance providers
@@ -87,8 +111,16 @@ export class StoreFront {
     // Search results page -> ABR -> srp
 
     
-    //Country spec srp -> SK
+    //2: SRP Country spec srp -> SK
     SKsrp() {return this.lidlSKsearchResultsPage}
+
+    //3: Facets
+    // 3.1. SK
+    SKfacetBrand() {return this.lidlSKfacetBrand};
+    SKfacetCategory(){return this.lidlSKfacetCategory};
+    SKfacetMaterial() {return this.lidlSKfacetMaterial};
+    SKfacetPrice(){return this.lidlSKfacetPrice}
+    SKfacetRatings(){return this.lidlSKfacetRatings}
     
 
 }

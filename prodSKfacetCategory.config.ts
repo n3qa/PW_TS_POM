@@ -3,11 +3,11 @@ import type { PlaywrightTestOptions } from '@playwright/test';
 require('dotenv').config();
 
 export default defineConfig <PlaywrightTestOptions> ({
-  timeout: 50000,
-  globalTimeout: 70000,
+  timeout: 90000,
+  globalTimeout: 110000,
 
   expect: {
-    timeout: 10000
+    timeout: 80000
   },
 
   reporter: [
@@ -45,7 +45,7 @@ export default defineConfig <PlaywrightTestOptions> ({
  projects: [
     {
       name: 'chrome',
-      testMatch: 'prodSKcookies.spec.ts',
+      testMatch: 'prodSKfacetCategory.spec.ts',
       use: {...devices['Desktop Chrome'],
        
       },

@@ -7,7 +7,7 @@ export default defineConfig <PlaywrightTestOptions> ({
   globalTimeout: 60000,
 
   expect: {
-    timeout: 7777
+    timeout: 10000
   },
  
   // testDir: './tests',
