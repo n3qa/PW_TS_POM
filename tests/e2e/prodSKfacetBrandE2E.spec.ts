@@ -20,7 +20,7 @@ import { test } from "../../fixtures/lidl-configurator";
       
      //STEP 5:
      console.log('STEP 5: Verify the user can activate and deactivate brand facet search functionality via baseic search')
-     await lidlStoreFront.SKfacetBrand().veryfyBrandSearchInputBoxCanBeActivatedWithBasicSearch('Parkside');
+     await lidlStoreFront.SKfacetBrand().veryfyBrandSearchInputBoxCanBeActivatedWithBasicSearch();
 
      //STEP 6: 
      console.log('STEP 6: Check brand facet buttons for show more / show less brand options');
