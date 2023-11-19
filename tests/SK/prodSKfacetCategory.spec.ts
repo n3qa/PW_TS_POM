@@ -58,20 +58,16 @@ import { expect } from "playwright/test";
           console.log("-> Validate  that there is a navigation reset all button ( delete all bubbles)")
           await lidlStoreFront.SKfacetCategory().validate_navigation_reset_all_bubbles_button_is_shown();    
           
-          //7 Validation of the category tree nodes
+          //STEP 7 
+          //Validation of the category tree nodes
           console.log('*** STEP 7: Validation of the category tree nodes')
-          console.log("-> Validate  that there is a navigation reset all button ( delete all bubbles)")
+          //7.1.Validate not relevant first level nodes are not shown
+          console.log("-> Validate not relevant root level nodes are not shown")
           await lidlStoreFront.SKfacetCategory().validate_no_first_level_node_for_workshop_and_garden_is_shown();
-          //7.4. Validate 3rd navitation node is presented for the user and not active
-          console.log('-> Validate 3rd navitation node is presented for the user and not active')
-          const isNotSelected = lidlStoreFront.SKfacetCategory().second_level_women_moda().getAttribute('');
-          await expect(lidlStoreFront.SKfacetCategory().second_level_women_moda()).toHaveAttribute
-         
-          //category-facet-Dámska móda-notSelected
-          //7.4. Validate 3rd navitation node is presented for the user
-      
+          //7.2. Validate 2nd navitation node is presented for the user
+          console.log('-> Validate 2nd navitation node is presented for the user')
+          await lidlStoreFront.SKfacetCategory().validate_second_level_node_for_women_moda_is_shown();
           
-   
      });
 
 
@@ -82,11 +78,28 @@ import { expect } from "playwright/test";
           "to 3rd category level",
           async ({lidlStoreFront }) => {
 
-     //STEP 2: 
-     //CLick on Accept all cookies oneTrust cookie settings button
-     console.log("STEP 2: CLick on oneTrust accept all cookies settings button");
-     await lidlStoreFront.SKCookies().clickOn_AcceptAllCS_btn();
-
+          //STEP 2: 
+          //CLick on Accept all cookies oneTrust cookie settings button
+          console.log("*** STEP 2: CLick on oneTrust accept all cookies settings button");
+          await lidlStoreFront.SKCookies().clickOn_AcceptAllCS_btn();
+          
+          //STEP 3:
+          // The user navigates to predefined SRP page
+          console.log('*** STEP 3: The user goes to an already activated SRP with category facet')
+          await lidlStoreFront.SKfacetCategory().goto('https://www.lidl.sk/q/search?variant=b&category=M%C3%B3da&idsOnly=false&productsOnly=false')
+ 
+          //STEP 4 
+          //Validate category facet is activated by selection of second level category node Moda
+    
+          //Validation of the category tree nodes
+          console.log('*** STEP 4: Validation of the category tree nodes')
+          //4.1.Validate not relevant first level nodes are not shown
+          console.log("-> Validate not relevant root level nodes are not shown")
+          await lidlStoreFront.SKfacetCategory().validate_no_first_level_node_for_workshop_and_garden_is_shown();
+          //4.2. Validate 2nd navitation node is presented for the user
+          console.log('-> Validate 2nd navitation node is presented for the user')
+          await lidlStoreFront.SKfacetCategory().validate_second_level_node_for_women_moda_is_shown();
+          
      //STEP  0:
      // The user submits a basic search on the home page
      console.log("STEP 3: The user submits a basic search on the home page");

@@ -36,6 +36,7 @@ export default class SKfacetCategory extends LidlBase {
 
   //2.2. PROD SECOND level nodes
   second_level_women_moda = () =>  this.page.getByRole('link', { name: 'Dámska móda' });
+  
   //2.2.1.reset option for second level women moda
   bubble_reset_option_for_second_level_women_moda = () =>  this.page.getByRole('link', { name: 'Móda' });
   
@@ -175,7 +176,15 @@ export default class SKfacetCategory extends LidlBase {
     await expect(this.first_level_workshop_garden()).toHaveCount(0);
     console.log('CONFIRM: There is no first level syblings shown to the user with label '+ 'Dielňa a záhrada')   
    }
-
+    
+   public async validate_second_level_node_for_women_moda_is_shown() {
+    await expect(this.second_level_women_moda()).toHaveCount(1);
+    console.log('CONFIRM: There is a second level node with label'+ 'Dámska móda')   
+   }
+   public async validate_no_third_level_node_for_workshop_and_garden_is_shown() {
+    await expect(this.first_level_workshop_garden()).toHaveCount(0);
+    console.log('CONFIRM: There is no first level syblings shown to the user with label '+ 'Dielňa a záhrada')   
+   }
  
  //7.1. Validate target node is shown as parent
   //7.3. Validate destination node (the node that was clicked) is active
