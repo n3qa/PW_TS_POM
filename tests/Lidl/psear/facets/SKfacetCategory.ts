@@ -62,7 +62,7 @@ export default class SKfacetCategory extends LidlBase {
 
   //2. CATEGORY TREE
   //2.1. PROD FIRST level nodes
-  first_level_moda = () =>   this.page.getByRole('link', { name: 'Móda' });
+  first_level_moda = () =>   this.page.getByRole('link', { name: 'Móda' }).first();
   //2.1.1. bubble reset option for first level moda 
   // to slow function with xpath operation 2 conditions operator for finding 
   // a relevat bubble by provided label
