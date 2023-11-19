@@ -33,7 +33,7 @@
     await this.page.waitForLoadState('domcontentloaded');
     await this.page.waitForLoadState('load');
     
-    //VErify the button is no longer visible and it was clicked
+    //Verify the button is no longer visible and it was clicked
     await expect(this.acceptAll_cs()).toHaveCount(0);
   }
 
@@ -71,6 +71,4 @@
     await this.page.waitForLoadState();
     await this.preferences_cs().click();
   }
-
-
 }

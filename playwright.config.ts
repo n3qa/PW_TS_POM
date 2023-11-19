@@ -35,7 +35,7 @@ export default defineConfig <PlaywrightTestOptions> ({
    
     actionTimeout: 600000,
     navigationTimeout: 800000,
-    testIdAttribute: 'data-testselector',
+    // testIdAttribute: 'data-testselector',
     video: {
       mode: 'on-first-retry',
       size: {width: 1920, height: 949}
