@@ -1,7 +1,7 @@
 import { test } from "../../fixtures/lidl-configurator";
 import { expect } from "playwright/test";
 
-     test("SK - 1 -PROD - SEARCH-VIEW | SERP | Facet | Category |" +
+     test("SK - 1 - PROD - SEARCH-VIEW | SERP | Facet | Category |" +
           " SINGLE increment | TOP > DOWN "+
           "Verify user can successfully navigate " +
           "from root category level " +
