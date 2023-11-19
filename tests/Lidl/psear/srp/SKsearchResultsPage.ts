@@ -79,23 +79,7 @@ public async validate_facet_category_canBe_Collapsed(){
   await this.facet_category().click();
   console.log('CONFIRM: The user has clicked on the facet button')
 }
-  //FACET :: 2 :: PRICE
-  public async validate_facet_price_state_expanded(){
-    //1.Validate price facet = expanded
-    await this.page.waitForSelector('#price'); //price facet main div
-    const priceFacetStateStatus = await this.facet_price().getAttribute('class');
-    console.log('REPORT: Current price facet class is: '+priceFacetStateStatus)
-    await expect(priceFacetStateStatus).toBe('s-facet__heading s-facet__heading--open');
-    console.log('VALIDATION : The initial price facet state is opened/expanded.' );
-  }
-  //FACET :: 2 :: PRICE
-  public async validate_facet_price_canBe_Collapsed(){
-    //1:Wait for the selector and click
-    await this.page.waitForSelector('#price'); //price facet main div
-    //2. Single click on the expanded facet MAKEs the facet to collapse
-    await this.facet_price().click();
-    console.log('CONFIRM: The user has clicked on price facet button')
-  }
+   
   //FACET :: 3 :: BRAND 
   public async validate_facet_brand_state_expanded(){
   //1.Validate facet = expanded
