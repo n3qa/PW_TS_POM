@@ -8,7 +8,7 @@ export default class SKfacetCategory extends LidlBase {
 
   public async goto(url:string) {
     const currnetURL = url;
-    await this.page.goto('www.lidl.sk');
+    await this.page.goto(currnetURL);
     console.log ('CONFIRM: The user has navigated to URL: '+currnetURL)
   }
 
@@ -33,12 +33,15 @@ export default class SKfacetCategory extends LidlBase {
   first_level_workshop_garden = () => this.page.getByRole('link', { name: 'Dielňa a záhrada' });
   //2.1.1. bubble reset option for first level moda
   bubble_reset_option_for_first_level_moda = () =>  this.page.getByRole('link', { name: 'Móda', exact: true });
-
+  
   //2.2. PROD SECOND level nodes
   second_level_women_moda = () =>  this.page.getByRole('link', { name: 'Dámska móda' });
   
+  //2.3. PROD THIRD LEVEL nodes
+  bubble_reset_option_for_third_level_xxxl_women_moda = () =>  this.page.getByRole('link', { name: 'Dámska XXL móda', exact: true });
+
   //2.2.1.reset option for second level women moda
-  bubble_reset_option_for_second_level_women_moda = () =>  this.page.getByRole('link', { name: 'Móda' });
+  bubble_reset_option_for_second_level_women_moda = () =>  this.page.locator('(//li/div/a/span[contains(text(),"Dámska móda")])[1]');
   
   //2.3. PROD THIRD level nodes
   third_level_xxx_women_moda = () =>   this.page.getByRole('link', { name: 'Dámska XXL móda' });
@@ -69,7 +72,7 @@ export default class SKfacetCategory extends LidlBase {
   //2.2. PROD SECOND level nodes
   second_level_women_moda = () =>  this.page.getByRole('link', { name: 'Dámska móda' });
   //2.2.1.reset option for second level women moda
-  bubble_reset_option_for_second_level_women_moda = () =>   this.page.getByRole('link', { name: 'Móda' });
+  bubble_reset_option_for_second_level_women_moda = () =>   this.page.locator('(//li/div/a/span[contains(text(),"Dámska móda")])[1]');
   
   //2.3. PROD THIRD level nodes
   third_level_xxx_women_moda = () =>   this.page.getByRole('link', { name: 'Dámska XXL móda' });
@@ -158,9 +161,29 @@ export default class SKfacetCategory extends LidlBase {
     console.log('CONFIRM: Bubble reset option is presented')
   }
 
+  //second level bubls 
+  public async validate_bubble_reset_option_for_women_moda_is_shown(){
+    await expect(this.bubble_reset_option_for_second_level_women_moda()).toHaveCount(1);
+    console.log('CONFIRM: Bubble reset option is presented')
+  }
+
+  public async validate_no_bubble_reset_option_for_women_moda_is_shown(){
+    await expect(this.bubble_reset_option_for_second_level_women_moda()).toHaveCount(0);
+    console.log('CONFIRM: NO bubble reset option is presented')
+  }
+
   // RESET OPTIONS
-  // 2n LEVEL
-  //Second level bubbles
+  // 3rd LEVEL
+  //3rd level bubbles
+  public async validate_bubble_reset_option_for_xxxl_women_moda_is_shown(){
+    await expect(this.bubble_reset_option_for_third_level_xxxl_women_moda()).toHaveCount(1);
+    console.log('CONFIRM: Bubble reset option is presented')
+  }
+
+  public async validate_no_bubble_reset_option_for_xxxl_women_moda_is_shown(){
+    await expect(this.bubble_reset_option_for_third_level_xxxl_women_moda()).toHaveCount(0);
+    console.log('CONFIRM: NO bubble reset option is presented')
+  }
   
 
   //VALIDATIONS 
