@@ -700,7 +700,7 @@ import { expect } from "playwright/test";
           }); 
 
           test("SK - 9 - PROD - SEARCH-VIEW | SERP | Facet | Category |" +
-               " RESET | BUBBLE reset option | "+
+               " RESET | HEADER reset option | "+
                "Verify user can successfully reset " +
                "the already activated " +
                "1st level category facet" +
@@ -758,26 +758,65 @@ import { expect } from "playwright/test";
         
        
           test("SK - 10 - PROD - SEARCH-VIEW | SERP | Facet | Category |" +
-               " RESET | BUBBLE reset option | "+
+               " RESET | HEADER reset option | "+
                "Verify user can successfully reset " +
                "the already activated " +
                "2nd level category facet" +
                "by category facet bubble reset option. ",
                async ({lidlStoreFront }) => {
 
+          
           //STEP 2: 
           //CLick on Accept all cookies oneTrust cookie settings button
           console.log("STEP 2: CLick on oneTrust accept all cookies settings button");
           await lidlStoreFront.SKCookies().clickOn_AcceptAllCS_btn();
 
-          //STEP  0:
-          // The user submits a basic search on the home page
-          console.log("STEP 3: The user submits a basic search on the home page");
-          await lidlStoreFront.SKfacetCategory().debugTestCase10();
+          //STEP 3:
+          // The user navigates to an already activated category facet by first level node
+          console.log("*** STEP 3: The user navigates to an already activated category facet by second level node");
+          await lidlStoreFront.SKfacetCategory().goto('https://www.lidl.sk/q/search?variant=a&category=M%C3%B3da%2FD%C3%A1mska+m%C3%B3da&idsOnly=false&productsOnly=false');
+
+          //STEP 4
+          //Validate category facet is activated by selection of first level category node Moda
+          console.log('*** STEP 4: Validate category facet is activated by selection of 2nd level category node Moda')
+          //4.1. Validate category facet initial state (expanded) presented  
+          console.log('-> Validate category facet initial state (expanded) presented.');
+          await lidlStoreFront.SKsrp().validate_facet_category_state_expanded();
+          //4.2. THere is a header reset option
+          console.log('-> Validate there is a header reset option when the facet is active')
+          await lidlStoreFront.SKfacetCategory().validate_header_reset_option_is_shown();      
+          //4.3. There is a bubble reset option
+          console.log("-> Validate there is a bubble reset option when the facet is active")
+          await lidlStoreFront.SKfacetCategory().validate_bubble_reset_option_for_women_moda_is_shown();
+          //4.4. There is a navigation reset button ( delete all bubbles)
+          console.log("-> Validate  that there is a navigation reset all button ( delete all bubbles)")
+          await lidlStoreFront.SKfacetCategory().validate_navigation_reset_all_bubbles_button_is_shown();   
+          
+          //STEP 5
+          // The user reset the category facet by clicking on header reset otpion
+          console.log('*** STEP 5: The user reset the category facet by clicking on header reset otpion')
+          await lidlStoreFront.SKfacetCategory().header_reset_btn().click();
+
+          //STEP 6
+          // Validate header reset option deactivated the category facet
+          console.log('*** STEP 6: Validate header reset option deactivated the category facet as per requirements');
+          //6.1. Validate category facet initial state (expanded) presented  
+          console.log('-> Validate category facet initial state (expanded) presented.');
+          await lidlStoreFront.SKsrp().validate_facet_category_state_expanded();
+          // 6.2. THere is no header reset option
+          console.log('-> Validate there is no header reset option when the facet is not active')
+          await lidlStoreFront.SKfacetCategory().validate_no_header_reset_option_is_shown();      
+          //6.3. There is no bubble reset option
+          console.log("-> Validate there is no bubble reset option when the facet is not active")
+          await lidlStoreFront.SKfacetCategory().validate_no_bubble_reset_option_for_women_moda_is_shown();
+          //6.4. There is no navigation reset button ( delete all bubbles)
+          console.log("-> Validate  that there is no navigation reset all button ( delete all bubbles)")
+          await lidlStoreFront.SKfacetCategory().validate_no_navigation_reset_all_bubbles_button_is_shown();
+ 
           }); 
 
           test("SK - 11 - PROD - SEARCH-VIEW | SERP | Facet | Category |" +
-               " RESET | BUBBLE reset option | "+
+               " RESET | HEADER reset option | "+
                "Verify user can successfully reset " +
                "the already activated " +
                "3rd level category facet" +
@@ -789,37 +828,144 @@ import { expect } from "playwright/test";
           console.log("STEP 2: CLick on oneTrust accept all cookies settings button");
           await lidlStoreFront.SKCookies().clickOn_AcceptAllCS_btn();
 
-          //STEP  0:
-          // The user submits a basic search on the home page
-          console.log("STEP 3: The user submits a basic search on the home page");
-          await lidlStoreFront.SKfacetCategory().debugTestCase11();
+          //STEP 3:
+          // The user navigates to an already activated category facet by first level node
+          console.log("*** STEP 3: The user navigates to an already activated category facet by second level node");
+          await lidlStoreFront.SKfacetCategory().goto('https://www.lidl.sk/q/search?variant=a&category=M%C3%B3da%2FD%C3%A1mska+m%C3%B3da%2FD%C3%A1mska+XXL+m%C3%B3da&idsOnly=false&productsOnly=false');
+
+          //STEP 4
+          //Validate category facet is activated by selection of first level category node Moda
+          console.log('*** STEP 4: Validate category facet is activated by selection of 3rd level category node Moda')
+          //4.1. Validate category facet initial state (expanded) presented  
+          console.log('-> Validate category facet initial state (expanded) presented.');
+          await lidlStoreFront.SKsrp().validate_facet_category_state_expanded();
+          //4.2. THere is a header reset option
+          console.log('-> Validate there is a header reset option when the facet is active')
+          await lidlStoreFront.SKfacetCategory().validate_header_reset_option_is_shown();      
+          //4.3. There is a bubble reset option
+          console.log("-> Validate there is a bubble reset option when the facet is active")
+          await lidlStoreFront.SKfacetCategory().validate_bubble_reset_option_for_xxxl_women_moda_is_shown();
+          //4.4. There is a navigation reset button ( delete all bubbles)
+          console.log("-> Validate  that there is a navigation reset all button ( delete all bubbles)")
+          await lidlStoreFront.SKfacetCategory().validate_navigation_reset_all_bubbles_button_is_shown();   
+          
+          //STEP 5
+          // The user reset the category facet by clicking on header reset otpion
+          console.log('*** STEP 5: The user reset the category facet by clicking on header reset otpion')
+          await lidlStoreFront.SKfacetCategory().header_reset_btn().click();
+
+          //STEP 6
+          // Validate header reset option deactivated the category facet
+          console.log('*** STEP 6: Validate header reset option deactivated the category facet as per requirements');
+          //6.1. Validate category facet initial state (expanded) presented  
+          console.log('-> Validate category facet initial state (expanded) presented.');
+          await lidlStoreFront.SKsrp().validate_facet_category_state_expanded();
+          // 6.2. THere is no header reset option
+          console.log('-> Validate there is no header reset option when the facet is not active')
+          await lidlStoreFront.SKfacetCategory().validate_no_header_reset_option_is_shown();      
+          //6.3. There is no bubble reset option
+          console.log("-> Validate there is no bubble reset option when the facet is not active")
+          await lidlStoreFront.SKfacetCategory().validate_no_bubble_reset_option_for_xxxl_women_moda_is_shown();
+          //6.4. There is no navigation reset button ( delete all bubbles)
+          console.log("-> Validate  that there is no navigation reset all button ( delete all bubbles)")
+          await lidlStoreFront.SKfacetCategory().validate_no_navigation_reset_all_bubbles_button_is_shown();
+         
+
+
           }); 
 
           test("SK - 12 - PROD - SEARCH-VIEW | SERP | Facet | Category |" +
-               " RESET | BUBBLE reset option | "+
+               " RESET | HEADER reset option | "+
                "Verify user can successfully reset " +
                "the already activated " +
                "2nd level category facet" +
+               "and successful navigation to 1st level category facet node " +
                "by category facet bubble reset option. ",
                async ({lidlStoreFront }) => {
 
-          //STEP 2: 
+           //STEP 2: 
           //CLick on Accept all cookies oneTrust cookie settings button
-          console.log("STEP 2: CLick on oneTrust accept all cookies settings button");
+          console.log("*** STEP 2: CLick on oneTrust accept all cookies settings button");
           await lidlStoreFront.SKCookies().clickOn_AcceptAllCS_btn();
+          
+          //STEP 3:
+          // The user navigates to predefined SRP page
+          console.log('*** STEP 3: The user goes to an already activated SRP with category facet')
+          await lidlStoreFront.SKfacetCategory().goto('https://www.lidl.sk/q/search?variant=b&category=M%C3%B3da%2FD%C3%A1mska+m%C3%B3da&idsOnly=false&productsOnly=false');
+               
+          //4.1. Validate category facet initial state (expanded) presented  
+          console.log("*** STEP 4: Validate category inital state for already selected 2nd level category navigation node")
+          console.log('-> Validate category facet state is expanded presented.');
+          await lidlStoreFront.SKsrp().validate_facet_category_state_expanded();
+          //4.2. THere is a header reset option
+          console.log('-> Validate there is a header reset option when the facet is active')
+          await lidlStoreFront.SKfacetCategory().validate_header_reset_option_is_shown();      
+          //4.3. There is a bubble reset option
+          console.log("-> Validate there is a bubble reset option when the facet is active")
+          await lidlStoreFront.SKfacetCategory().validate_bubble_reset_option_for_women_moda_is_shown();
+          //4.4. There is a navigation reset button ( delete all bubbles)
+          console.log("-> Validate  that there is a navigation reset all button ( delete all bubbles)")
+          await lidlStoreFront.SKfacetCategory().validate_navigation_reset_all_bubbles_button_is_shown();
+          
 
-          //STEP  0:
-          // The user submits a basic search on the home page
-          console.log("STEP 3: The user submits a basic search on the home page");
-          await lidlStoreFront.SKfacetCategory().debugTestCase12();
+          //STEP 5
+          // The user clicks on 2nd level navigation node  
+          console.log('*** STEP 5: The user clicks on 1st level navigation node  ');
+          await lidlStoreFront.SKfacetCategory().first_level_moda().click();
+          
+          //************ 
+          // MOVE FROM 2nd TO 1st 
+          //************ 
+          
+          //STEP 6 
+          //Validate category facet is activated by frst level category level node MODA
+          console.log('*** STEP 6: Validate category facet is activated by 1st level category level node WOMEN MODA')
+         
+          //6.1. Valdiate category facet is activated
+          console.log('*** STEP 4: Validate category facet is already activated ')
+          //6.2. Validate category facet initial state (expanded) presented  
+          console.log('-> Validate category facet state is expanded.');
+          await lidlStoreFront.SKsrp().validate_facet_category_state_expanded();
+          //6.3. THere is a header reset option
+          console.log('-> Validate there is a header reset option when the facet is active')
+          await lidlStoreFront.SKfacetCategory().validate_header_reset_option_is_shown();      
+          //6.4. There is a bubble reset option
+          console.log("-> Validate there is a bubble reset option when the facet is active")
+          await lidlStoreFront.SKfacetCategory().validate_bubble_reset_option_for_moda_is_shown();
+          //6.5. There is a navigation reset button ( delete all bubbles)
+          console.log("-> Validate  that there is a navigation reset all button ( delete all bubbles)")
+          await lidlStoreFront.SKfacetCategory().validate_navigation_reset_all_bubbles_button_is_shown(); 
+          
+          // STEP 7
+          // The user reset the category facet by click on category facet header reset button
+          console.log('*** STEP 7: The user reset the category facet by click on category facet header reset button')
+          await lidlStoreFront.SKfacetCategory().header_reset_btn().click();
+
+          //STEP 8
+          // Validate header reset option deactivated the category facet
+          console.log('*** STEP 6: Validate header reset option deactivated the category facet as per requirements');
+          //8.1. Validate category facet initial state (expanded) presented  
+          console.log('-> Validate category facet initial state (expanded) presented.');
+          await lidlStoreFront.SKsrp().validate_facet_category_state_expanded();
+          // 8.2. THere is no header reset option
+          console.log('-> Validate there is no header reset option when the facet is not active')
+          await lidlStoreFront.SKfacetCategory().validate_no_header_reset_option_is_shown();      
+          //86.3. There is no bubble reset option
+          console.log("-> Validate there is no bubble reset option when the facet is not active")
+          await lidlStoreFront.SKfacetCategory().validate_no_bubble_reset_option_for_moda_is_shown();
+          //6.4. There is no navigation reset button ( delete all bubbles)
+          console.log("-> Validate  that there is no navigation reset all button ( delete all bubbles)")
+          await lidlStoreFront.SKfacetCategory().validate_no_navigation_reset_all_bubbles_button_is_shown();
+      
           }); 
 
+          // TO DO  - END HERE
           test("SK - 13 - PROD - SEARCH-VIEW | SERP | Facet | Category |" +
-          " RESET | BUBBLE reset option | "+
-          "Verify user can successfully reset " +
-          "the already activated " +
-          "2nd level category facet" +
-          "by category facet bubble reset option. ",
+          " SEQUENTIAL | RESET |  HEADER option |" +
+          "Verify user transitions sequentially from 1st to 3rd level" +
+          "back to  FIRST LEVEL in a single interaction, " +
+          "then clicks on header reset, " +
+          "and is back to 1st level category",
           async ({lidlStoreFront }) => {
 
           //STEP 2: 

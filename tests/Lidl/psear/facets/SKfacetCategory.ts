@@ -33,6 +33,7 @@ export default class SKfacetCategory extends LidlBase {
   first_level_workshop_garden = () => this.page.getByRole('link', { name: 'Dielňa a záhrada' });
   first_level_sports_and_free_time  = () => this.page.getByRole('link', { name: 'Šport a voľný čas' });
   first_level_housing  = () => this.page.getByRole('link', { name: 'Bývanie' });
+  first_level_bicycals_qa  = () => this.page.getByRole('link', { name: 'Bicyckel_mto3' });
   
   //2.1.1. bubble reset option for first level moda
   bubble_reset_option_for_first_level_moda = () =>  this.page.locator('//li/div/a/span[@class="s-selection__label" and text()="Móda"]');
@@ -45,26 +46,21 @@ export default class SKfacetCategory extends LidlBase {
   
   //2.3. PROD THIRD LEVEL nodes
   bubble_reset_option_for_third_level_xxxl_women_moda = () =>  this.page.getByRole('link', { name: 'Dámska XXL móda', exact: true });
-
+  bubble_reset_option_for_third_level_psear_qa = () =>  this.page.locator('(//li/div/a/span[contains(text(),"PSEAR Parent Category Integration NavTitle")])[1]');
+   
   //2.2.1.reset option for second level women moda
   bubble_reset_option_for_second_level_women_moda = () =>  this.page.locator('(//li/div/a/span[contains(text(),"Dámska móda")])[1]');
   
   //2.3. PROD THIRD level nodes
   third_level_xxx_women_moda = () =>   this.page.getByRole('link', { name: 'Dámska XXL móda' });
+  third_level_psear_qa = () =>   this.page.getByRole('link', { name: 'PSEAR Parent Category Integration NavTitle' }).nth(1);
+
   //2.3.1.reset option for third level XXL women moda
   bubble_reset_option_for_third_level_xxl_women_moda = () =>  this.page.locator('nav').filter({ hasText: 'Filtrovať podľa Kategórie Móda Dámska móda Dámska XXL móda Filtrovať podľa Cena ' }).getByRole('link').first().click();
   
-  //1.4. QA FIRST level nodes
-  //1.5. QA SECOND level nodes
-  //1.6. QA THIRD level nodes
+  
 
-  //SK PROD data spefic  
-
-
-  //1. Category tree 
-
-
-  //Actions
+  //  ACTIONS
   public async click_on_first_level_category_node () {
     await this.first_level_moda().click();
     console.log('CONFIRM: THe user has clicked on first level node: MODA')
@@ -129,6 +125,17 @@ export default class SKfacetCategory extends LidlBase {
     console.log('CONFIRM: Bubble reset option is presented')
   }
 
+  public async validate_no_bubble_reset_option_for_first_level_bicycals_qa_is_shown(){
+    await expect(this.first_level_bicycals_qa()).toHaveCount(0)
+    console.log('CONFIRM: No bubble reset option is presented')
+  }
+
+  public async validate_bubble_reset_option_for_first_level_bicycals_qa_is_shown(){
+    await expect(this.first_level_bicycals_qa()).toHaveCount(1);
+    console.log('CONFIRM: Bubble reset option is presented')
+  }
+
+  // SECOND LEVEL BUBBLES
   //second level bubls 
   public async validate_bubble_reset_option_for_women_moda_is_shown(){
     await expect(this.bubble_reset_option_for_second_level_women_moda()).toHaveCount(1);
@@ -150,6 +157,16 @@ export default class SKfacetCategory extends LidlBase {
 
   public async validate_no_bubble_reset_option_for_xxxl_women_moda_is_shown(){
     await expect(this.bubble_reset_option_for_third_level_xxxl_women_moda()).toHaveCount(0);
+    console.log('CONFIRM: NO bubble reset option is presented')
+  }
+
+  public async validate_bubble_reset_option_for_psear_qa_is_shown(){
+    await expect(this.bubble_reset_option_for_third_level_psear_qa()).toHaveCount(1);
+    console.log('CONFIRM: Bubble reset option is presented')
+  }
+
+  public async validate_no_bubble_reset_option_for_psear_qa_is_shown(){
+    await expect(this.bubble_reset_option_for_third_level_psear_qa()).toHaveCount(0);
     console.log('CONFIRM: NO bubble reset option is presented')
   }
   

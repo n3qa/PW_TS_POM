@@ -27,13 +27,13 @@ export default defineConfig <PlaywrightTestOptions> ({
     headless: false,
     viewport: { width: 1920, height: 949 },
 
-    baseURL: 'https://www.lidl.sk',
+    baseURL: 'https://qa.lidl.sk/',
     trace: 'on-first-retry',
     
     //INCREASE timeouts for headless node CI/CD pipes
     actionTimeout: 600000,
     navigationTimeout: 800000,
-    testIdAttribute: 'data-testselector',
+    // testIdAttribute: 'data-testselector',
     
     video: {
       // mode: 'on-first-retry',
@@ -45,7 +45,7 @@ export default defineConfig <PlaywrightTestOptions> ({
  projects: [
     {
       name: 'chrome',
-      testMatch: 'prodSKcookies.spec.ts',
+      testMatch: 'qaSKcookies.spec.ts',
       use: {...devices['Desktop Chrome'],
        
       },
