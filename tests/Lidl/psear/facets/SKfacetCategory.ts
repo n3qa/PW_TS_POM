@@ -29,11 +29,17 @@ export default class SKfacetCategory extends LidlBase {
 
   //2. CATEGORY TREE
   //2.1. PROD FIRST level nodes
-  first_level_moda = () => this.page.getByRole('link', { name: 'Móda' });
+  first_level_moda = () => this.page.getByRole('link', { name: 'Móda' }).first();
   first_level_workshop_garden = () => this.page.getByRole('link', { name: 'Dielňa a záhrada' });
-  //2.1.1. bubble reset option for first level moda
-  bubble_reset_option_for_first_level_moda = () =>  this.page.getByRole('link', { name: 'Móda', exact: true });
+  first_level_sports_and_free_time  = () => this.page.getByRole('link', { name: 'Šport a voľný čas' });
+  first_level_housing  = () => this.page.getByRole('link', { name: 'Bývanie' });
   
+  //2.1.1. bubble reset option for first level moda
+  bubble_reset_option_for_first_level_moda = () =>  this.page.locator('//li/div/a/span[@class="s-selection__label" and text()="Móda"]');
+  bubble_reset_option_for_first_level_workshop_garden = () =>  this.page.locator('(//li/div/a/span[contains(text(),"Dielňa a záhrada")])[1]');
+  bubble_reset_option_for_first_level_sports_and_free_time = () =>  this.page.locator('(//li/div/a/span[contains(text(),"Šport a voľný čas")])[1]');
+  bubble_reset_option_for_first_level_housing = () =>  this.page.locator('(//li/div/a/span[contains(text(),"Bývanie")])[1]');
+   
   //2.2. PROD SECOND level nodes
   second_level_women_moda = () =>  this.page.getByRole('link', { name: 'Dámska móda' });
   
@@ -52,53 +58,6 @@ export default class SKfacetCategory extends LidlBase {
   //1.5. QA SECOND level nodes
   //1.6. QA THIRD level nodes
 
-  //2 
-  //1 Price facet expand and collapse 
-   //2 Price facet functionalities input fields
-   //3 Price facet functionalities (drag and drop) slider functionalities
-   
-   //4 Reset option
-   
-
-  //2. CATEGORY TREE
-  //2.1. PROD FIRST level nodes
-  first_level_moda = () =>   this.page.getByRole('link', { name: 'Móda' }).first();
-  //2.1.1. bubble reset option for first level moda 
-  // to slow function with xpath operation 2 conditions operator for finding 
-  // a relevat bubble by provided label
-  bubble_reset_option_for_first_level_moda = () => this.page.locator('//li/div/a/span[@class="s-selection__label" and text()="Móda"]');
-
- 
-  //2.2. PROD SECOND level nodes
-  second_level_women_moda = () =>  this.page.getByRole('link', { name: 'Dámska móda' });
-  //2.2.1.reset option for second level women moda
-  bubble_reset_option_for_second_level_women_moda = () =>   this.page.locator('(//li/div/a/span[contains(text(),"Dámska móda")])[1]');
-  
-  //2.3. PROD THIRD level nodes
-  third_level_xxx_women_moda = () =>   this.page.getByRole('link', { name: 'Dámska XXL móda' });
-  //2.3.1.reset option for third level XXL women moda
-  bubble_reset_option_for_third_level_xxl_women_moda = () =>  this.page.locator('nav').filter({ hasText: 'Filtrovať podľa Kategórie Móda Dámska móda Dámska XXL móda Filtrovať podľa Cena ' }).getByRole('link').first();
-  
-  //1.4. QA FIRST level nodes
-  //1.5. QA SECOND level nodes
-  //1.6. QA THIRD level nodes
-
-  //2 
-  //1 Price facet expand and collapse 
-   //2 Price facet functionalities input fields
-   //3 Price facet functionalities (drag and drop) slider functionalities
-   
-   //4 Reset option
-   
-    
-    
-
-//  
- 
-   
-
-
- 
   //SK PROD data spefic  
 
 
@@ -124,14 +83,18 @@ export default class SKfacetCategory extends LidlBase {
     expect(categoryLabel.includes('Kategórie')).toBeTruthy();
     console.log('CONFIRM: Category country spec label is: '+categoryLabel);
   }
-
-
-  //VALIDATIONS 
+  
+  // VALIDATIONS 
   // RESET OPTIONS
   // 1st LEVEL
 
   public async validate_no_navigation_reset_all_bubbles_button_is_shown(){
     await expect(this.navigation_reset_all_bubbles_button()).toHaveCount(0);
+    console.log('CONFIRM: There is no navigation reset all bubbles button')
+  }
+
+  public async validate_navigation_reset_all_bubbles_button_is_shown(){
+    await expect(this.navigation_reset_all_bubbles_button()).toHaveCount(1);
     console.log('CONFIRM: There is no navigation reset all bubbles button')
   }
 
@@ -145,11 +108,6 @@ export default class SKfacetCategory extends LidlBase {
     console.log('CONFIRM: Header reset option is presented')
   }
 
-  public async validate_navigation_reset_all_bubbles_button_is_shown(){
-    await expect(this.navigation_reset_all_bubbles_button()).toHaveCount(1);
-    console.log('CONFIRM: There is no navigation reset all bubbles button')
-  }
-
   //First level bubbles
   public async validate_no_bubble_reset_option_for_moda_is_shown(){
     await expect(this.bubble_reset_option_for_first_level_moda()).toHaveCount(0)
@@ -158,6 +116,16 @@ export default class SKfacetCategory extends LidlBase {
 
   public async validate_bubble_reset_option_for_moda_is_shown(){
     await expect(this.bubble_reset_option_for_first_level_moda()).toHaveCount(1);
+    console.log('CONFIRM: Bubble reset option is presented')
+  }
+
+  public async validate_no_bubble_reset_option_for_first_level_sports_and_free_time_is_shown(){
+    await expect(this.first_level_sports_and_free_time()).toHaveCount(0)
+    console.log('CONFIRM: No bubble reset option is presented')
+  }
+
+  public async validate_bubble_reset_option_for_first_level_sports_and_free_time_is_shown(){
+    await expect(this.first_level_sports_and_free_time()).toHaveCount(1);
     console.log('CONFIRM: Bubble reset option is presented')
   }
 
@@ -214,51 +182,10 @@ export default class SKfacetCategory extends LidlBase {
   //7.4. Validate 3rd navitation node is presented for the user
 
   //Support DEBUG
-  public async debugTestCase1() {
-    await this.page.goto('https://www.lidl.sk/q/search?variant=a&category=M%C3%B3da&idsOnly=false&productsOnly=false');
-    await this.page.getByRole('link', { name: ' Móda' }).click();
-
-  }
-
-  public async debugTestCase2() {
-    await this.page.goto('https://www.lidl.sk/q/search?variant=b&category=M%C3%B3da%2FD%C3%A1mska+m%C3%B3da&idsOnly=false&productsOnly=false');
-    await this.page.getByRole('link', { name: 'Dámska XXL móda' }).click();
-  }
-
-  public async debugTestCase3() {
-    await this.page.goto('https://www.lidl.sk/q/search?variant=b&category=M%C3%B3da%2FD%C3%A1mska+m%C3%B3da%2FD%C3%A1mska+XXL+m%C3%B3da&idsOnly=false&productsOnly=false');
-    await this.page.getByRole('link', { name: 'Dámska móda' }).click();
-  }
-
-  public async debugTestCase4() {
-    await this.page.goto('https://www.lidl.sk/q/search?variant=b&category=M%C3%B3da%2FD%C3%A1mska+m%C3%B3da&idsOnly=false&productsOnly=false');
-    await this.page.getByRole('link', { name: 'Móda', exact: true }).click();
-  }
-
-  public async debugTestCase5() {
-    await this.page.goto('https://www.lidl.sk/q/search?variant=b&productsOnly=false&idsOnly=false');
-    await this.page.getByRole('link', { name: 'Móda' }).click();
-    await this.page.getByRole('link', { name: 'Dámska móda' }).click();
-    await this.page.getByRole('link', { name: 'Dámska XXL móda' }).click();
-    await this.page.getByRole('link', { name: 'Móda', exact: true }).click();
-  }
-
-  public async debugTestCase6() {
-    await this.page.goto('https://www.lidl.sk/q/search?variant=a&productsOnly=false&idsOnly=false');
-    await this.page.getByRole('link', { name: 'Móda' }).click();
-    await this.page.getByRole('link', { name: 'Dámska móda' }).click();
-    await this.page.getByRole('link', { name: 'Dámska XXL móda' }).click();
-  }  
- 
-  public async debugTestCase7() {
-    await this.page.goto('https://www.lidl.sk/q/search?variant=a&category=M%C3%B3da%2FD%C3%A1mska+m%C3%B3da%2FD%C3%A1mska+XXL+m%C3%B3da&idsOnly=false&productsOnly=false');
-    await this.page.getByRole('link', { name: 'Dámska móda' }).click();
-    await this.page.getByRole('link', { name: 'Móda', exact: true }).click();  
-  }
-
+   
   public async debugTestCase8a() {
     await this.page.goto('https://www.lidl.sk/q/search?variant=a&productsOnly=false&idsOnly=false');
-    await this.page.getByRole('link', { name: 'Šport a voľný čas' }).click(); 
+    await this.page.getByRole('link', { name: 'Šport a voľný čas' }).click();
   }
 
   public async debugTestCase9() {

@@ -62,7 +62,24 @@ export default class SKsearchResultsPage extends LidlBase{
     }
   }
 
-//FACET :: 1 :: CATEGORY 
+//FACET :: 2 :: PRICE
+public async validate_facet_price_state_expanded(){
+  //1.Validate the facet = expanded
+    await this.page.waitForSelector('#price'); //the facet main div
+    const facetStateStatus = await this.facet_price().getAttribute('class');
+    console.log('REPORT: Current facet expand class is: '+facetStateStatus)
+    await expect(facetStateStatus).toBe('s-facet__heading s-facet__heading--open');  
+    console.log('VALIDATION : The initial expand facet state is opened/expanded.' );
+}
+//FACET :: 2 :: PRICE 
+public async validate_facet_price_canBe_Collapsed(){
+  //1:Wait for the selector and click
+   await this.page.waitForSelector('#price'); //the facet main div
+  //2. Single click on expanded price facet MAKEs the facet to collapse
+  await this.facet_price().click();
+  console.log('CONFIRM: The user has clicked on the facet button')
+}
+
 public async validate_facet_category_state_expanded(){
   //1.Validate the facet = expanded
     await this.page.waitForSelector('#category'); //the facet main div
