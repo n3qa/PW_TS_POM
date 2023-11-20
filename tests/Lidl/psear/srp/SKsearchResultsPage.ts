@@ -144,6 +144,7 @@ public async validate_facet_category_canBe_Collapsed(){
     //FACET :: 5 :: SIZE 
     public async validate_facet_size_canBe_Collapsed(){
       //1:Wait for the selector and click
+      await this.page.keyboard.press('PageDown');
       await this.page.waitForSelector('#size'); // facet main div
       //2. Single click on the expanded  facet MAKEs the facet to collapse
       await this.facet_size().scrollIntoViewIfNeeded();
@@ -152,9 +153,11 @@ public async validate_facet_category_canBe_Collapsed(){
     }
     //FACET :: 6 :: RATINGS 
     public async validate_facet_ratings_state_expanded(){
-    //1.Validate  facet = expanded
+      //1.Validate  facet = expanded
+      await this.page.locator('#Hodnotenia').scrollIntoViewIfNeeded();
       await this.page.waitForSelector('#Hodnotenia'); // facet main div
       await this.facet_ratingsG().isVisible();
+      
       const facetStateStatus = await this.facet_ratingsG().getAttribute('class');
       console.log('REPORT: Current facet expand class is: '+facetStateStatus)
       await expect(facetStateStatus).toBe('s-facet__heading s-facet__heading--open');  
@@ -163,9 +166,9 @@ public async validate_facet_category_canBe_Collapsed(){
       //FACET :: 6 :: Ratings 
       public async validate_facet_ratings_canBe_Collapsed(){
         //1:Wait for the selector and click
+        await this.page.locator('#Hodnotenia').scrollIntoViewIfNeeded();
         await this.page.waitForSelector('#Hodnotenia'); // facet main div
         //2. Single click on the expanded  facet MAKEs the facet to collapse
-        await this.facet_ratingsG().scrollIntoViewIfNeeded();
         await this.facet_ratingsG().click();
         console.log('CONFIRM: The user has clicked on the facet button')
       }
