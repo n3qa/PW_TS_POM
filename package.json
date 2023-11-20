@@ -12,7 +12,7 @@
     "prodSKe2eBrand": "npx playwright test --config=prodSKe2e.config.ts --project=chrome",
     "qaSKcookies": "npx playwright test --config=qaSKcookies.config.ts --project=chrome --headed --workers 1",
     "qaSKfacetBrand": "npx playwright test --config=qaSKfacetBrand.config.ts --project=chrome --headed --debug --workers 1",
-    "qaSKfacetCategory": "npx playwright test --config=qaSKfacetCategory.config.ts --project=chrome --headed --debug --workers 1",
+    "qaSKfacetCategory": "npx playwright test --config=qaSKfacetCategory.config.ts --project=chrome --headed --debug  --workers 1",
     "prodDErunner": "npx playwright test --config=prodDEcookies.config.ts --project=chrome"
   },
   "keywords": [],

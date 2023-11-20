@@ -34,6 +34,7 @@ export default class SKfacetCategory extends LidlBase {
   first_level_sports_and_free_time  = () => this.page.getByRole('link', { name: 'Šport a voľný čas' });
   first_level_housing  = () => this.page.getByRole('link', { name: 'Bývanie' });
   first_level_bicycals_qa  = () => this.page.getByRole('link', { name: 'Bicyckel_mto3' });
+  first_level_clothing_qa  = () => this.page.getByRole('link', { name: 'Cyklistické oblečenie mto3' });
   
   //2.1.1. bubble reset option for first level moda
   bubble_reset_option_for_first_level_moda = () =>  this.page.locator('//li/div/a/span[@class="s-selection__label" and text()="Móda"]');
@@ -124,7 +125,8 @@ export default class SKfacetCategory extends LidlBase {
     await expect(this.first_level_sports_and_free_time()).toHaveCount(1);
     console.log('CONFIRM: Bubble reset option is presented')
   }
-
+  // FIRST LEVEL NODES 
+  // QA ENV     
   public async validate_no_bubble_reset_option_for_first_level_bicycals_qa_is_shown(){
     await expect(this.first_level_bicycals_qa()).toHaveCount(0)
     console.log('CONFIRM: No bubble reset option is presented')
@@ -135,6 +137,15 @@ export default class SKfacetCategory extends LidlBase {
     console.log('CONFIRM: Bubble reset option is presented')
   }
 
+  public async validate_no_bubble_reset_option_for_first_level_clothing_qa_is_shown(){
+    await expect(this.first_level_clothing_qa()).toHaveCount(0)
+    console.log('CONFIRM: No bubble reset option is presented')
+  }
+
+  public async validate_bubble_reset_option_for_first_level_clothing_qa_is_shown(){
+    await expect(this.first_level_clothing_qa()).toHaveCount(1);
+    console.log('CONFIRM: Bubble reset option is presented')
+  }
   // SECOND LEVEL BUBBLES
   //second level bubls 
   public async validate_bubble_reset_option_for_women_moda_is_shown(){
@@ -170,7 +181,6 @@ export default class SKfacetCategory extends LidlBase {
     console.log('CONFIRM: NO bubble reset option is presented')
   }
   
-
   //VALIDATIONS 
   // CATEGORY TREE
   // 1st LEVEL
@@ -194,34 +204,13 @@ export default class SKfacetCategory extends LidlBase {
     console.log('CONFIRM: There is no first level syblings shown to the user with label '+ 'Dielňa a záhrada')   
    }
  
- //7.1. Validate target node is shown as parent
+  //7.1. Validate target node is shown as parent
   //7.3. Validate destination node (the node that was clicked) is active
   //7.4. Validate 3rd navitation node is presented for the user
 
   //Support DEBUG
    
-  public async debugTestCase8a() {
-    await this.page.goto('https://www.lidl.sk/q/search?variant=a&productsOnly=false&idsOnly=false');
-    await this.page.getByRole('link', { name: 'Šport a voľný čas' }).click();
-  }
-
-  public async debugTestCase9() {
-    await this.page.goto('https://www.lidl.sk/q/search?variant=a&category=M%C3%B3da&idsOnly=false&productsOnly=false');
-    await this.page.getByRole('link', { name: 'Dámska móda' }).click();
-    await this.page.locator('.s-facet__reset').click();  
-  }
-
-  public async debugTestCase10() {
-    await this.page.goto('https://www.lidl.sk/q/search?variant=a&category=M%C3%B3da%2FD%C3%A1mska+m%C3%B3da&idsOnly=false&productsOnly=false');
-    await this.page.getByRole('link', { name: 'Dámska XXL móda' }).click();
-    await this.page.locator('nav').filter({ hasText: 'Filtrovať podľa Kategórie Móda Dámska móda Dámska XXL móda Filtrovať podľa Cena ' }).getByRole('link').first().click();
-  }
-
-  public async debugTestCase11() {
-    await this.page.goto('https://www.lidl.sk/q/search?variant=b&category=M%C3%B3da%2FD%C3%A1mska+m%C3%B3da%2FD%C3%A1mska+XXL+m%C3%B3da&idsOnly=false&productsOnly=false');
-    await this.page.getByRole('link', { name: 'Dámska móda' }).click();
-    await this.page.locator('.s-facet__reset').click();
-  }
+   
 
   public async debugTestCase12() {
     await this.page.goto('https://www.lidl.sk/q/search?variant=b&category=M%C3%B3da%2FD%C3%A1mska+m%C3%B3da&idsOnly=false&productsOnly=false');
