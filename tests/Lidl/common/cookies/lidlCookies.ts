@@ -6,7 +6,7 @@
       super(page)
     }
    
-    acceptAll_cs_g = () => await this.page.waitForSelector('button#onetrust-accept-btn-handler');
+    acceptAll_cs_g = () =>  this.page.waitForSelector('button#onetrust-accept-btn-handler');
     
     
 

@@ -7,6 +7,8 @@
     "ng": "ng",
     "start": "ng serve",
     "tests:chrome": "playwright test --config=playwright.config.ts --project=Chromium",
+    "prodDEcookies": "npx playwright test --config=prodDEcookies.config.ts --project=chrome",
+    "prodDEfacetBrand": "npx playwright test --config=prodDEfacetBrand.config.ts --project=chrome",
     "prodSKcookies": "npx playwright test --config=prodSKcookies.config.ts --project=chrome",
     "prodSKfacetCategory": "npx playwright test --config=prodSKfacetCategory.config.ts --project=chrome --headed --debug",
     "prodSKe2eBrand": "npx playwright test --config=prodSKe2e.config.ts --project=chrome",

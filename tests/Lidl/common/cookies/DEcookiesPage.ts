@@ -8,7 +8,7 @@
 
   //SK flow 
   //Locators
-  DE_acceptAll_cs_g = () => this.page.waitForSelector('button#onetrust-accept-btn-handler');
+  DE_acceptAll_cs_g = () => this.page.locator('button#onetrust-accept-btn-handler');
   DE_acceptAll_cs = () => this. page.getByRole('button', { name: 'POVOLIŤ' });
     
 
@@ -18,10 +18,7 @@
     await this.page.waitForLoadState('load');
     
     console.log('The user is waitting in order to see the accept all cs button and interacat with it');
-    if(!(this.page.locator('button#onetrust-accept-btn-handler').isVisible())){
-      console.log("There was no accetp all cookies option button to be clicked")
-
-    } else {
+     
       await this.page.waitForSelector('button#onetrust-accept-btn-handler');
       (await this.page.waitForSelector('button#onetrust-accept-btn-handler')).scrollIntoViewIfNeeded();
       //User country spec locator with label so to verify that the button label is ok
@@ -32,7 +29,7 @@
       // Wait a bit dynamicaly in order to be sure that the pop-up /frame is closed 
       await this.page.waitForLoadState('domcontentloaded');
       await this.page.waitForLoadState('load');
-    }
+     
   }
 
   public async  clickOn_AcceptAllCS_btn_qa() {
@@ -58,4 +55,4 @@
     }
   }
 
-  }
+}
