@@ -27,6 +27,8 @@ export default class SearchInputBox extends LidlBase {
   } 
 
   public async submitSearchQuery(searchTerm: string) {
+    await this.page.keyboard.press('PageUp');
+    await this.searchInputField().scrollIntoViewIfNeeded();
     await this.searchInputField().fill(searchTerm);
     console.log('CONFIRM: The user has submited a search with data: '+searchTerm);
     

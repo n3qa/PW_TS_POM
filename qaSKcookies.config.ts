@@ -3,15 +3,13 @@ import type { PlaywrightTestOptions } from '@playwright/test';
 require('dotenv').config();
 
 export default defineConfig <PlaywrightTestOptions> ({
-  timeout: 40000,
-  globalTimeout: 60000,
+  timeout: 50000,
+  globalTimeout: 70000,
 
   expect: {
     timeout: 10000
   },
- 
-  testDir: './tests',
- 
+
   reporter: [
     ['html', {outputFile: 'test-results/html/htmlReporter.html'}],
     ['json', {outputFile: 'test-results/json/jsonReporter.html'}],
@@ -19,40 +17,38 @@ export default defineConfig <PlaywrightTestOptions> ({
     ['allure-playwright', {outputFile: 'test-results/junit/AllureReport.html'}]
   ],
 
+  // testDir: './tests',
+  fullyParallel: true,
+  // forbidOnly: !!process.env.CI,
+  // retries: process.env.CI ? 2 : 1,
+  // workers: process.env.CI ? 1 : undefined,
+
   use: {
-    headless: true,
+    headless: false,
     viewport: { width: 1920, height: 949 },
 
-    baseURL: process.env.QA_SK === '1' ? 'https://qa.lidl.sk'
-    : process.env.PROD ==='1' ? 'https://www.lidl.sk' 
-    : 'https://qa.lidl.sk/',
+    baseURL: 'https://qa.lidl.sk/',
     trace: 'on-first-retry',
-   
+    
     //INCREASE timeouts for headless node CI/CD pipes
-   
     actionTimeout: 600000,
     navigationTimeout: 800000,
     // testIdAttribute: 'data-testselector',
+    
     video: {
-      mode: 'on-first-retry',
+      // mode: 'on-first-retry',
+      mode: 'on',
       size: {width: 1920, height: 949}
     }
-     
-   
   },
 
  projects: [
     {
       name: 'chrome',
-      use: {...devices['Desktop Chrome'] },
+      testMatch: 'qaSKcookies.spec.ts',
+      use: {...devices['Desktop Chrome'],
+       
+      },
     },
-    // {
-    //   name: 'sk_qa_cookies',
-    //   use: {...devices['Desktop Chrome'],
-    //   baseURL: 'https://www.lidl.sk/'
-    // },
-  
-     
   ],
-
 });

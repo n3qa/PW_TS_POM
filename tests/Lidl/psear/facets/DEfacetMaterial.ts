@@ -200,7 +200,41 @@ public async validate_facet_category_canBe_Collapsed(){
       // - > use this class to confirm collapsed = s-facet__heading
    
 
- 
+      public async debugTestCase1() {
+        await this.page.goto('https://www.lidl.de/');
+        await this.page.getByRole('button', { name: 'Zustimmen' }).click();
+        await this.page.goto('https://www.lidl.de/q/search?q=*');
+        await this.page.getByRole('button', { name: 'Filtern nach Material' }).click();
+        await this.page.getByRole('button', { name: 'Filtern nach Material' }).click();
+      }
 
+      public async debugTestCase2() {
+        await this.page.goto('https://www.lidl.de/q/search?q=*');
+        await this.page.locator('#Material').getByRole('button', { name: 'Alles anzeigen' }).click();
+        await this.page.getByRole('button', { name: 'Weniger anzeigen' }).click();
+      }
 
+      public async debugTestCase3() {
+        await this.page.goto('https://www.lidl.de/q/search?q=*');
+        await this.page.locator('label').filter({ hasText: 'Baumwolle' }).click();
+      }
+
+      public async debugTestCase4() {
+        await this.page.goto('https://www.lidl.de/q/search?q=*');
+        await this.page.locator('label').filter({ hasText: 'Baumwolle' }).click();
+        await this.page.goto('https://www.lidl.de/q/search?variant=a&idsOnly=false&Material=baumwolle&productsOnly=false');
+        await this.page.locator('label').filter({ hasText: 'Elasthan' }).click();
+      }
+
+      public async debugTestCase5() {
+        await this.page.goto('https://www.lidl.de/q/search?q=*');
+        await this.page.locator('label').filter({ hasText: 'Baumwolle' }).click();
+        await this.page.locator('.s-facet__reset').click();
+      }
+
+      public async debugTestCase6() {
+        await this.page.goto('https://www.lidl.de/q/search?q=*');
+        await this.page.locator('label').filter({ hasText: 'Polyester' }).click();
+        await this.page.getByRole('link', { name: 'Polyester' }).click();
+      }
 }

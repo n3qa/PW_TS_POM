@@ -8,37 +8,51 @@
 
   //SK flow 
   //Locators
-  SK_acceptAll_cs = () => this. page.getByRole('button', { name: 'POVOLIŤ' });
-  SK_srejectAll_cs = () => this.page.locator('label').filter({ hasText: 'Štatistické' }).getByRole('switch', { name: 'Štatistické' });
-
-  SK_preferences_cs = () => this.page.locator('label').filter({ hasText: 'Preferenčné' }).getByRole('switch', { name: 'Preferenčné' });
-  SK_statistics_cs = () => this.page.locator('label').filter({ hasText: 'Štatistické' }).getByRole('switch', { name: 'Štatistické' });
-  SK_marketing_cs = () => this.page.locator('label').filter({ hasText: 'Marketingové' }).getByRole('switch', { name: 'Marketingové' });
-  SK_submitMoreCS = () => this.page.locator('label').filter({ hasText: 'Marketingové' }).getByRole('switch', { name: 'Marketingové' });;
-
-  //Actions
- 
-  public async SK_clickOn_AcceptAllCS_btn() {
-    await this.SK_acceptAll_cs().click();
-  }
-
-  public async SK_clickOn_RejectAllCS_btn() {
-    await this.SK_srejectAll_cs().click();
-  }
-
-  
-  public async SK_clickOn_Preferences_btn() {
-    await this.SK_preferences_cs().click();
-  }
-
-  public async SK_clickOn_Statistics_btn() {
-    await this.SK_statistics_cs().click();
-  }
-
-  public async SK_clickOn_Marketing_btn() {
-    await this.SK_preferences_cs().click();
-  }
-
+  DE_acceptAll_cs_g = () => this.page.locator('button#onetrust-accept-btn-handler');
+  DE_acceptAll_cs = () => this. page.getByRole('button', { name: 'POVOLIŤ' });
     
 
+  public async  clickOn_AcceptAllCS_btn() {
+    //wait for the element to be shown dynamicaly - 3rd party vendor - not stable
+    await this.page.waitForLoadState('domcontentloaded');
+    await this.page.waitForLoadState('load');
+    
+    console.log('The user is waitting in order to see the accept all cs button and interacat with it');
+     
+      await this.page.waitForSelector('button#onetrust-accept-btn-handler');
+      (await this.page.waitForSelector('button#onetrust-accept-btn-handler')).scrollIntoViewIfNeeded();
+      //User country spec locator with label so to verify that the button label is ok
+    
+      await this.page.locator('button#onetrust-accept-btn-handler').click();
+      console.log('CONFIRM: The user clicked on accept all CS')
+      
+      // Wait a bit dynamicaly in order to be sure that the pop-up /frame is closed 
+      await this.page.waitForLoadState('domcontentloaded');
+      await this.page.waitForLoadState('load');
+     
   }
+
+  public async  clickOn_AcceptAllCS_btn_qa() {
+    //wait for the element to be shown dynamicaly - 3rd party vendor - not stable
+    await this.page.waitForLoadState('domcontentloaded');
+    await this.page.waitForLoadState('load');
+    
+    console.log('The user is waitting in order to see the accept all cs button and interacat with it');
+    if(!(this.page.locator('button#onetrust-accept-btn-handler').isVisible())){
+      console.log("There was no accetp all cookies option button to be clicked")
+
+    } else {
+      await this.page.waitForSelector('button#onetrust-accept-btn-handler');
+      (await this.page.waitForSelector('button#onetrust-accept-btn-handler')).scrollIntoViewIfNeeded();
+      //User country spec locator with label so to verify that the button label is ok
+   
+      await this.page.locator('button#onetrust-accept-btn-handler').click();
+      console.log('CONFIRM: The user clicked on accept all CS')
+      
+      // Wait a bit dynamicaly in order to be sure that the pop-up /frame is closed 
+      await this.page.waitForLoadState('domcontentloaded');
+      await this.page.waitForLoadState('load');
+    }
+  }
+
+}

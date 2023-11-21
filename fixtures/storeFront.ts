@@ -135,7 +135,7 @@ export class StoreFront {
     // 1 SK Cookies
     SKCookies(){return this.lidlSKCookiesPage}
     // 2 DE Cookies
-    DECookiesPage() {return this.lidlDECookiesPage}
+    DECookies() {return this.lidlDECookiesPage}
     // 3 FR Cookies
     FRCookies() {return this.lidlFRCookiesPage}
     // 4 CZ Cookies

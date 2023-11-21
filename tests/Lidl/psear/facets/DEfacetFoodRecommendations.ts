@@ -1,12 +1,12 @@
 import { expect, Page } from "@playwright/test";
 import { LidlBase } from "../../../../fixtures/lidlBase";
 
-export default class SKfacetSize extends LidlBase{
+export default class DEfacetFoodRecommendations extends LidlBase{
   constructor(page: Page) {
     super(page)
   }
 
-//Locators
+  //Locators
   //Main strategy: from TOP of the PAGE to the bottom 
   //Second employed strategy : lef aside /facets/ 
 
@@ -72,35 +72,43 @@ export default class SKfacetSize extends LidlBase{
         await this.load_more_grids_button().click();
         console.log('CONFIRM: The user has clicked on the facet button')
       }
-
-
+ 
+      // >>>>> >>> >>> START REGRESION SKELETON <<<, <<< <<<
       public async debugTestCase1() {
-        await this.page.goto('https://www.lidl.de/');
-        await this.page.getByRole('button', { name: 'Zustimmen' }).click();
         await this.page.goto('https://www.lidl.de/q/search?q=*');
-        await this.page.getByRole('link', { name: '100 x 150 cm' }).click();
-        await this.page.locator('.s-facet__reset').click();
+        await this.page.locator('#Speiseempfehlung').getByRole('button', { name: 'Alles anzeigen' }).click();
+        await this.page.getByRole('button', { name: 'Weniger anzeigen' }).click();
       }
 
       public async debugTestCase2() {
         await this.page.goto('https://www.lidl.de/q/search?q=*');
-        await this.page.getByRole('link', { name: '100 x 150 cm' }).click();
-        await this.page.getByRole('link', { name: '100 x 150 cm' }).nth(1).click();
+        await this.page.getByRole('button', { name: 'Filtern nach Speiseempfehlung' }).click();
+        await this.page.getByRole('button', { name: 'Filtern nach Speiseempfehlung' }).click();
       }
 
       public async debugTestCase3() {
         await this.page.goto('https://www.lidl.de/q/search?q=*');
-        await this.page.locator('#size').getByRole('button', { name: 'Alles anzeigen' }).click();
-        await this.page.getByRole('button', { name: 'Weniger anzeigen' }).click();
+        await this.page.locator('label').filter({ hasText: 'Dunkles Fleisch' }).click();
       }
 
       public async debugTestCase4() {
         await this.page.goto('https://www.lidl.de/q/search?q=*');
-        await this.page.getByRole('button', { name: 'Filtern nach Größe' }).click();
-        await this.page.getByRole('button', { name: 'Filtern nach Größe' }).click();
+        await this.page.locator('label').filter({ hasText: 'Dunkles Fleisch' }).click();
+        await this.page.locator('label').filter({ hasText: 'Käse' }).click();
       }
 
+      public async debugTestCase5() {
+        await this.page.goto('https://www.lidl.de/q/search?q=*');
+        await this.page.locator('label').filter({ hasText: 'Dunkles Fleisch' }).click();
+        await this.page.locator('label').filter({ hasText: 'Käse' }).click();
+        await this.page.locator('.s-facet__reset').click();
+      }
 
+      public async debugTestCase6() {
+        await this.page.goto('https://www.lidl.de/q/search?q=*');
+        await this.page.locator('label').filter({ hasText: 'Wild, Lamm, Gans' }).click();
+        await this.page.locator('label').filter({ hasText: 'Steaks' }).click();
+        await this.page.getByRole('link', { name: 'Steaks' }).click();
+        await this.page.getByRole('link', { name: 'Wild, Lamm, Gans' }).click();
+      }
     }
-
-    

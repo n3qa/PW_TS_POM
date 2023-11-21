@@ -199,8 +199,31 @@ public async validate_facet_category_canBe_Collapsed(){
       //Useful notes for to dos
       // - > use this class to confirm collapsed = s-facet__heading
    
-
+      public async debugTestCase1() {
+        await this.page.goto('https://www.lidl.de/q/search?q=*');
+        await this.page.getByRole('button', { name: 'Filtern nach Bewertung ab' }).click();
+        await this.page.getByRole('button', { name: 'Filtern nach Bewertung ab' }).click();
+      }
  
+      public async debugTestCase2() {
+        await this.page.goto('https://www.lidl.de/q/search?q=*');
+        await this.page.getByRole('link', { name: '3 & mehr' }).click();
+        await this.page.locator('.s-facet__reset').click();
+      }
 
+      public async debugTestCase3() {
+        await this.page.goto('https://www.lidl.de/q/search?q=*');
+        await this.page.getByRole('link', { name: '2 & mehr' }).click();
+        await this.page.getByRole('link', { name: '2 & mehr' }).nth(1).click();
+      }
+
+      public async debugTestCase4() {
+        await this.page.goto('https://www.lidl.de/q/search?q=*');
+        await this.page.getByRole('link', { name: '3 & mehr' }).click();
+      }
+
+      public async debugTestCase5() {
+////////////////FAILED ////////////////FAILED ////////////////FAILED ////////////////FAILED 
+      }
 
 }
