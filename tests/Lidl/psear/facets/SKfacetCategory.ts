@@ -99,6 +99,7 @@ export default class SKfacetCategory extends LidlBase {
   }
 
   public async validate_navigation_reset_all_bubbles_button_is_shown(){
+    await this.page.waitForLoadState('domcontentloaded');
     await expect(this.navigation_reset_all_bubbles_button()).toHaveCount(1);
     console.log('CONFIRM: There is no navigation reset all bubbles button')
   }
