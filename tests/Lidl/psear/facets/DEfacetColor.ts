@@ -1,12 +1,12 @@
 import { expect, Page } from "@playwright/test";
 import { LidlBase } from "../../../../fixtures/lidlBase";
 
-export default class SKfacetSize extends LidlBase{
+export default class DEfacetColor extends LidlBase{
   constructor(page: Page) {
     super(page)
   }
 
-//Locators
+  //Locators
   //Main strategy: from TOP of the PAGE to the bottom 
   //Second employed strategy : lef aside /facets/ 
 
@@ -72,35 +72,38 @@ export default class SKfacetSize extends LidlBase{
         await this.load_more_grids_button().click();
         console.log('CONFIRM: The user has clicked on the facet button')
       }
-
-
+ 
+      // >>>>> >>> >>> START REGRESION SKELETON <<<, <<< <<<
       public async debugTestCase1() {
-        await this.page.goto('https://www.lidl.de/');
-        await this.page.getByRole('button', { name: 'Zustimmen' }).click();
         await this.page.goto('https://www.lidl.de/q/search?q=*');
-        await this.page.getByRole('link', { name: '100 x 150 cm' }).click();
-        await this.page.locator('.s-facet__reset').click();
+        await this.page.getByRole('button', { name: 'Filtern nach Farbe' }).click();
+        await this.page.getByRole('button', { name: 'Filtern nach Farbe' }).click();
       }
 
       public async debugTestCase2() {
         await this.page.goto('https://www.lidl.de/q/search?q=*');
-        await this.page.getByRole('link', { name: '100 x 150 cm' }).click();
-        await this.page.getByRole('link', { name: '100 x 150 cm' }).nth(1).click();
+        await this.page.locator('label').filter({ hasText: 'Beige' }).click();
       }
 
       public async debugTestCase3() {
         await this.page.goto('https://www.lidl.de/q/search?q=*');
-        await this.page.locator('#size').getByRole('button', { name: 'Alles anzeigen' }).click();
-        await this.page.getByRole('button', { name: 'Weniger anzeigen' }).click();
+        await this.page.locator('label').filter({ hasText: 'Beige' }).click();
+        await this.page.locator('label').filter({ hasText: 'Braun' }).click();
+        await this.page.locator('label').filter({ hasText: 'Gold' }).click();
       }
 
       public async debugTestCase4() {
         await this.page.goto('https://www.lidl.de/q/search?q=*');
-        await this.page.getByRole('button', { name: 'Filtern nach Größe' }).click();
-        await this.page.getByRole('button', { name: 'Filtern nach Größe' }).click();
+        await this.page.locator('label').filter({ hasText: 'Beige' }).click();
+        await this.page.locator('.s-facet__reset').click();
       }
 
-
+      public async debugTestCase5() {
+        await this.page.goto('https://www.lidl.de/q/search?q=*');
+        await this.page.locator('label').filter({ hasText: 'Grün' }).click();
+        await this.page.goto('https://www.lidl.de/q/search?variant=a&color=gr%C3%BCn&idsOnly=false&productsOnly=false');
+        await this.page.locator('label').filter({ hasText: 'Mehrfarbig' }).click();
+        await this.page.getByRole('link', { name: 'Grün' }).click();
+        await this.page.getByRole('link', { name: 'Mehrfarbig' }).click();
+      }
     }
-
-    

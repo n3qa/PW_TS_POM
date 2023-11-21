@@ -7,7 +7,63 @@ export default class SKfacetBrand extends LidlBase{
   }
 
    //  >>> >>>> >>>>   START REGRESION SUPPORT  <<< <<<, <<<< 
+/*
 
+  public async debugTestCase1() {
+    await this.page.goto('https://www.lidl.de/q/search?q=*');
+    await this.page.getByRole('button', { name: 'Filtern nach Marke' }).click();
+    await this.page.getByRole('button', { name: 'Filtern nach Marke' }).click();
+    await this.page.locator('#brand').getByRole('button', { name: 'Alles anzeigen' }).click();
+    await this.page.getByRole('button', { name: 'Weniger anzeigen' }).click();
+  }
+
+  public async debugTestCase2() {
+    await this.page.goto('https://www.lidl.de/q/search?q=*');
+    await this.page.getByPlaceholder('Durchsuchen').click();
+  }
+
+  public async debugTestCase3() {
+    await this.page.goto('https://www.lidl.de/q/search?q=*');
+    await this.page.locator('label').filter({ hasText: 'esmara' }).click();
+    await this.page.locator('.s-facet__reset').click();
+  }
+
+  public async debugTestCase4() {
+    await this.page.goto('https://www.lidl.de/q/search?q=*');
+    await this.page.locator('label').filter({ hasText: 'CRIVIT' }).click();
+    await this.page.getByRole('link', { name: 'CRIVIT', exact: true }).click();
+  }
+
+
+  public async debugTestCase5() {
+    await this.page.goto('https://www.lidl.de/q/search?q=*');
+    await this.page.getByPlaceholder('Durchsuchen').click();
+    await this.page.getByPlaceholder('Durchsuchen').fill('ernesto');
+    await this.page.getByPlaceholder('Durchsuchen').press('Enter');
+    await this.page.locator('#brand').getByRole('button').click();
+  }
+
+  public async debugTestCase6() {
+    await this.page.goto('https://www.lidl.de/q/search?q=*');
+    await this.page.locator('#brand').getByRole('button', { name: 'Alles anzeigen' }).click();
+    await this.page.getByRole('button', { name: 'Weniger anzeigen' }).click();
+  }
+
+  public async debugTestCase7() {
+    await this.page.goto('https://www.lidl.de/q/search?q=*');
+    await this.page.locator('label').filter({ hasText: 'pepperts!' }).click();
+  }
+
+  public async debugTestCase8() {
+  await this.page.goto('https://www.lidl.de/q/search?q=*');
+  await this.page.locator('label').filter({ hasText: 'lupilu' }).click();
+  await this.page.locator('label').filter({ hasText: 'Playtive' }).click();
+  await this.page.locator('label').filter({ hasText: 'esmara' }).click();
+  await this.page.locator('label').filter({ hasText: 'LIVARNO home' }).click();
+  }
+
+
+*/
   public async debugTestCase1() {
 
     await this.page.goto('https://www.lidl.sk/q/search?variant=a&productsOnly=false&idsOnly=false');

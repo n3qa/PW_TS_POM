@@ -1,14 +1,14 @@
 import { expect, Page } from "@playwright/test";
 import { LidlBase } from "../../../../fixtures/lidlBase";
 
-export default class SKfacetCategory extends LidlBase {
+export default class DEfacetCategory extends LidlBase {
   constructor(page: Page) {
     super(page)
   }
 
   public async goto(url:string) {
     const currnetURL = url;
-    await this.page.goto('www.lidl.sk');
+    await this.page.goto('www.lidl.de');
     console.log ('CONFIRM: The user has navigated to URL: '+currnetURL)
   }
 
@@ -31,161 +31,190 @@ export default class SKfacetCategory extends LidlBase {
 
   //Support DEBUG
   public async debugTestCase1() {
-    await this.page.goto('https://www.lidl.sk/q/search?variant=a&category=M%C3%B3da&idsOnly=false&productsOnly=false');
-    await this.page.getByRole('link', { name: 'Dámska móda' }).click();
 
+    await this.page.goto('https://www.lidl.de/');
+    await this.page.getByRole('button', { name: 'Zustimmen' }).click();
+    await this.page.goto('https://www.lidl.de/q/search?q=*');
+    await this.page.getByRole('button', { name: 'Filtern nach Kategorie' }).click();
+    await this.page.getByRole('button', { name: 'Filtern nach Kategorie' }).click();
   }
 
   public async debugTestCase2() {
-    await this.page.goto('https://www.lidl.sk/q/search?variant=b&category=M%C3%B3da%2FD%C3%A1mska+m%C3%B3da&idsOnly=false&productsOnly=false');
-    await this.page.getByRole('link', { name: 'Dámska XXL móda' }).click();
+    await this.page.goto('https://www.lidl.de/q/search?q=*');
+    await this.page.locator('#category').getByRole('button', { name: 'Alles anzeigen' }).click();
+    await this.page.getByRole('button', { name: 'Weniger anzeigen' }).click();
   }
 
   public async debugTestCase3() {
-    await this.page.goto('https://www.lidl.sk/q/search?variant=b&category=M%C3%B3da%2FD%C3%A1mska+m%C3%B3da%2FD%C3%A1mska+XXL+m%C3%B3da&idsOnly=false&productsOnly=false');
-    await this.page.getByRole('link', { name: 'Dámska móda' }).click();
+    await this.page.goto('https://www.lidl.de/q/search?q=*');
+    await this.page.getByRole('link', { name: 'Garten & Balkon' }).click();
+    await this.page.getByRole('link', { name: 'Gartenmöbel & Balkonmöbel' }).click();
   }
 
   public async debugTestCase4() {
-    await this.page.goto('https://www.lidl.sk/q/search?variant=b&category=M%C3%B3da%2FD%C3%A1mska+m%C3%B3da&idsOnly=false&productsOnly=false');
-    await this.page.getByRole('link', { name: 'Móda', exact: true }).click();
+    await this.page.goto('https://www.lidl.de/q/search?variant=a&category=Garten+%26+Balkon%2FGartenm%C3%B6bel+%26+Balkonm%C3%B6bel&idsOnly=false&productsOnly=false');
+    await this.page.getByRole('link', { name: 'Gartenmöbelsets' }).click();
   }
 
   public async debugTestCase5() {
-    await this.page.goto('https://www.lidl.sk/q/search?variant=b&productsOnly=false&idsOnly=false');
-    await this.page.getByRole('link', { name: 'Móda' }).click();
-    await this.page.getByRole('link', { name: 'Dámska móda' }).click();
-    await this.page.getByRole('link', { name: 'Dámska XXL móda' }).click();
-    await this.page.getByRole('link', { name: 'Móda', exact: true }).click();
+    await this.page.goto('https://www.lidl.de/q/search?variant=a&category=Garten+%26+Balkon%2FGartenm%C3%B6bel+%26+Balkonm%C3%B6bel%2FGartenm%C3%B6belsets&idsOnly=false&productsOnly=false');
+    await this.page.getByRole('link', { name: 'Gartenmöbel & Balkonmöbel' }).click();
   }
 
   public async debugTestCase6() {
-    await this.page.goto('https://www.lidl.sk/q/search?variant=a&productsOnly=false&idsOnly=false');
-    await this.page.getByRole('link', { name: 'Móda' }).click();
-    await this.page.getByRole('link', { name: 'Dámska móda' }).click();
-    await this.page.getByRole('link', { name: 'Dámska XXL móda' }).click();
-  }  
- 
-  public async debugTestCase7() {
-    await this.page.goto('https://www.lidl.sk/q/search?variant=a&category=M%C3%B3da%2FD%C3%A1mska+m%C3%B3da%2FD%C3%A1mska+XXL+m%C3%B3da&idsOnly=false&productsOnly=false');
-    await this.page.getByRole('link', { name: 'Dámska móda' }).click();
-    await this.page.getByRole('link', { name: 'Móda', exact: true }).click();  
+    await this.page.goto('https://www.lidl.de/q/search?variant=a&category=Garten+%26+Balkon%2FGartenm%C3%B6bel+%26+Balkonm%C3%B6bel&idsOnly=false&productsOnly=false');
+    await this.page.getByRole('link', { name: 'Garten & Balkon' }).click();
   }
 
-  public async debugTestCase8a() {
-    await this.page.goto('https://www.lidl.sk/q/search?variant=a&productsOnly=false&idsOnly=false');
-    await this.page.getByRole('link', { name: 'Šport a voľný čas' }).click(); 
+  public async debugTestCase7() {
+    await this.page.goto('https://www.lidl.de/q/search?variant=a&productsOnly=false&idsOnly=false');
+    await this.page.getByRole('link', { name: 'Garten & Balkon' }).click();
+    await this.page.getByRole('link', { name: 'Gartenmöbel & Balkonmöbel' }).click();
+    await this.page.getByRole('link', { name: 'Gartenmöbelsets' }).click();
+  }
+
+  public async debugTestCase8() {
+    await this.page.goto('https://www.lidl.de/q/search?variant=a&category=Garten+%26+Balkon%2FGartenm%C3%B6bel+%26+Balkonm%C3%B6bel%2FGartenm%C3%B6belsets&idsOnly=false&productsOnly=false');
+    await this.page.getByRole('link', { name: 'Gartenmöbel & Balkonmöbel' }).click();
+    await this.page.getByRole('link', { name: 'Garten & Balkon' }).click();
   }
 
   public async debugTestCase9() {
-    await this.page.goto('https://www.lidl.sk/q/search?variant=a&category=M%C3%B3da&idsOnly=false&productsOnly=false');
-    await this.page.getByRole('link', { name: 'Dámska móda' }).click();
-    await this.page.locator('.s-facet__reset').click();  
+    await this.page.goto('https://www.lidl.de/q/search?variant=a&productsOnly=false&idsOnly=false');
+    await this.page.getByRole('link', { name: 'Garten & Balkon' }).click();
+    await this.page.locator('.s-facet__reset').click();
+    await this.page.getByRole('link', { name: 'Baumarkt' }).click();
   }
 
   public async debugTestCase10() {
-    await this.page.goto('https://www.lidl.sk/q/search?variant=a&category=M%C3%B3da%2FD%C3%A1mska+m%C3%B3da&idsOnly=false&productsOnly=false');
-    await this.page.getByRole('link', { name: 'Dámska XXL móda' }).click();
-    await this.page.locator('nav').filter({ hasText: 'Filtrovať podľa Kategórie Móda Dámska móda Dámska XXL móda Filtrovať podľa Cena ' }).getByRole('link').first().click();
-  }
-
-  public async debugTestCase11() {
-    await this.page.goto('https://www.lidl.sk/q/search?variant=b&category=M%C3%B3da%2FD%C3%A1mska+m%C3%B3da%2FD%C3%A1mska+XXL+m%C3%B3da&idsOnly=false&productsOnly=false');
-    await this.page.getByRole('link', { name: 'Dámska móda' }).click();
+    await this.page.goto('https://www.lidl.de/');
+    await this.page.getByRole('button', { name: 'Zustimmen' }).click();
+    await this.page.goto('https://www.lidl.de/q/search?variant=a&category=Garten+%26+Balkon&idsOnly=false&productsOnly=false');
+    await this.page.getByRole('link', { name: 'Gartenmöbel & Balkonmöbel' }).click();
     await this.page.locator('.s-facet__reset').click();
-  }
+}
 
-  public async debugTestCase12() {
-    await this.page.goto('https://www.lidl.sk/q/search?variant=b&category=M%C3%B3da%2FD%C3%A1mska+m%C3%B3da&idsOnly=false&productsOnly=false');
-    await this.page.getByRole('link', { name: 'Móda', exact: true }).click();
+   public async debugTestCase11() {
+    await this.page.goto('https://www.lidl.de/q/search?variant=a&category=Garten+%26+Balkon%2FGartenm%C3%B6bel+%26+Balkonm%C3%B6bel&idsOnly=false&productsOnly=false');
+    await this.page.getByRole('link', { name: 'Gartenmöbelsets' }).click();
     await this.page.locator('.s-facet__reset').click();
-  }
+}
 
-  public async debugTestCase13() {
-    await this.page.goto('https://www.lidl.sk/q/search?variant=a&productsOnly=false&idsOnly=false');
-    await this.page.getByRole('link', { name: 'Móda' }).click();
-    await this.page.getByRole('link', { name: 'Dámska móda' }).click();
-    await this.page.getByRole('link', { name: 'Dámska XXL móda' }).click();
-    await this.page.getByRole('link', { name: 'Móda', exact: true }).click();
-    await this.page.locator('.s-facet__reset').click();
-  }
+public async debugTestCase12() {
+  await this.page.goto('https://www.lidl.de/q/search?variant=a&category=Garten+%26+Balkon%2FGartenm%C3%B6bel+%26+Balkonm%C3%B6bel%2FGartenm%C3%B6belsets&idsOnly=false&productsOnly=false');
+  await this.page.getByRole('link', { name: 'Gartenmöbel & Balkonmöbel' }).click();
+  await this.page.locator('.s-facet__reset').click();
+}
 
-  public async debugTestCase14() {
-    await this.page.goto('https://www.lidl.sk/q/search?variant=a&productsOnly=false&idsOnly=false');
-    await this.page.getByRole('link', { name: 'Móda' }).click();
-    await this.page.getByRole('link', { name: 'Dámska móda' }).click();
-    await this.page.getByRole('link', { name: 'Dámska XXL móda' }).click();
-    await this.page.locator('nav').filter({ hasText: 'Filtrovať podľa Kategórie Móda Dámska móda Dámska XXL móda Filtrovať podľa Cena ' }).getByRole('link').first().click();
-  }
+public async debugTestCase13() {
+  await this.page.goto('https://www.lidl.de/q/search?variant=a&category=Garten+%26+Balkon%2FGartenm%C3%B6bel+%26+Balkonm%C3%B6bel&idsOnly=false&productsOnly=false');
+  await this.page.getByRole('link', { name: 'Garten & Balkon' }).click();
+  await this.page.locator('.s-facet__reset').click();
+}
 
-  
-  public async debugTestCase15() {
-    await this.page.goto('https://www.lidl.sk/q/search?variant=a&category=M%C3%B3da%2FD%C3%A1mska+m%C3%B3da%2FD%C3%A1mska+XXL+m%C3%B3da&idsOnly=false&productsOnly=false');
-    await this.page.getByRole('link', { name: 'Dámska móda' }).click();
-    await this.page.getByRole('link', { name: 'Móda', exact: true }).click();
-    await this.page.locator('.s-facet__reset').click();
-  }
+public async debugTestCase14() {
+  await this.page.goto('https://www.lidl.de/q/search?variant=a&category=Garten+%26+Balkon&idsOnly=false&productsOnly=false');
+  await this.page.locator('.s-facet__reset').click();
+  await this.page.locator('#category').getByRole('button', { name: 'Alles anzeigen' }).click();
+}
 
-  public async debugTestCase16() {
-    await this.page.goto('https://www.lidl.sk/q/search?variant=a&productsOnly=false&idsOnly=false');
-    await this.page.getByRole('link', { name: 'Móda' }).click();
-    await this.page.locator('.s-facet__reset').click();
-    await this.page.getByRole('link', { name: 'Dielňa a záhrada' }).click();
-  }
+public async debugTestCase15() {
+  await this.page.goto('https://www.lidl.de/q/search?variant=a&productsOnly=false&idsOnly=false');
+  await this.page.getByRole('link', { name: 'Garten & Balkon' }).click();
+  await this.page.getByRole('link', { name: 'Gartenmöbel & Balkonmöbel' }).click();
+  await this.page.getByRole('link', { name: 'Gartenmöbelsets' }).click();
+  await this.page.getByRole('link', { name: 'Garten & Balkon' }).click();
+  await this.page.locator('.s-facet__reset').click();
+}
 
-  public async debugTestCase17() {
-    await this.page.goto('https://www.lidl.sk/q/search?variant=a&category=M%C3%B3da&idsOnly=false&productsOnly=false');
-    await this.page.getByRole('link', { name: 'Dámska móda' }).click();
-    await this.page.getByRole('link', { name: 'Dámska móda' }).click();
-  }
+public async debugTestCase16() {
+  await this.page.goto('https://www.lidl.de/');
+  await this.page.getByRole('button', { name: 'Zustimmen' }).click();
+  await this.page.goto('https://www.lidl.de/q/search?variant=a&productsOnly=false&idsOnly=false');
+  await this.page.getByRole('link', { name: 'Garten & Balkon' }).click();
+  await this.page.getByRole('link', { name: 'Gartenmöbel & Balkonmöbel' }).click();
+  await this.page.getByRole('link', { name: 'Gartenmöbelsets' }).click();
+  await this.page.locator('.s-facet__reset').click();
+}
 
-  public async debugTestCase18() {
-    await this.page.goto('https://www.lidl.sk/q/search?variant=a&category=M%C3%B3da%2FD%C3%A1mska+m%C3%B3da&idsOnly=false&productsOnly=false');
-    await this.page.getByRole('link', { name: 'Dámska XXL móda' }).click();
-    await this.page.getByRole('link', { name: 'Dámska XXL móda' }).click();
-  }
 
-  public async debugTestCase19() {
-    await this.page.goto('https://www.lidl.sk/q/search?variant=b&category=M%C3%B3da%2FD%C3%A1mska+m%C3%B3da%2FD%C3%A1mska+XXL+m%C3%B3da&idsOnly=false&productsOnly=false');
-    await this.page.getByRole('link', { name: 'Dámska móda' }).click();
-    await this.page.getByRole('link', { name: 'Dámska móda' }).click();
-  }
+public async debugTestCase17() {
+  await this.page.goto('https://www.lidl.de/q/search?variant=a&category=Garten+%26+Balkon%2FGartenm%C3%B6bel+%26+Balkonm%C3%B6bel%2FGartenm%C3%B6belsets&idsOnly=false&productsOnly=false');
+  await this.page.getByRole('link', { name: 'Gartenmöbel & Balkonmöbel' }).click();
+  await this.page.getByRole('link', { name: 'Garten & Balkon' }).click();
+  await this.page.locator('.s-facet__reset').click();
+}
 
-  public async debugTestCase20() {
-    await this.page.goto('https://www.lidl.sk/q/search?variant=b&category=M%C3%B3da%2FD%C3%A1mska+m%C3%B3da&idsOnly=false&productsOnly=false');
-    await this.page.getByRole('link', { name: 'Móda', exact: true }).click();
-    await this.page.getByRole('link', { name: 'Móda', exact: true }).click();
-  }
+public async debugTestCase18() {
+  await this.page.goto('https://www.lidl.de/');
+  await this.page.getByRole('button', { name: 'Zustimmen' }).click();
+  await this.page.goto('https://www.lidl.de/q/search?variant=a&productsOnly=false&idsOnly=false');
+  await this.page.getByRole('link', { name: 'Garten & Balkon' }).click();
+  await this.page.locator('.s-facet__reset').click();
+  await this.page.getByRole('link', { name: 'Baumarkt' }).click();
+}
 
-  public async debugTestCase21() {
-    await this.page.goto('https://www.lidl.sk/q/search?variant=a&productsOnly=false&idsOnly=false');
-    await this.page.getByRole('link', { name: 'Móda' }).click();
-    await this.page.getByRole('link', { name: 'Dámska móda' }).click();
-    await this.page.getByRole('link', { name: 'Dámska XXL móda' }).click();
-    await this.page.getByRole('link', { name: 'Móda', exact: true }).click();
-    await this.page.getByRole('link', { name: 'Móda', exact: true }).click();
-  }
 
-  public async debugTestCase22() {
-    await this.page.goto('https://www.lidl.sk/q/search?variant=a&productsOnly=false&idsOnly=false');
-    await this.page.getByRole('link', { name: 'Móda' }).click();
-    await this.page.getByRole('link', { name: 'Dámska móda' }).click();
-    await this.page.getByRole('link', { name: 'Dámska XXL móda' }).click();
-    await this.page.getByRole('link', { name: 'Dámska XXL móda' }).click();
-  }
+public async debugTestCase19() {
+  await this.page.goto('https://www.lidl.de/q/search?variant=a&productsOnly=false&idsOnly=false');
+  await this.page.getByRole('link', { name: 'Garten & Balkon' }).click();
+  await this.page.getByRole('link', { name: 'Gartenmöbel & Balkonmöbel' }).click();
+  await this.page.getByRole('link', { name: 'Gartenmöbel & Balkonmöbel' }).click();
+}
 
-  public async debugTestCase23() {
-    await this.page.goto('https://www.lidl.sk/q/search?variant=a&category=M%C3%B3da%2FD%C3%A1mska+m%C3%B3da%2FD%C3%A1mska+XXL+m%C3%B3da&idsOnly=false&productsOnly=false');
-    await this.page.getByRole('link', { name: 'Dámska móda' }).click();
-    await this.page.getByRole('link', { name: 'Móda', exact: true }).click();
-    await this.page.getByRole('link', { name: 'Móda', exact: true }).click();
-  }
+public async debugTestCase20() {
+  await this.page.goto('https://www.lidl.de/q/search?variant=a&category=Garten+%26+Balkon%2FGartenm%C3%B6bel+%26+Balkonm%C3%B6bel&idsOnly=false&productsOnly=false');
+  await this.page.getByRole('link', { name: 'Gartenmöbelsets' }).click();
+  await this.page.getByRole('link', { name: 'Gartenmöbelsets' }).click();
+}
 
-  public async debugTestCase24() {
-    await this.page.goto('https://www.lidl.sk/q/search?variant=a&productsOnly=false&idsOnly=false');
-    await this.page.getByRole('link', { name: 'Móda' }).click();
-    await this.page.getByRole('link', { name: 'Móda', exact: true }).click();
-    await this.page.getByRole('link', { name: 'Dielňa a záhrada' }).click();
-  }
+public async debugTestCase21() {
+  await this.page.goto('https://www.lidl.de/q/search?variant=a&category=Garten+%26+Balkon%2FGartenm%C3%B6bel+%26+Balkonm%C3%B6bel%2FGartenm%C3%B6belsets&idsOnly=false&productsOnly=false');
+  await this.page.getByRole('link', { name: 'Gartenmöbel & Balkonmöbel' }).click();
+  await this.page.getByRole('link', { name: 'Gartenmöbel & Balkonmöbel' }).click();
+}
+
+public async debugTestCase22() {
+  await this.page.goto('https://www.lidl.de/q/search?variant=a&category=Garten+%26+Balkon%2FGartenm%C3%B6bel+%26+Balkonm%C3%B6bel&idsOnly=false&productsOnly=false');
+  await this.page.getByRole('link', { name: 'Garten & Balkon' }).click();
+  await this.page.getByRole('link', { name: 'Garten & Balkon' }).click();
+}
+
+public async debugTestCase23() {
+  await this.page.goto('https://www.lidl.de/q/search?variant=a&category=Garten+%26+Balkon&idsOnly=false&productsOnly=false');
+  await this.page.getByRole('link', { name: 'Garten & Balkon' }).click();
+}
+
+public async debugTestCase24() {
+  await this.page.goto('https://www.lidl.de/q/search?variant=a&productsOnly=false&idsOnly=false');
+  await this.page.getByRole('link', { name: 'Garten & Balkon' }).click();
+  await this.page.getByRole('link', { name: 'Gartenmöbel & Balkonmöbel' }).click();
+  await this.page.getByRole('link', { name: 'Gartenmöbelsets' }).click();
+  await this.page.getByRole('link', { name: 'Garten & Balkon' }).click();
+  await this.page.getByRole('link', { name: 'Garten & Balkon' }).click();
+}
+
+public async debugTestCase25() {
+  await this.page.goto('https://www.lidl.de/q/search?variant=a&productsOnly=false&idsOnly=false');
+  await this.page.getByRole('link', { name: 'Garten & Balkon' }).click();
+  await this.page.getByRole('link', { name: 'Gartenmöbel & Balkonmöbel' }).click();
+  await this.page.getByRole('link', { name: 'Gartenmöbelsets' }).click();
+  await this.page.getByRole('link', { name: 'Gartenmöbelsets' }).click();
+}
+
+public async debugTestCase26() {
+  await this.page.goto('https://www.lidl.de/q/search?variant=a&category=Garten+%26+Balkon%2FGartenm%C3%B6bel+%26+Balkonm%C3%B6bel%2FGartenm%C3%B6belsets&idsOnly=false&productsOnly=false');
+  await this.page.getByRole('link', { name: 'Gartenmöbel & Balkonmöbel' }).click();
+  await this.page.getByRole('link', { name: 'Garten & Balkon' }).click();
+  await this.page.getByRole('link', { name: 'Garten & Balkon' }).click();
+}
+
+public async debugTestCase27() {
+  await this.page.goto('https://www.lidl.de/q/search?variant=a&productsOnly=false&idsOnly=false');
+  await this.page.getByRole('link', { name: 'Garten & Balkon' }).click();
+  await this.page.getByRole('link', { name: 'Garten & Balkon' }).click();
+  await this.page.getByRole('link', { name: 'Baumarkt' }).click();
+}
+
 
 }
