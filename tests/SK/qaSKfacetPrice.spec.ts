@@ -14,30 +14,27 @@ import { test } from "../../fixtures/lidl-configurator";
         // The user submits a basic search on the home page
         console.log("*** STEP 3: The user submits a basic search on the home page");
         await lidlStoreFront.searchBar().submitSearchQuery("*");
-            
-        await lidlStoreFront.facetPrice().validate_facet_price_initial_props_for_sk();
-     
+        
+        //STEP 4
+        // The user verifies the inital price facet props 
+        console.log('*** STEP 4 : The user verifies the inital price facet props')
+        // 4.1. 
+        const initialPriceFromValue = await lidlStoreFront.facetPrice().getPriceFromValue();
+        console.log("CONFIRM: The initial price from value is:  "+initialPriceFromValue);
+        const initialPriceTillValue = await lidlStoreFront.facetPrice().getPriceTillValue();
+        console.log("CONFIRM: The initial price till value is:  "+initialPriceTillValue);
+        
+
+        await lidlStoreFront.facetPrice().validate_facet_price_initial_common_props();
+        await lidlStoreFront.facetPrice().validate_price_from_input_field('1');
+
+        await lidlStoreFront.facetPrice().setPriceFromValue('44');
+        const updatedPriceFrom = await lidlStoreFront.facetPrice().getPriceFromValue();
+        console.log('THe updated price from value is : '+updatedPriceFrom)
+        console.log('here')
     });
 
-
-// test("SK - 2 -QA - SEARCH-VIEW | SERP | Facet | Category |" +
-//     " SINGLE increment | TOP > DOWN "+
-//     "Verify user can successfully navigate " +
-//     "from 1st category level " +
-//     "to 2nd category level",
-//     async ({lidlStoreFront }) => {
-
-// //STEP 2: 
-// //CLick on Accept all cookies oneTrust cookie settings button
-//         console.log("STEP 2: CLick on oneTrust accept all cookies settings button");
-//         await lidlStoreFront.SKCookies().clickOn_AcceptAllCS_btn();
-
-// //STEP  0:
-// // The user submits a basic search on the home page
-//         console.log("STEP 3: The user submits a basic search on the home page");
-//         await lidlStoreFront.SKfacetPrice().debugTestCase2();
-//     });
-
+ 
 // test("SK - 3 -QA - SEARCH-VIEW | SERP | Facet | Category |" +
 //     " SINGLE increment | TOP > DOWN "+
 //     "Verify user can successfully navigate " +

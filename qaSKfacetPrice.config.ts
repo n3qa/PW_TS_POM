@@ -27,7 +27,8 @@ export default defineConfig <PlaywrightTestOptions> ({
     headless: false,
     viewport: { width: 1920, height: 949 },
 
-    baseURL: 'https://qa.lidl.sk/',
+    // baseURL: 'https://qa.lidl.sk/',
+    baseURL: 'https://www.lidl.sk/',
     trace: 'on-first-retry',
     
     //INCREASE timeouts for headless node CI/CD pipes
