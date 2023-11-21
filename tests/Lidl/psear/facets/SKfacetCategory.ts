@@ -60,7 +60,15 @@ export default class SKfacetCategory extends LidlBase {
   bubble_reset_option_for_third_level_xxl_women_moda = () =>  this.page.locator('nav').filter({ hasText: 'Filtrovať podľa Kategórie Móda Dámska móda Dámska XXL móda Filtrovať podľa Cena ' }).getByRole('link').first().click();
   
   
-
+  public async click_on_header_reset_btn() {
+    // When in end to end scenarios the reset option is in multiple use there is a problem with the page load
+    //There fore we are dynamicaly waiting for the dom to be laoded and element to be visible
+    await this.page.waitForLoadState('domcontentloaded');
+    await this.page.waitForSelector('[data-testseletor="category-facet-header-reset-option"]');
+    // The user clicks on header reset option for category facet
+    this.page.locator('[data-testseletor="category-facet-header-reset-option"]').click();
+    console.log('CONFIRM: The category header reset option was clicked by the user.')
+  }
   //  ACTIONS
   public async click_on_first_level_category_node () {
     await this.first_level_moda().click();
@@ -177,6 +185,7 @@ export default class SKfacetCategory extends LidlBase {
   }
 
   public async validate_no_bubble_reset_option_for_psear_qa_is_shown(){
+    await this.page.waitForLoadState('domcontentloaded');
     await expect(this.bubble_reset_option_for_third_level_psear_qa()).toHaveCount(0);
     console.log('CONFIRM: NO bubble reset option is presented')
   }
