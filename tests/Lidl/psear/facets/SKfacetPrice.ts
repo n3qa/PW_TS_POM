@@ -14,20 +14,27 @@ export default class SKfacetPrice extends LidlBase{
   searchResultsPageHeader = () => this.page.locator('');
   //Search Results page grid box counter
 
-  searchBar = () => this.searchInputField().getAttribute('#search-input-hook');
-  searchInputField = () => this.page.locator('#s-search-input-field');
-  searchSubmitButton = () => this.page.locator('button.s-search-input__button');
-  //Search input field = abbreaviation -> SIF
-  SIFplaceHolder = () => this.searchInputField().getAttribute('placeholder');
-
-  //Facets country spec labels locators 
-  facet_category = () => this.page.getByRole('button', { name: 'Filtrovať podľa Kategórie' });
+ 
   facet_price = () => this.page.getByRole('button', { name: 'Filtrovať podľa Cena' });
-  facet_brand = () => this.page.getByRole('button', { name: 'Filtrovať podľa Značka' });
-  facet_color = () => this.page.getByRole('button', { name: 'Filtrovať podľa Farba' });
-  facet_size = () => this.page.getByRole('button', { name: 'Filtrovať podľa Veľkosť' });
-  facet_ratings = () => this.page.getByRole('button', {class: 'Filtrovať podľa Hodnotenia' });  //Hodnotenia-facet
-  facet_ratingsG = () => this.page.getByTestId('Hodnotenia-facet');
+  
+
+  // await page.goto('https://qa.lidl.sk/q/search?q=*');
+  // await page.getByRole('button', { name: 'Filtrovať podľa Cena' }).click();
+  // await page.getByRole('button', { name: 'Filtrovať podľa Cena' }).click();
+  // await page.locator('.s-facet-range__progress').click();
+  // await page.locator('.s-facet-range__progress').click();
+  // await page.getByLabel('Filtrovať podľa Cena: Od').dblclick();
+  // await page.getByLabel('Filtrovať podľa Cena: Od').dblclick();
+  // await page.locator('html').click();
+  // await page.getByLabel('Filtrovať podľa Cena: Od').click();
+  // await page.getByLabel('Filtrovať podľa Cena: Od').fill('033');
+  // await page.getByLabel('Filtrovať podľa Cena: Od').press('Enter');
+  // await page.getByLabel('Filtrovať podľa Cena: Do').dblclick();
+  // await page.getByLabel('Filtrovať podľa Cena: Do').fill('420');
+  // await page.getByLabel('Filtrovať podľa Cena: Do').press('Enter');
+  // await page.getByRole('link', { name: '33 € - 420 €' }).click();
+  // await page.getByLabel('Filtrovať podľa Cena: Od').click(
+    
   //On the bottom of the page
   load_more_grids_button = () => this.page.getByRole('button', { name: 'Ďalej Viac produktov' });
 
