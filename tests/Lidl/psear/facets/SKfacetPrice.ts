@@ -44,9 +44,7 @@ export default class SKfacetPrice extends LidlBase{
    
     console.log("CONFIRM: THe user has provided an inptut value for price from : "+providePriceTillvalue)
     // priceFacet.waitForSelector(gridBoxImages);
-}
-  
-
+  }
 
     // VALIDATIONS 
     // Getters for validations
@@ -98,9 +96,8 @@ export default class SKfacetPrice extends LidlBase{
     public async validate_price_facet_collapsed() {
       //providing some dynamic wait
       await this.page.waitForLoadState('domcontentloaded');
-      await this.page.waitForSelector("//div[contains(@class,'s-facet-range__progress')]") //price slider bar
-        
-      await this.page.waitForSelector('#price'); //the facet main div
+      await this.page.getByRole('button', { name: 'Filtrovať podľa Cena' }).waitFor();
+      
       const facetStateStatus = await this.priceFacet_mian_btn().getAttribute('class');
       console.log('REPORT: Current facet expand class is: '+facetStateStatus)
       await expect(facetStateStatus).toBe('s-facet__heading');  
@@ -228,7 +225,7 @@ export default class SKfacetPrice extends LidlBase{
     //>>>>> VALIDATION <<<<<
     //! ! !   STEPS ! ! ! 
     // Validations for the inital common elements 
-     public async validate_facet_price_default_props(){
+     public async verify_facet_price_default_props(){
       //provide a dynamic wait for CI/CD 
       await this.page.waitForLoadState('domcontentloaded');
       await this.page.waitForSelector('#price'); 
@@ -262,7 +259,7 @@ export default class SKfacetPrice extends LidlBase{
     }
     
     // PRICE FACET COLLAPSED
-    public async validate_facet_price_colapsed_props(){
+    public async verify_facet_price_colapsed_props(){
       //provide a dynamic wait for CI/CD 
       await this.page.waitForLoadState('domcontentloaded');
       await this.page.waitForSelector('#price'); 
@@ -295,12 +292,10 @@ export default class SKfacetPrice extends LidlBase{
         
     }
 
-    //Validate price facet input fields 
-    public async validate_price_from_input_field(defaultInputValue: string){
-      //provide dynamic wait for the price facet input field interactions
-      //everytime when the facet is activated a massive rearragment of the 
-      //SRP grid box is provided 
-      // SO in that case a dynamic wait is needed
+    // VALIDATE
+    // VALUE FOR 
+    // 1 PRICE FROM INPUT FIELD
+    public async verify_price_from_input_field(defaultInputValue: string){
       // also serve as a stability during test execution on CI/CD
       await this.page.waitForLoadState('domcontentloaded');
       await this.page.waitForSelector("//div[contains(@class,'s-facet-range__progress')]") //price slider bar
@@ -310,8 +305,9 @@ export default class SKfacetPrice extends LidlBase{
       console.log('CONFIRM: The current price from value is:  '+currentPriceFromValue)
       expect(currentPriceFromValue).toMatch(defaultInputValue); 
     }
-
-    public async validate_price_till_input_field(defaultInputValue: string){
+    // VALUE FOR 
+    // 2 PRICE TILL INPUT FIELD
+    public async verify_price_till_input_field(defaultInputValue: string){
       //provide dynamic wait for the price facet input field interactions
       await this.page.waitForLoadState('domcontentloaded');
       await this.page.waitForSelector("//div[contains(@class,'s-facet-range__progress')]") //price slider bar
@@ -321,8 +317,9 @@ export default class SKfacetPrice extends LidlBase{
       console.log('CONFIRM: The current price from value is:  '+currentPriceTillValue)
       expect(currentPriceTillValue).toMatch(defaultInputValue); 
     }
-
-    public async validate_price_slider_minimum_range_input_field(defaultInputValue: string){
+    // VALUE FOR 
+    // 3 PRICE SLIDER MIN INPUT FIELD
+    public async verify_price_slider_minimum_range_input_field(defaultInputValue: string){
       //provide dynamic wait for the price facet input field interactions
       await this.page.waitForLoadState('domcontentloaded');
       await this.page.waitForSelector("//div[contains(@class,'s-facet-range__progress')]") //price slider bar
@@ -332,8 +329,9 @@ export default class SKfacetPrice extends LidlBase{
       console.log('CONFIRM: The current price from value is:  '+currentValue)
       expect(currentValue).toMatch(defaultInputValue); 
     }
-
-    public async validate_price_slider_maximum_range_input_field(defaultInputValue: string){
+    // VALUE FOR 
+    // 4 PRICE PRICE SLIDER MAX INPUT FIELD
+    public async verify_price_slider_maximum_range_input_field(defaultInputValue: string){
       //provide dynamic wait for the price facet input field interactions
       await this.page.waitForLoadState('domcontentloaded');
       await this.page.waitForSelector("//div[contains(@class,'s-facet-range__progress')]") //price slider bar
