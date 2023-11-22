@@ -22,8 +22,14 @@ export class LidlBase {
         await this.page.screenshot({path: picPath})
     }
 
-    public async getPageTitle(){
-        
+    public async pageGoDown(){
+        await this.page.waitForLoadState('domcontentloaded');
+        await this.page.keyboard.press('PageDown');
+    }
+
+    public async pageGoUp(){
+        await this.page.waitForLoadState('domcontentloaded');
+        await this.page.keyboard.press('PageUp');
     }
 
 }

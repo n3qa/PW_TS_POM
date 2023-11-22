@@ -19,17 +19,19 @@ import { test } from "../../fixtures/lidl-configurator";
         // The user verifies the inital price facet props 
         console.log('*** STEP 4 : The user verifies the inital price facet props')
         // 4.1. 
-        const initialPriceFromValue = await lidlStoreFront.facetPrice().getPriceFromValue();
+        const initialPriceFromValue = await lidlStoreFront.SKfacetPrice().get_price_from_value();
         console.log("CONFIRM: The initial price from value is:  "+initialPriceFromValue);
-        const initialPriceTillValue = await lidlStoreFront.facetPrice().getPriceTillValue();
+        const initialPriceTillValue = await lidlStoreFront.SKfacetPrice().get_price_till_value();
         console.log("CONFIRM: The initial price till value is:  "+initialPriceTillValue);
         
 
-        await lidlStoreFront.facetPrice().validate_facet_price_initial_common_props();
-        await lidlStoreFront.facetPrice().validate_price_from_input_field('1');
+        await lidlStoreFront.SKfacetPrice().validate_facet_price_default_props();
+        await lidlStoreFront.SKfacetPrice().validate_price_from_input_field('1');
 
-        await lidlStoreFront.facetPrice().setPriceFromValue('44');
-        const updatedPriceFrom = await lidlStoreFront.facetPrice().getPriceFromValue();
+        await lidlStoreFront.SKfacetPrice().set_price_from_value('44');
+        await lidlStoreFront.SKfacetPrice().set_price_till_value('44');
+
+        const updatedPriceFrom = await lidlStoreFront.SKfacetPrice().get_price_from_value();
         console.log('THe updated price from value is : '+updatedPriceFrom)
         console.log('here')
     });
