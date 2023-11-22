@@ -9,6 +9,7 @@ export default class SKfacetPrice extends LidlBase{
   //Common price facet locators
     //1 Price facet expand and collapse via main price facet button
     priceFacet_mian_btn = () =>  this.page.locator('(//button[contains(@data-testselector,"price-facet")])');
+    price_country_spec_label_btn = () =>  this.page.getByRole('button', { name: 'Filtrovať podľa Cena' });
 
     //2 Price facet functionalities input fields
     price_from = () =>  this.page.locator('//input[contains(@data-testselector,"price-facet-range-input-minValue")]');
@@ -41,7 +42,7 @@ export default class SKfacetPrice extends LidlBase{
     await this.page.locator('input#Cena-filter-input-min').fill(providePriceTillvalue);
     await this.price_from().press('Enter');
    
-    console.log("CONFIRM: THe user has provided an inptut value for price from : "+providePriceFromvalue)
+    console.log("CONFIRM: THe user has provided an inptut value for price from : "+providePriceTillvalue)
     // priceFacet.waitForSelector(gridBoxImages);
 }
   
@@ -94,18 +95,29 @@ export default class SKfacetPrice extends LidlBase{
       console.log('CONFIRM : The initial expand facet state is opened/expanded.' );
     }
 
+    public async validate_price_facet_collapsed() {
+      //providing some dynamic wait
+      await this.page.waitForLoadState('domcontentloaded');
+      await this.page.waitForSelector("//div[contains(@class,'s-facet-range__progress')]") //price slider bar
+        
+      await this.page.waitForSelector('#price'); //the facet main div
+      const facetStateStatus = await this.priceFacet_mian_btn().getAttribute('class');
+      console.log('REPORT: Current facet expand class is: '+facetStateStatus)
+      await expect(facetStateStatus).toBe('s-facet__heading');  
+      console.log('CONFIRM : The pric facet state is collapsed' );
+    }
+
+    // SIMPLE VALIDATIONS
     // SHOWN STATUS
-    //1 HEADER RESET OPTION
-    public async validate_header_reset_option_is_shown() {
-      await expect(this.header_reset_btn()).toHaveCount(1);
-     console.log('CONFIRM: Header reset option is presented')
+    //1 HEADER 
+    public async validate_price_facet_header_is_shown () {
+      //providing some dynamic wait
+      await this.page.waitForLoadState('domcontentloaded');
+      await this.page.waitForSelector("//div[contains(@class,'s-facet-range__progress')]") //price slider bar
+      
+      await expect(this.price_country_spec_label_btn()).toHaveCount(1);
+      console.log('CONFIRM: Price header country spec label is presented')  
     }
-
-    public async validate_no_header_reset_option_is_shown() {
-      await expect(this.header_reset_btn()).toHaveCount(0);
-     console.log('CONFIRM: No header reset option is presented')
-    }
-
     //2 INPUT FIELDS SHOWN STATUS
     // 2.1. PRICE FROM SHOWN STATUS
     public async validate_no_price_from_is_shown() {
@@ -116,7 +128,6 @@ export default class SKfacetPrice extends LidlBase{
       await expect(this.price_from()).toHaveCount(0);
       console.log('CONFIRM: No price from input field is presented')
     }
-
     public async validate_price_from_is_shown() {
       //providing some dynamic wait
       await this.page.waitForLoadState('domcontentloaded');
@@ -132,52 +143,156 @@ export default class SKfacetPrice extends LidlBase{
       await this.page.waitForSelector("//div[contains(@class,'s-facet-range__progress')]") //price slider bar
 
       await expect(this.price_till()).toHaveCount(0);
-      console.log('CONFIRM: No price till input value is presented')
+      console.log('CONFIRM: No price till input field is presented')
     }
-
     public async validate_price_till_is_shown() {
       //providing some dynamic wait
       await this.page.waitForLoadState('domcontentloaded');
       await this.page.waitForSelector("//div[contains(@class,'s-facet-range__progress')]") //price slider bar
 
-      await expect(this.price_till()).toHaveCount(0);
-      console.log('CONFIRM: Price till input value is presented')
+      await expect(this.price_till()).toHaveCount(1);
+      console.log('CONFIRM: Price till input field is presented')
     }
+    //2.3. PRICE SLIDER MINIMUM SHOWN STATUS
+    public async validate_no_price_slider_minimum_range_is_shown() {
+      //providing some dynamic wait
+      await this.page.waitForLoadState('domcontentloaded');
+      await this.page.waitForSelector("//div[contains(@class,'s-facet-range__progress')]") //price slider bar
 
+      await expect(this.price_slider_minimum_range()).toHaveCount(0);
+      console.log('CONFIRM: No price slider minimum range input field is presented')
+    }
+    public async validate_price_rice_slider_minimum_range_is_shown() {
+      //providing some dynamic wait
+      await this.page.waitForLoadState('domcontentloaded');
+      await this.page.waitForSelector("//div[contains(@class,'s-facet-range__progress')]") //price slider bar
 
-    //NAVIGATION RESET ALL BUBBLS BUTTON
+      await expect(this.price_slider_minimum_range()).toHaveCount(1);
+      console.log('CONFIRM: Price slider minimum range input field is presented')
+    }
+    //2.4. PRICE SLIDER MAXIMUM SHOWN STATUS
+    public async validate_no_price_slider_maximum_range_is_shown() {
+      //providing some dynamic wait
+      await this.page.waitForLoadState('domcontentloaded');
+      await this.page.waitForSelector("//div[contains(@class,'s-facet-range__progress')]") //price slider bar
+
+      await expect(this.price_slider_maximum_range()).toHaveCount(1);
+      console.log('CONFIRM: No price slider maximum range input field is presented')
+    }
+    public async validate_price_rice_slider_maximum_range_is_shown() {
+      //providing some dynamic wait
+      await this.page.waitForLoadState('domcontentloaded');
+      await this.page.waitForSelector("//div[contains(@class,'s-facet-range__progress')]") //price slider bar
+
+      await expect(this.price_slider_maximum_range()).toHaveCount(1);
+      console.log('CONFIRM: Price slider maximum range input field is presented')
+    }
+     //2.5. PRICE SLIDER PROGRESS SHOWN STATUS
+     public async validate_no_price_slider_progress_bar_is_shown() {
+      //providing some dynamic wait
+      await this.page.waitForLoadState('domcontentloaded');
+      await this.page.waitForSelector("//div[contains(@class,'s-facet-range__progress')]") //price slider bar
+
+      await expect(this.price_slider_range_progress_bar()).toHaveCount(0);
+      console.log('CONFIRM: No price slider maximum range input field is presented')
+    }
+    public async validate_price_rice_slider_progress_bar_is_shown() {
+      //providing some dynamic wait
+      await this.page.waitForLoadState('domcontentloaded');
+      await this.page.waitForSelector("//div[contains(@class,'s-facet-range__progress')]") //price slider bar
+
+      await expect(this.price_slider_range_progress_bar()).toHaveCount(1);
+      console.log('CONFIRM: Price slider maximum range input field is presented')
+    }
+    //3 RESET OPTIONS
+    //3.1 NAVIGATION RESET ALL BUBBLS BUTTON
+    public async validate_header_reset_option_is_shown() {
+      await expect(this.header_reset_btn()).toHaveCount(1);
+     console.log('CONFIRM: Header reset option is presented')
+    }
+    public async validate_no_header_reset_option_is_shown() {
+      await expect(this.header_reset_btn()).toHaveCount(0);
+     console.log('CONFIRM: No header reset option is presented')
+    }
+    //3.2 NAVIGATION RESET ALL BUBBLS BUTTON
     public async validate_no_navigation_reset_all_bubbles_button_is_shown(){
       await expect(this.navigation_reset_all_bubbles_btn()).toHaveCount(0);
       console.log('CONFIRM: There is no navigation reset all bubbles button')
     }
-
     public async validate_navigation_reset_all_bubbles_button_is_shown(){
       await expect(this.navigation_reset_all_bubbles_btn()).toHaveCount(1);
       console.log('CONFIRM: There is no navigation reset all bubbles button')
     }
-
+    
+    //*****  COMMON *****
+    //>>>>> VALIDATION <<<<<
+    //! ! !   STEPS ! ! ! 
     // Validations for the inital common elements 
-    public async validate_facet_price_default_props(){
+     public async validate_facet_price_default_props(){
       //provide a dynamic wait for CI/CD 
       await this.page.waitForLoadState('domcontentloaded');
       await this.page.waitForSelector('#price'); 
-
+     
+     
       //1. The user verifies that initial category facet props are presented as per requirements
       console.log('VALIDATE : The user verifies that initial/default price facet is expanded.')
       await this.validate_price_facet_expanded();
       //2. THere is no header reset option
+      console.log('-> VALIDATE: The user checks that there is no header reset option when the facet is not active'); 
       await this.validate_no_header_reset_option_is_shown();
-      console.log('-> Validate there is no header reset option when the facet is not active')
       //3. There is no navigation reset all bubble button
+      console.log("-> VALIDATE: THe user checks that there is no navigation bubble reset button when the facet is not active");
       await this.validate_no_navigation_reset_all_bubbles_button_is_shown();
-      console.log("-> Validate there is no navigation bubble reset button when the facet is not active")
-     
       //4 There is a price from input field 
+      console.log("-> VALIDATE: THe user checks that there is a price from input filed presented");
+      await this.validate_price_from_is_shown();
       //5 There is a price till input field
+      console.log("-> VALIDATE: THe user checks that there is a price till input filed presented");
+      await this.validate_price_till_is_shown();  
       //6 There is a price slider minimum range
-      //6 There is a price slider maximum range
-      //7 There is a price slider bar
-
+      console.log("-> VALIDATE: THe user checks that there is a price slider minimum range input filed presented");
+      await this.validate_price_rice_slider_minimum_range_is_shown();   
+      //7 There is a price slider maximum range
+      console.log("-> VALIDATE: THe user checks that there is a price slider maximum range input filed presented");
+      await this.validate_price_rice_slider_maximum_range_is_shown();   
+      //8 There is a price slider bar
+      console.log("-> VALIDATE: THe user checks that there is a price slider progres bar presented");
+      await this.validate_price_rice_slider_progress_bar_is_shown();   
+        
+    }
+    
+    // PRICE FACET COLLAPSED
+    public async validate_facet_price_colapsed_props(){
+      //provide a dynamic wait for CI/CD 
+      await this.page.waitForLoadState('domcontentloaded');
+      await this.page.waitForSelector('#price'); 
+     
+     
+      //1. The user verifies that initial category facet props are presented as per requirements
+      console.log('VALIDATE : The user verifies that initial/default price facet is expanded.')
+      await this.validate_price_facet_collapsed();
+      //2. THere is no header reset option
+      console.log('-> VALIDATE: The user checks that there is no header reset option when the facet is not active'); 
+      await this.validate_no_header_reset_option_is_shown();
+      //3. There is no navigation reset all bubble button
+      console.log("-> VALIDATE: THe user checks that there is no navigation bubble reset button when the facet is not active");
+      await this.validate_no_navigation_reset_all_bubbles_button_is_shown();
+      //4 There is a price from input field 
+      console.log("-> VALIDATE: THe user checks that there is no price from input filed presented");
+      await this.validate_no_price_from_is_shown();
+      //5 There is a price till input field
+      console.log("-> VALIDATE: The user checks that there no price till input filed presented");
+      await this.validate_no_price_till_is_shown();  
+      //6 There is a price slider minimum range
+      console.log("-> VALIDATE: THe user checks that there is no price slider minimum range input filed presented");
+      await this.validate_no_price_slider_minimum_range_is_shown();   
+      //7 There is a price slider maximum range
+      console.log("-> VALIDATE: THe user checks that there is no price slider maximum range input filed presented");
+      await this.validate_no_price_slider_maximum_range_is_shown();   
+      //8 There is a price slider bar
+      console.log("-> VALIDATE: THe user checks that there is no price slider progres bar presented");
+      await this.validate_no_price_slider_progress_bar_is_shown();   
+        
     }
 
     //Validate price facet input fields 
@@ -229,7 +344,10 @@ export default class SKfacetPrice extends LidlBase{
       expect(currentPriceTillValue).toMatch(defaultInputValue); 
     }
 
- 
+
+    //******************************** 
+    // TEST CASES SKELETON FOR DEBUGGING
+    //******************************** 
       // >>>>> >>> >>> START REGRESION SKELETON <<<, <<< <<<
       public async debugTestCase1() {
         //Paste the content from the excel

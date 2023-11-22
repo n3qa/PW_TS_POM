@@ -17,22 +17,29 @@ import { test } from "../../fixtures/lidl-configurator";
         
         //STEP 4
         // The user verifies the inital price facet props 
-        console.log('*** STEP 4 : The user verifies the inital price facet props')
-        // 4.1. 
-        const initialPriceFromValue = await lidlStoreFront.SKfacetPrice().get_price_from_value();
-        console.log("CONFIRM: The initial price from value is:  "+initialPriceFromValue);
-        const initialPriceTillValue = await lidlStoreFront.SKfacetPrice().get_price_till_value();
-        console.log("CONFIRM: The initial price till value is:  "+initialPriceTillValue);
-        
+        console.log('*** STEP 4 : The user verifies the inital price facet props are as per requirments')
+        await lidlStoreFront.SKfacetPrice().validate_facet_price_default_props();    
 
-        await lidlStoreFront.SKfacetPrice().validate_facet_price_default_props();
-        await lidlStoreFront.SKfacetPrice().validate_price_from_input_field('1');
+        //STEP 5
+        // The user collapses the price facet by a single click on price facet header button
+        console.log('*** STEP 5 : The user collapses the price facet by a single click on price facet header button')
+        await lidlStoreFront.SKfacetPrice().price_country_spec_label_btn().click();
+           
+        //STEP 6
+        // The user verifies the inital price facet props 
+        console.log('*** STEP 6 : The user verifies the price facet props are  collapsed as per requirments')
+        await lidlStoreFront.SKfacetPrice().validate_price_facet_collapsed();    
 
-        await lidlStoreFront.SKfacetPrice().set_price_from_value('44');
-        await lidlStoreFront.SKfacetPrice().set_price_till_value('44');
+        //STEP 7
+        // The user collapses the price facet by a single click on price facet header button
+        console.log('*** STEP 7 : The user expands the price facet by a single click on price facet header button')
+        await lidlStoreFront.SKfacetPrice().price_country_spec_label_btn().click();
+          
+        //STEP 8
+        // The user verifies the inital price facet props 
+        console.log('*** STEP 8 : The user verifies the inital price facet props are as per requirments')
+        await lidlStoreFront.SKfacetPrice().validate_facet_price_default_props();    
 
-        const updatedPriceFrom = await lidlStoreFront.SKfacetPrice().get_price_from_value();
-        console.log('THe updated price from value is : '+updatedPriceFrom)
         console.log('here')
     });
 
