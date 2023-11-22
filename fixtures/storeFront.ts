@@ -25,6 +25,9 @@ import LidlSKsearchResultsPage from "../tests/Lidl/psear/srp/SKsearchResultsPage
 import LidlDEsearchResultsPage from "../tests/Lidl/psear/srp/DEsearchResultsPage";
 
 //3 FACETS
+// 3.0 COMMON facets
+import LidlFacetPrice from '../tests/Lidl/common/FacetPrice';
+
 //3.1. SK FACETS
 import LidlSKfacetBrand from '../tests/Lidl/psear/facets/SKfacetBrand'
 import LidlSKfacetCategory from '../tests/Lidl/psear/facets/SKfacetCategory'
@@ -65,6 +68,8 @@ export class StoreFront {
   private readonly lidlDEsearchResultsPage: LidlDEsearchResultsPage;
 
   //3. FACETS 
+  //3.0 Common 
+  private readonly lidlFacetPrice: LidlFacetPrice;
   //3.1. SK FACETS
   private readonly lidlSKfacetBrand: LidlSKfacetBrand;
   private readonly lidlSKfacetCategory: LidlSKfacetCategory;
@@ -105,6 +110,8 @@ export class StoreFront {
     this.lidlDEsearchResultsPage = new LidlDEsearchResultsPage(this.page);
 
     //3 FACETS
+    //3.0 Facetos common
+    this.lidlFacetPrice = new LidlFacetPrice(this.page);
     //3.1. SK FACETS
     this.lidlSKfacetBrand = new LidlSKfacetBrand(this.page);
     this.lidlSKfacetCategory = new LidlSKfacetCategory(this.page);
@@ -148,6 +155,8 @@ export class StoreFront {
     DEsrp() {return this.lidlDEsearchResultsPage}
 
     //3: Facets
+    //3.0 Facets common
+    facetPrice() {return this.lidlFacetPrice};
     // 3.1. SK
     SKfacetBrand() {return this.lidlSKfacetBrand};
     SKfacetCategory(){return this.lidlSKfacetCategory};
